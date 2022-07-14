@@ -30,12 +30,13 @@ const DATA = [
 
 
 
-  const App = () => {
+  const App = (props) => {
     const renderItem = ({ item }) => (
       <ItemRender 
       title={item.title} 
       imagem={item.imagem}
       local={item.local}
+      props={props}
       />
     );
   
@@ -48,7 +49,7 @@ const DATA = [
           keyExtractor={item => item.id}
           ListHeaderComponent={HeaderComponent({nomeUser:"Usuário"} )}
         />
-      <FabButton />
+      <FabButton navigation={props.navigation}/>
     </SafeAreaView>
       
       </>

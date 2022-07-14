@@ -1,10 +1,16 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React from "react";
-import Camera from '../telas/Feed/componentes/Camera'
+import Feed from '../telas/Feed';
+import Camera from '../telas/Camera'
 
-const Stack = createNativeStackNavigator()
-export default function FeedRotas(){
-    return <Stack.Navigator>
-    <Stack.Screen name="CameraScreen" component={Camera} />
-</Stack.Navigator>
-}
+
+
+
+const Stack = createNativeStackNavigator();
+export default function ProfileTabStack() {
+    return (
+          <Stack.Navigator>
+            <Stack.Screen name="FeedScreen" component={Feed} />
+            <Stack.Screen name="CameraScreen" component={Camera} />
+          </Stack.Navigator>
+      );
+  }

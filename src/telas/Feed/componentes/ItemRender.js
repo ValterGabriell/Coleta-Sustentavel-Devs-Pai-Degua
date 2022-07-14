@@ -4,12 +4,13 @@ import Save from '../../../assets/save.png'
 import Place from '../../../assets/place.png'
 
 
-const Item = ({ title, imagem, local }) => (
+const Item = ({ title, imagem, local, props }) => (
   <View style={styles.viewMain} >
     <View style={styles.viewImg}>
       <ImageBackground source={imagem} style={styles.imagem}>
         <TouchableOpacity
           style={styles.buttonStyle}
+          onPress={()=>{props.navigation.navigate('CameraScreen')}}
           activeOpacity={0.5}
           >
           <Image
@@ -28,8 +29,8 @@ const Item = ({ title, imagem, local }) => (
   </View>
 );
 
-export default function ItemRender({ title, imagem, local }) {
-  return Item({ title, imagem,local })
+export default function ItemRender({ title, imagem, local, props }) {
+  return Item({ title, imagem,local, props})
 }
 
 const styles = StyleSheet.create({

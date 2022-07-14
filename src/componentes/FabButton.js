@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, TouchableWithoutFeedback, Animated, StyleSheet } from "react-native";
 import { AntDesign, Entypo } from '@expo/vector-icons'
-import { useNavigation, useRoute } from '@react-navigation/native';
+
 
 export default class FabButton extends Component {
     animation = new Animated.Value(0)
@@ -67,7 +67,7 @@ export default class FabButton extends Component {
         return (
             <View style={[styles.container, this.props.styles]}>
 
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={()=>{this.props.navigation.navigate('CameraScreen')}}>
                     <Animated.View style={[styles.button, styles.submenu, cameraStyle]}>
                         <Entypo name="camera" size={20} color="#00213b" />
                     </Animated.View>

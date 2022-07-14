@@ -1,11 +1,11 @@
 import React from "react"
-import { View, Text, Image } from "react-native";
+import { View, Text } from "react-native";
 
 
 export default function Camera() {
     return <>
         <View>
-            <Text>Olá!</Text>
+            <Text>Olá sou camera!</Text>
         </View>
 
     </>

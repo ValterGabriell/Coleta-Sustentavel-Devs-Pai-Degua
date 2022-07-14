@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, RadioButton } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import Profile from '../../../assets/profile.png'
 import { Chip } from 'react-native-paper';
 
