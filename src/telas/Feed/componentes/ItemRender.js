@@ -23,7 +23,7 @@ const Item = ({ title, imagem, local }) => (
     <Text style={styles.textFootViewMain}>{title}</Text>
     <View style={styles.viewFootViewMain}>
       <Image source={Place} style={styles.imgPLace}></Image>
-      <Text style={styles.textFootViewMainInsideOfView}>ver-o-peso{local}</Text>
+      <Text style={styles.textFootViewMainInsideOfView}>{local}</Text>
     </View>
   </View>
 );

@@ -1,15 +1,23 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, RadioButton } from "react-native";
 import Profile from '../../../assets/profile.png'
+import { Chip } from 'react-native-paper';
 
 
-export default function HeaderComponent({ nomeUser}) {
+export default function HeaderComponent({ nomeUser }) {
     return <>
         <View style={styles.container}>
             <Image source={Profile} style={styles.imagem} />
             <Text style={styles.texto}>Olá, {nomeUser}!</Text>
         </View>
-
+        <Chip
+          icon="information"
+          mode="outlined"
+          selectedColor="black"
+          onPress={() => alert('Information chip pressed')}>
+          Ordernar por gravidade
+        </Chip>
+     
     </>
 }
 
