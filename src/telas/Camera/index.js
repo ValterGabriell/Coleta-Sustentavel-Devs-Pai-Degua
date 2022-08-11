@@ -47,8 +47,10 @@ export default function CameraScreen(props) {
 
     async function savePicture() {
         const asset = await MediaLibrary.createAssetAsync(caputuredPhoto).then(() => {
-            alert('Foto salva com sucesso')
-            props.navigation.navigate('MyTabsScreen')
+            props.navigation.navigate('FormularioScreen',{
+                uri:caputuredPhoto
+            })
+            setOpen(false)
         }).catch(error => {
             alert('Erro ao salvar a foto' + error)
         })
@@ -91,7 +93,9 @@ export default function CameraScreen(props) {
                 >
                     <View style={styles.modalViewMain}>
                         <View style={styles.modalView}>
-                            <TouchableOpacity style={{ margin: 10 }} onPress={() => setOpen(false)}>
+                            <TouchableOpacity style={{ margin: 10 }} onPress={() => 
+                                setOpen(false)
+                                }>
                                 <FontAwesome name="window-close" size={50} color="#FF0000"></FontAwesome>
                             </TouchableOpacity>
 

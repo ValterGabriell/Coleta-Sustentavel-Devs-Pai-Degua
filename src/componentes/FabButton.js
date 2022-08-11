@@ -67,7 +67,7 @@ export default class FabButton extends Component {
         return (
             <View style={[styles.container, this.props.styles]}>
 
-                <TouchableWithoutFeedback onPress={()=>{this.props.navigation.navigate('CameraScreen')}}>
+                <TouchableWithoutFeedback onPress={()=>{this.props.navigation.navigate('CameraRotas')}}>
                     <Animated.View style={[styles.button, styles.submenu, cameraStyle]}>
                         <Entypo name="camera" size={20} color="#00213b" />
                     </Animated.View>

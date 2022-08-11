@@ -3,8 +3,7 @@ import { SafeAreaView } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import { Button,Image, StyleSheet } from "react-native";
 
-export function GaleriaScreen() {
-    const [image, setImage] = useState(null);
+export function GaleriaScreen(props) {
 
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
@@ -16,7 +15,9 @@ export function GaleriaScreen() {
         console.log(result);
 
         if (!result.cancelled) {
-            setImage(result.uri);
+            props.navigation.navigate("FormularioScreen",{
+                uri:result.uri
+            })
         }
     };
 
@@ -24,7 +25,6 @@ export function GaleriaScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <Button title="Selecione uma foto da galeria" onPress={pickImage} />
-            {image && <Image source={{ uri: image }} style={styles.imgModal} />}
         </SafeAreaView>
     )
 }
