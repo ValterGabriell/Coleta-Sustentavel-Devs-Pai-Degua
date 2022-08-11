@@ -9,7 +9,7 @@ export default function FotoPerfil({ fotoUser, nomeUser, emailUser, props }) {
             <Image source={fotoUser} style={styles.imagem} />
             <Text style={styles.username}>{nomeUser}</Text>
             <Text style={styles.email} >{emailUser}</Text>
-            <Button variant="contained" color="#FF0000" onPress={()=>{props.navigation.navigate('TestHome')}}>Editar perfil</Button>
+            <Button variant="contained" color="#FF0000" onPress={()=>{props.navigation.navigate('LoginScreen')}}>Editar perfil</Button>
         </View>
 
         <View style={styles.containerDown}>

@@ -5,6 +5,8 @@ import { TextInput } from "react-native";
 import { FontAwesome } from '@expo/vector-icons'
 import { Button } from "react-native-paper";
 import { View } from "react-native";
+
+
 export default function FormularioDenuncia(props) {
     const uri = props.route.params.uri
     const [titulo, setTitulo] = useState("")
@@ -21,10 +23,7 @@ export default function FormularioDenuncia(props) {
 
         setTitulo("")
         setDescricao("")
-       
-
-
-        
+    
     }
 
     return <>
