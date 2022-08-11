@@ -54,6 +54,9 @@ export default function FormularioDenuncia(props) {
                     value={descricao}
                 />
                 <Button onPress={sendToDatabase}>Enviar</Button>
+                <Button onPress={()=>{
+                    props.navigation.navigate("FeedScreen")
+                }}>Cancelar</Button>
 
     
             </ScrollView>
