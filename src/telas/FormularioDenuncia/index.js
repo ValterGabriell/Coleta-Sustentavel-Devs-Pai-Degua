@@ -1,29 +1,49 @@
-import React, { useState } from "react";
-import { Image, ScrollView, StyleSheet, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import { ScrollView, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native";
-import { TextInput } from "react-native";
 import { FontAwesome } from '@expo/vector-icons'
 import { Button } from "react-native-paper";
 import { View } from "react-native";
+import * as Location from 'expo-location';
+import { TextInput,Image } from "react-native";
 
 
 export default function FormularioDenuncia(props) {
+
+    const [latitude, setLatitude] = useState("Carregando localização...");
+    const [longitude, setLongitude] = useState(null);
     const uri = props.route.params.uri
     const [titulo, setTitulo] = useState("")
     const [descricao, setDescricao] = useState("")
 
-    function sendToDatabase(){
-        let location = "-1.452280, -48.503702"
-        if(titulo != "" && descricao != "" && location != "" && uri != ""){
-            alert("Salvar no banco de dados: " + titulo + " - " + descricao + " - " + location + " - " + uri)
+
+    useEffect(() => {
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+                setErrorMsg('Permissão para localização foi negada');
+                alert(errorMsg)
+                return;
+            }
+
+            let location = await Location.getCurrentPositionAsync({});
+            setLatitude(location.coords.latitude)
+            setLongitude(location.coords.longitude)
+        })();
+    }, []);
+
+
+    function sendToDatabase() {
+        if (titulo != "" && descricao != "" && uri != "") {
+            alert("Salvar no banco de dados: " + titulo + " - " + descricao + " - " + latitude + " - " + longitude + " - " + uri)
             props.navigation.navigate('FeedScreen')
-        }else{
+        } else {
             alert("Preencha tudo corretamente")
         }
 
         setTitulo("")
         setDescricao("")
-    
+
     }
 
     return <>
@@ -44,7 +64,8 @@ export default function FormularioDenuncia(props) {
 
                 <View style={{ flexDirection: "row" }}>
                     <FontAwesome style={styles.iconPerson} name="map-marker" size={20} color="#000" />
-                    <Text style={styles.txtCoordenadas}>-1.452280, -48.503702</Text>
+                    <Text style={styles.txtCoordenadas}>{latitude}</Text>
+                    <Text style={styles.txtCoordenadas}>{longitude}</Text>
                 </View>
 
                 <TextInput
@@ -53,12 +74,16 @@ export default function FormularioDenuncia(props) {
                     onChangeText={setDescricao}
                     value={descricao}
                 />
+
+
+
+
                 <Button onPress={sendToDatabase}>Enviar</Button>
-                <Button onPress={()=>{
+                <Button onPress={() => {
                     props.navigation.navigate("FeedScreen")
                 }}>Cancelar</Button>
 
-    
+
             </ScrollView>
         </SafeAreaView>
     </>
