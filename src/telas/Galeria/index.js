@@ -15,7 +15,7 @@ export function GaleriaScreen(props) {
         console.log(result);
 
         if (!result.cancelled) {
-            props.navigation.navigate("FormularioScreen",{
+            props.navigation.navigate("FormularioScreenByGallery",{
                 uri:result.uri
             })
         }

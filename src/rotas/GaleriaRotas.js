@@ -11,7 +11,7 @@ export default function ProfileTabStack() {
     return (
           <Stack.Navigator>
             <Stack.Screen name="GaleriaScreen" options={{headerShown:false}} component={GaleriaScreen} />
-            <Stack.Screen name="FormularioScreen" options={{headerBackVisible: false}} component={FormularioDenuncia} />
+            <Stack.Screen name="FormularioScreenByGallery" options={{headerBackVisible: false}} component={FormularioDenuncia} />
             <Stack.Screen name="FeedScreen" options={{headerShown:false}} component={FeedRotas} />
           </Stack.Navigator>
       );
