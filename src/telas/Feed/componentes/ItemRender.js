@@ -13,7 +13,11 @@ const Item = ({ title, imagem, local, props }) => (
         <TouchableOpacity
           style={styles.buttonStyle}
           onPress={()=>{
-            props.navigation.navigate('NoticiaScreen')
+            props.navigation.navigate('NoticiaScreen',{
+              titulo:title,
+              place:local,
+              image:imagem
+            })
           }
           
           }
