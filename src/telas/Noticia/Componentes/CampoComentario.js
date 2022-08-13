@@ -17,7 +17,7 @@ export default function CampoComentario() {
                 onChangeText={setComentario}
                 value={comentário}
             />
-            <FontAwesome name="paper-plane-o"></FontAwesome>
+            <FontAwesome style={styles.iconSendComment} size={25} name="paper-plane-o" onPress={()=>{alert('msg enviada')}}></FontAwesome>
         </View>
 
     </>
@@ -25,8 +25,12 @@ export default function CampoComentario() {
 const styles = StyleSheet.create({
     input: {
         height: 40,
+        width:'80%',
         margin: 12,
         borderWidth: 1,
         padding: 10,
+    },
+    iconSendComment:{
+        marginTop:18
     }
 })
