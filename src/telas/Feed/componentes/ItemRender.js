@@ -6,11 +6,17 @@ import Place from '../../../assets/place.png'
 
 const Item = ({ title, imagem, local, props }) => (
   <View style={styles.viewMain} >
-    <View style={styles.viewImg}>
-      <ImageBackground source={imagem} style={styles.imagem}>
+    <View style={styles.viewImg} >
+      <ImageBackground source={imagem} style={styles.imagem}  >
+
+      
         <TouchableOpacity
           style={styles.buttonStyle}
-          onPress={()=>{props.navigation.navigate('')}}
+          onPress={()=>{
+            props.navigation.navigate('NoticiaScreen')
+          }
+          
+          }
           activeOpacity={0.5}
           >
           <Image
@@ -18,6 +24,8 @@ const Item = ({ title, imagem, local, props }) => (
             style={styles.buttonImageIconStyle}
           />
         </TouchableOpacity>
+
+
       </ImageBackground>
     </View>
 
