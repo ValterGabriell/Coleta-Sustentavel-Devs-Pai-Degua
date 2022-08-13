@@ -9,7 +9,7 @@ export default function Noticia() {
     return <>
         <Text>Titulo noticia</Text>
         <HeaderNoticia/>
-        <Text>Breve descricao apenas teste</Text>
+        <Text>Breve descricao apenas teste 2</Text>
         <AntesDosComentarios/>
         <CampoComentario/>
         <ListaComentario/>
