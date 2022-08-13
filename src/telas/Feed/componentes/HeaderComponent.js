@@ -27,7 +27,7 @@ export default function HeaderComponent({ nomeUser }) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        padding: 0,
+        marginLeft: 16,
     },
     imagem: {
         marginLeft: 12
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     },
     chip: {
         padding: 2,
-        marginRight: 125
+        marginRight: 101,
+        marginLeft:16
     }
 })
