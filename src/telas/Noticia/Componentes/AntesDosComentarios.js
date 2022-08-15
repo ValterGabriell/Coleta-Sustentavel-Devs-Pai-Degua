@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Chip } from 'react-native-paper';
 import { FontAwesome } from '@expo/vector-icons'
-import { Image, Text, StyleSheet } from "react-native";
+import {  Text, StyleSheet } from "react-native";
 import { View } from "react-native";
-import imgMapa from '../../../assets/imgMapa.jpg'
+
 
 
 

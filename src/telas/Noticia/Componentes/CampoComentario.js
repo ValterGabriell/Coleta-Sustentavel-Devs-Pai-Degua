@@ -17,7 +17,10 @@ export default function CampoComentario() {
                 onChangeText={setComentario}
                 value={comentário}
             />
-            <FontAwesome style={styles.iconSendComment} size={25} name="paper-plane-o" onPress={()=>{alert('msg enviada')}}></FontAwesome>
+            <FontAwesome style={styles.iconSendComment} size={25} name="paper-plane-o" onPress={()=>{
+                alert('msg enviada')    
+
+                }}></FontAwesome>
         </View>
 
     </>
