@@ -16,7 +16,7 @@ export default function Noticia(props) {
         <HeaderNoticia local={place}/>
         <Text style={styles.description}>description</Text>
         <AntesDosComentarios />
-        <CampoComentario />
+        <CampoComentario props={props}/>
         <ListaComentario />
     </>
 }

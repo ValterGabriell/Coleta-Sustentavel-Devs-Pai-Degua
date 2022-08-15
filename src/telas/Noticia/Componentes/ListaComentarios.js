@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FlatList, TouchableHighlight, Text, Image, StyleSheet } from "react-native";
 import { View } from "react-native";
 import ImgTeste from '../../../assets/imgMapa.jpg'
@@ -15,7 +15,7 @@ const DATA = [
         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
         imagem: ImgTeste,
         name: 'Rebeca',
-        comentario: 'Mutio bom esse app nossa que app magnifico' 
+        comentario: 'Mutio bom esse app nossa que app magnifico oi buceta' 
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -26,11 +26,17 @@ const DATA = [
 ];
 
 export default function ListaComentario() {
+
+    const [size, setSize] = useState()
+
+
     return <>
         <FlatList
             data={DATA}
             renderItem={({ item, index, separators }) => (
+                   
                 <TouchableHighlight
+                
                     style={styles.item}
                     key={item.key}
                     onPress={() => alert('item clicado')}
@@ -40,7 +46,7 @@ export default function ListaComentario() {
 
                     <View style={styles.viewOne}>
                         <Image source={ImgTeste} style={styles.img} />
-                        <View>
+                        <View style={styles.viewTwo}> 
                             <Text style={styles.txtName}>{item.name}</Text>
                             <Text style={styles.txtComent}>{item.comentario}</Text>
                         </View>
@@ -58,17 +64,20 @@ const styles = StyleSheet.create({
         padding: 8
     },
     viewOne: {
-        backgroundColor: 'white', flexDirection: "row", height: 40
+        backgroundColor: 'white', flexDirection: "row"
+    },
+    viewTwo:{
+        width: '85%', marginLeft:4
     },
     img: {
-        width: '12%', height: '100%', borderRadius: 16
+        width: 45, height: 45, borderRadius: 16, marginTop:4
     },
     txtName: {
         fontSize: 16,
         fontWeight: 'bold',
-        marginLeft: 8
+        marginLeft: 0
     },
     txtComent: {
-        marginLeft: 8
+        marginLeft: 0
     }
 })
