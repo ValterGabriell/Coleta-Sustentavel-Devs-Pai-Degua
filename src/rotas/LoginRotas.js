@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MyTabs from "./MyTabs";
 import FeedRotas from './FeedRotas'
 import CadastroRotas from './CadastroRotas'
 import Login from '../telas/Login'
