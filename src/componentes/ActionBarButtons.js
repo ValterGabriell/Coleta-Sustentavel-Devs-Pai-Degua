@@ -7,7 +7,7 @@ export default function BotoesDeAcao({navigation}) {
     return <>
         <View style={{ flexDirection: 'row' }}>
             <FontAwesome style={{ marginRight: 16 }} size={24} name="sign-out" onPress={() => {
-                navigation.goBack()
+                navigation.navigate("Login")
             }}></FontAwesome>
         </View>
 
