@@ -11,12 +11,6 @@ export default function FotoPerfil({ fotoUser, nomeUser, emailUser, props }) {
             <Text style={styles.email} >{emailUser}</Text>
             <Button variant="contained" color="#FF0000" onPress={()=>{props.navigation.navigate('LoginScreen')}}>Editar perfil</Button>
         </View>
-
-        <View style={styles.containerDown}>
-              <Text style={styles.textoConfig} >Configurações de privacidade</Text>
-              <Text  style={styles.textoConfig}>Notificações</Text>
-              <Text  style={styles.textoConfig}>Configurações de tema</Text>
-        </View>
     </>
 }
 
@@ -67,9 +61,5 @@ const styles = StyleSheet.create({
         width: 120,
         height: 120,
         borderRadius: 64
-    },
-    textoConfig:{
-        fontSize:16,
-        margin:12
     }
 })
