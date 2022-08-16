@@ -8,7 +8,7 @@ export default function Topo({ props }) {
         <SafeAreaView>
             <Button onPress={() => {
                 props.navigation.navigate('FeedScreen')
-            }}>Cadastrar Comum</Button>
+            }}>Cadastrar</Button>
         </SafeAreaView>
     </>
 }
