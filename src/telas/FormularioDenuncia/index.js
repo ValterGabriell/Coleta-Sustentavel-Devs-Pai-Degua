@@ -80,7 +80,7 @@ export default function FormularioDenuncia(props) {
 
                 <Button onPress={sendToDatabase}>Enviar</Button>
                 <Button onPress={() => {
-                    props.navigation.navigate("FeedScreen")
+                    props.navigation.navigate("MyTabsScreen")
                 }}>Cancelar</Button>
 
 
