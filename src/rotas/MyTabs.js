@@ -28,7 +28,7 @@ export default function MyTabs() {
                 component={Feed} />
             <Tab.Screen name='Mapa' component={MapaRotas} />
             <Tab.Screen name='Contato' component={ContatoRotas} />
-            <Tab.Screen name='Profile' component={ProfileTabStack} />
+            <Tab.Screen name='Profile' options={{headerShown:false}} component={ProfileTabStack} />
         </Tab.Navigator>
     )
 }

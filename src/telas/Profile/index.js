@@ -1,22 +1,63 @@
-import React from "react";
-import { SafeAreaView } from "react-native";
+import React, { useEffect } from "react";
+import { SafeAreaView, Text } from "react-native";
 import FotoPerfil from "./componente/FotoPerfil";
 import ProfilePic from '../../assets/profilePhoto.png'
-import Configurações from "./componente/Configuracoes";
+import { Chip } from 'react-native-paper';
+import ListaDenuncia from "./componente/ListDenuncia";
 
 
 
 export default function Profile(props) {
+   const isComumUser = true
+   const isOrgsUser = false
    return <>
-      <SafeAreaView>
-         <FotoPerfil 
-         fotoUser={ProfilePic}
-         nomeUser={"Gabriel"}
-         emailUser={"vgabrielbri@hotrmail.com"}
-         props={props}
-         />
+      {isComumUser &&
+         <SafeAreaView>
+            <FotoPerfil
+               fotoUser={ProfilePic}
+               nomeUser={"Gabriel"}
+               emailUser={"vgabrielbri@hotrmail.com"}
+               props={props}
+            />
 
-         <Configurações props={props}/>
-      </SafeAreaView>
+            <Chip
+               icon="information"
+               mode="outlined"
+               selectedColor="black"
+               onPress={() => alert('Information chip pressed')}>
+               Comum usuario
+            </Chip>
+
+
+            <ListaDenuncia />
+         </SafeAreaView>
+      }
+
+      {isOrgsUser &&
+         <SafeAreaView>
+            <FotoPerfil
+               fotoUser={ProfilePic}
+               nomeUser={"orgs"}
+               emailUser={"vgabrielbri@hotrmail.com"}
+               props={props}
+            />
+
+            <Chip
+               icon="information"
+               mode="outlined"
+               selectedColor="black"
+               onPress={() => alert('Information chip pressed')}>
+               Orgao usuario
+            </Chip>
+
+
+            <ListaDenuncia />
+         </SafeAreaView>
+      }
    </>
+
+
+
+
+
 }

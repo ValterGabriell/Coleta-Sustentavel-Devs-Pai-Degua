@@ -74,7 +74,7 @@ export default class FabButton extends Component {
                 </TouchableWithoutFeedback>
 
                 <TouchableWithoutFeedback onPress={()=>{
-                    this.props.navigation.navigate('GaleriaScreen')}}>
+                    this.props.navigation.navigate('GaleriaRotas')}}>
                     <Animated.View style={[styles.button, styles.submenu, location]}>
                         <Entypo name="image" size={20} color="#00213b" />
                     </Animated.View>
