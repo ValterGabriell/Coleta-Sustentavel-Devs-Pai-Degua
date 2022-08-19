@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import { SafeAreaView, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { SafeAreaView, Image, StyleSheet, Text, View } from "react-native";
 import CustomInput from "../../../componentes/CustomInput";
 import CustomButton from "../../../componentes/CustomButton/CustomButton";
+import CustonLink from "../../../componentes/Links/CustonLink";
 import LoginGoogle from "../Autenticacao/loginGoogle";
-import logo from "../../../../assets/baixados.png";
+import logo from '../../../../assets/Logodevs.png'
 
 
 
@@ -28,27 +29,26 @@ export default function Componente({ props }) {
                     value={senha} 
                     setValue={setSenha}
                     secureTextEntry={true}
+
                 />
                 <CustomButton text='Login' onPress={() => {
                     props.navigation.navigate('FeedScreen')
                 }}/>
 
 
-                <TouchableOpacity style={estilos.linkContainer} onPress={() => {
+                <CustonLink text='Esqueci senha'
+                    onPress={() => {
                     props.navigation.navigate('CadastroScreen')
-                }}>
-                    <Text style={estilos.registro}>Esqueci senha</Text>
-                </TouchableOpacity>
+                }}/>
 
-                <TouchableOpacity  style={estilos.linkContainer} onPress={() => {
-                    props.navigation.navigate('CadastroScreen')}}>
-                    <Text style={estilos.registro}>Não possui uma conta? Cadastra-se</Text>
-                </TouchableOpacity>
-
+                <CustonLink text='Não possui uma conta? Cadastra-se' onPress={() => {
+                    props.navigation.navigate('CadastroScreen')
+                }}/>
+            
                 <Text style={{marginTop: 18}}>logar com</Text>
 
                 <LoginGoogle/>
-
+                    
             </View>
 
         </SafeAreaView>
@@ -69,19 +69,17 @@ const estilos = StyleSheet.create({
         backgroundColor: "white",
     },
 
-    linkContainer:{
-        marginVertical: 10,
-        alignItems: 'center',
-    },
-
     logo:{
-        width: 100,
-        maxWidth: 300,
-        height: 100,
+        width: 120,
+        maxWidth: 200,
+        height: 120,
         marginTop: 50,
     },
-
     registro:{
         color: '#a1a1a1',
+    },
+
+    inputs:{
+        
     }
 });

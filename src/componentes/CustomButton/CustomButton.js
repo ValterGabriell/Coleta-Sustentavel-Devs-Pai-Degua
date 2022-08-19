@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 const CustomButton = ({onPress, text, type}) => {
     return (
@@ -11,7 +11,7 @@ const CustomButton = ({onPress, text, type}) => {
 
 const styles = StyleSheet.create({
     contanier:{
-        backgroundColor: "#909090",
+        backgroundColor: "#2E7D32",
         width: 150,
         padding: 15,
         marginVertical: 10,
