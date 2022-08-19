@@ -8,6 +8,7 @@ export default function ProfileTabStack() {
     return (
           <Stack.Navigator>
             <Stack.Screen name="ContatoScreen" options={{headerShown:false}} component={Contato} />
+          
           </Stack.Navigator>
       );
   }

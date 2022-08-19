@@ -2,30 +2,34 @@ import React, { useState } from "react";
 import { FlatList, TouchableHighlight, Text, Image, StyleSheet } from "react-native";
 import { View } from "react-native";
 import ImgTeste from '../../../assets/imgMapa.jpg'
+import { FontAwesome } from '@expo/vector-icons'
 
 
 const DATA = [
     {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        qtdPost: 28,
         imagem: ImgTeste,
         name: 'Iury',
-        comentario: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+        qtdComment: 14,
+        qtdStar: 84
     },
     {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-        imagem: ImgTeste,
-        name: 'Rebeca',
-        comentario: 'Mutio bom esse app nossa que app magnifico oi hexa campeao' 
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        qtdPost: 16,
         imagem: ImgTeste,
         name: 'Gabriel',
-        comentario: 'ola brasil hexa'
+        qtdComment: 13,
+        qtdStar: 21
+    },
+    {
+        qtdPost: 220,
+        imagem: ImgTeste,
+        name: 'Rebecca',
+        qtdComment: 1,
+        qtdStar: 50
     },
 ];
 
-export default function ListaComentario() {
+export default function ListaRanking() {
 
     const [size, setSize] = useState()
 
@@ -34,21 +38,29 @@ export default function ListaComentario() {
         <FlatList
             data={DATA}
             renderItem={({ item, index, separators }) => (
-                   
+
                 <TouchableHighlight
-                
+
                     style={styles.item}
                     key={item.key}
                     onPress={() => alert('item clicado')}
                     onShowUnderlay={separators.highlight}
                     onHideUnderlay={separators.unhighlight}>
 
-
                     <View style={styles.viewOne}>
                         <Image source={ImgTeste} style={styles.img} />
-                        <View style={styles.viewTwo}> 
+                        <View style={styles.viewTwo}>
                             <Text style={styles.txtName}>{item.name}</Text>
-                            <Text style={styles.txtComent}>{item.comentario}</Text>
+
+                            <View style={{ flexDirection: 'row' }}>
+                                <FontAwesome size={16} style={styles.icon} name="clipboard"></FontAwesome>
+                                <Text style={styles.txtComent}>{item.qtdComment}</Text>
+                                <FontAwesome size={16} style={styles.icon} name="comments-o"></FontAwesome>
+                                <Text style={styles.txtComent}>{item.qtdPost}</Text>
+                                <FontAwesome size={16} style={styles.icon} name="star-o"></FontAwesome>
+                                <Text style={styles.txtComent}>{item.qtdStar}</Text>
+                            </View>
+
                         </View>
 
                     </View>
@@ -66,18 +78,22 @@ const styles = StyleSheet.create({
     viewOne: {
         backgroundColor: 'white', flexDirection: "row"
     },
-    viewTwo:{
-        width: '85%', marginLeft:4
+    viewTwo: {
+        width: '85%', marginLeft: 4
     },
     img: {
-        width: 45, height: 45, borderRadius: 16, marginTop:4
+        width: 45, height: 45, borderRadius: 16, marginTop: 4
     },
     txtName: {
         fontSize: 16,
         fontWeight: 'bold',
-        marginLeft: 0
+        marginLeft: 8
     },
     txtComent: {
         marginLeft: 0
+    },
+    icon:{
+        marginLeft:8,
+        marginRight:8
     }
 })

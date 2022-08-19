@@ -14,7 +14,7 @@ export default function ProfileTabStack() {
             <Stack.Screen name="MyTabsScreen" options={{headerShown:false}} component={MyTabs} />
             <Stack.Screen name="NoticiaScreen" component={Noticia} />
             <Stack.Screen name="CameraRotas" options={{headerShown:false}} component={CameraRotas} />
-            <Stack.Screen name="GaleriaScreen" options={{headerShown:false}} component={GaleriaRotas} />
+            <Stack.Screen name="GaleriaRotas" options={{headerShown:false}} component={GaleriaRotas} />
           </Stack.Navigator>
       );
   }

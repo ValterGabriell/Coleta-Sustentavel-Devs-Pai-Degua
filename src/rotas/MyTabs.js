@@ -3,15 +3,14 @@ import ProfileTabStack from './ProfileTabStack';
 import MapaRotas from './MapaRotas'
 import ContatoRotas from './ContatoRotas'
 import Feed from '../telas/Feed'
-import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign, Feather } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator()
+
 export default function MyTabs() {
     return (
         <Tab.Navigator
-            style = {styles.contanier}
             screenOptions={({route})=> ({
                 headerShown: false,
                 tabBarIcon: ({color}) =>{
@@ -42,10 +41,3 @@ export default function MyTabs() {
         </Tab.Navigator>
     )
 }
-
-
-const styles =StyleSheet.create({
-    contanier:{
-        
-    }
-})
