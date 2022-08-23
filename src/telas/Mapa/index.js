@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, StyleSheet, View, Text, TouchableOpacity, Image} from "react-native";
+import { Platform, StyleSheet, View, Text, TouchableOpacity, Image, ScrollView} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GoogleMaps from "./componente";
 import { MaterialCommunityIcons} from '@expo/vector-icons';
@@ -8,6 +8,7 @@ import Angry from '../../../assets/angry.png';
 
 export default function Mapa({props}){
     return(
+      <ScrollView>
       <SafeAreaView style={styles.container}>
         <View style={styles.headerContainer}>
           <View style={styles.LinkEndereco}>
@@ -32,6 +33,7 @@ export default function Mapa({props}){
           </View>
         </View>
       </SafeAreaView>
+      </ScrollView>
     );
 }
 
