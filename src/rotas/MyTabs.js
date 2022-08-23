@@ -29,7 +29,7 @@ export default function MyTabs() {
 
                     return <Icon color={color}/>
                 },
-                tabBarActiveTintColor: '#2E7D32',
+                tabBarActiveTintColor: '#000080',
                 tabBarInactiveTintColor: '#C7C7C7'
             })}
         >
