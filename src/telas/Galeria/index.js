@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { SafeAreaView } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import { Button, StyleSheet } from "react-native";

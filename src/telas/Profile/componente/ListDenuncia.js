@@ -1,22 +1,23 @@
 import React, { useState } from "react";
-import { FlatList, TouchableHighlight, Text, Image, StyleSheet } from "react-native";
+import { FlatList, TouchableHighlight, Text, StyleSheet } from "react-native";
 import { View } from "react-native";
+import { FontAwesome } from '@expo/vector-icons'
 const DATA = [
     {
         local: 'Feira do peixe',
-        status: false,
+        atendida: true,
         name: 'Iury',
         descricao: 'lorem ipisulum'
     },
     {
         local: 'Mulheres da coxinha',
-        status: false,
+        atendida: false,
         name: 'Gabriel',
         descricao: 'lorem ipisulum'
     },
     {
         local: 'açai da vanessa',
-        status: false,
+        atendida: false,
         name: 'Rebecca',
         descricao: 'lorem ipisulum'
     },
@@ -45,8 +46,20 @@ export default function ListaDenuncia() {
                             <Text style={styles.txtName}>{item.local}</Text>
                             <Text style={styles.txtComent}>{item.name}</Text>
                             <Text style={styles.txtComent}>{item.descricao}</Text>
-
                         </View>
+
+                        {
+                            item.atendida ?
+                        
+                                    <FontAwesome style={{ marginTop: 8 }} size={16} name="check"></FontAwesome>
+
+                                :
+                          
+                                    <FontAwesome style={{ marginTop: 8 }} size={16} name="times"></FontAwesome>
+                                
+                        }
+
+
 
                     </View>
                 </TouchableHighlight>

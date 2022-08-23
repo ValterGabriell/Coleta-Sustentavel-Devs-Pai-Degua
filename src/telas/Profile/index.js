@@ -9,9 +9,8 @@ import ListaDenuncia from "./componente/ListDenuncia";
 
 export default function Profile(props) {
    const isComumUser = true
-   const isOrgsUser = false
    return <>
-      {isComumUser &&
+      {isComumUser ?
          <SafeAreaView>
             <FotoPerfil
                fotoUser={ProfilePic}
@@ -20,20 +19,10 @@ export default function Profile(props) {
                props={props}
             />
 
-            <Chip
-               icon="information"
-               mode="outlined"
-               selectedColor="black"
-               onPress={() => alert('Information chip pressed')}>
-               Comum usuario
-            </Chip>
-
 
             <ListaDenuncia />
          </SafeAreaView>
-      }
-
-      {isOrgsUser &&
+         : //ternario
          <SafeAreaView>
             <FotoPerfil
                fotoUser={ProfilePic}
@@ -41,19 +30,11 @@ export default function Profile(props) {
                emailUser={"vgabrielbri@hotrmail.com"}
                props={props}
             />
-
-            <Chip
-               icon="information"
-               mode="outlined"
-               selectedColor="black"
-               onPress={() => alert('Information chip pressed')}>
-               Orgao usuario
-            </Chip>
-
-
             <ListaDenuncia />
          </SafeAreaView>
+
       }
+
    </>
 
 
