@@ -1,11 +1,11 @@
 import React from "react";
 import { FlatList } from "react-native";
 import ItemRender from "./componentes/ItemRender";
-import { StyleSheet, StatusBar, SafeAreaView } from "react-native";
+import { StyleSheet, StatusBar, SafeAreaView,Image } from "react-native";
 import ImgTeste from '../../assets/imgMapa.jpg'
 import HeaderComponent from "./componentes/HeaderComponent";
 import FabButton from "../../componentes/FabButton";
-
+import logo from '../../../assets/logoAzul.png';
 
 
 
@@ -45,8 +45,7 @@ const App = (props) => {
 
   return <>
     <SafeAreaView style={styles.container}>
-
-     
+      <Image source={logo} style={styles.logo}/>
       <FlatList
         data={DATA}
         renderItem={renderItem}
@@ -63,6 +62,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
+  },
+
+  logo:{
+    width: 70,
+    height: 70,
+    marginStart: 16,
+    marginBottom: 10,
   }
 });
 

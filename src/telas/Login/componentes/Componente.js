@@ -4,7 +4,7 @@ import CustomInput from "../../../componentes/CustomInput";
 import CustomButton from "../../../componentes/CustomButton/CustomButton";
 import CustonLink from "../../../componentes/Links/CustonLink";
 import LoginGoogle from "../Autenticacao/loginGoogle";
-import logo from '../../../../assets/Logodevs.png'
+import logo from '../../../../assets/logoAzul.png'
 
 
 
@@ -70,9 +70,9 @@ const estilos = StyleSheet.create({
     },
 
     logo:{
-        width: 120,
+        width: 100,
         maxWidth: 200,
-        height: 120,
+        height: 100,
         marginTop: 50,
     },
     registro:{

@@ -1,13 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { FontAwesome } from '@expo/vector-icons'
+import { View, Text, StyleSheet, Image } from "react-native";
 import { Chip } from 'react-native-paper';
-
 
 export default function HeaderComponent({ nomeUser }) {
     return <>
+       
         <View style={styles.container}>
-            <FontAwesome name="user" size={23} color="#000" style={styles.imagem} />
             <Text style={styles.texto}>Olá, {nomeUser}!</Text>
         </View>
         <View style={{marginTop:4}}>

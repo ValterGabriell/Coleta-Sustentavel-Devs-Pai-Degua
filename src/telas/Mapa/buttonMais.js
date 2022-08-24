@@ -15,6 +15,7 @@ export default function Detalhe({text, onPress}){
 
 const styles = StyleSheet.create({
     contanier:{
+        backgroundColor: "white",
         flexDirection: 'row',
         width: 200,
         height: 40,
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginHorizontal: 83,
         marginVertical: 20,
+        elevation: 4,
     },
 
     button:{    

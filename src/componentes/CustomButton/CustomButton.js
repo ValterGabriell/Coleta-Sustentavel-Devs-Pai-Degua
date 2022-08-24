@@ -11,16 +11,17 @@ const CustomButton = ({onPress, text, type}) => {
 
 const styles = StyleSheet.create({
     contanier:{
-        backgroundColor: "#2E7D32",
+        backgroundColor: "white",
         width: 150,
         padding: 15,
         marginVertical: 10,
         borderRadius: 16,
         alignItems: "center",
+        elevation: 4,
     },
     text:{
         fontWeight: "bold",
-        color: 'white',
+        color: '#0078AA',
     }
 });
 
