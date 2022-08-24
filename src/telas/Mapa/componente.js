@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 
 
 
-export default function GoogleMaps(){
+export default function GoogleMaps() {
 
-    return(
+    return (
         <View>
             <MapView style={styles.map}
                 initialRegion={{
@@ -15,14 +15,21 @@ export default function GoogleMaps(){
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421
                 }}
-            />     
+                
+            > 
+
+                <Marker pinColor={'blue'} coordinate={{latitude:-1.45195762531048, longitude:-48.5032706847}} />
+                <Marker pinColor={'red'} coordinate={{latitude:-1.44195762531048, longitude:-48.5032706847}} />
+                <Marker pinColor={'orange'} coordinate={{latitude:-1.43195762531048, longitude:-48.5032706847}} />
+                <Marker pinColor={'green'} coordinate={{latitude:-1.42195762531048, longitude:-48.5032706847}} />
+            </MapView>
         </View>
 
     );
 }
 
 const styles = StyleSheet.create({
-    map:{
+    map: {
         height: 400,
     },
 })
