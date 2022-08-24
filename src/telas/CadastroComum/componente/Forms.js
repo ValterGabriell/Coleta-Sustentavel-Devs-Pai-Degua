@@ -18,16 +18,15 @@ export default function Forms() {
             quality: 1,
         });
 
-        console.log(result.uri)
+        
         setImage(result.uri)
+        console.log(image)
     }
 
     function sendToDatabase() {
-        if (nome || email || senha || senhaAgain === "") {
-            alert('Preencha corretamente todos os campos')
-        } else {
+       
             alert("Save at database " + nome + '-' + email + '-' + senha + '-' + senhaAgain + '-' + image)
-        }
+       
 
     }
 
@@ -35,6 +34,7 @@ export default function Forms() {
     return <>
         <SafeAreaView>
             <View>
+                <Image style={styles.img} source={image}/>
                 <Button onPress={pickImage}>Selecionar foto</Button>
                 <TextInput
                     placeholder="Nome"
@@ -55,6 +55,7 @@ export default function Forms() {
                     style={styles.input}
                     onChangeText={setSenha}
                     value={senha}
+                    secureTextEntry={true}
                 />
 
                 <TextInput
@@ -62,6 +63,7 @@ export default function Forms() {
                     style={styles.input}
                     onChangeText={setsenhaAgain}
                     value={senhaAgain}
+                    secureTextEntry={true}
                 />
 
                 <Button onPress={() => {

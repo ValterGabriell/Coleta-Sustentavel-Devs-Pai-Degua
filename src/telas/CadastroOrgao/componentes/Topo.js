@@ -63,6 +63,7 @@ export default function Forms() {
                     style={styles.input}
                     onChangeText={setSenha}
                     value={senha}
+                    secureTextEntry={true}
                 />
 
                 <TextInput
@@ -70,6 +71,7 @@ export default function Forms() {
                     style={styles.input}
                     onChangeText={setsenhaAgain}
                     value={senhaAgain}
+                    secureTextEntry={true}
                 />
 
                 <Button onPress={() => {

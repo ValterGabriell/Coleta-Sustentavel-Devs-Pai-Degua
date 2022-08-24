@@ -15,26 +15,26 @@ export default function MyTabs() {
                 headerShown: false,
                 tabBarIcon: ({color}) =>{
                     let Icon = () => (<AntDesign name="appstore-o" size={24} color="#0078AA" />)
-
+            
                     if(route.name === 'Profile'){
-                        Icon = () => <AntDesign name="user" size={24} color="#0078AA" />;
+                        Icon = () => <AntDesign name="user" size={24} color="#2E7D32" />;
                     }
                     if(route.name === 'Contato'){
-                        Icon = () => <AntDesign name="contacts" size={24} color="#0078AA" />;
+                        Icon = () => <AntDesign name="contacts" size={24} color="#2E7D32" />;
                     }
                         
                     if(route.name === 'Mapa'){
-                        Icon = () => <Feather name="map" size={24} color="#0078AA" />
+                        Icon = () => <Feather name="map" size={24} color="#2E7D32" />
                     }
 
                     return <Icon color={color}/>
                 },
-                tabBarActiveTintColor: '#0078AA',
+                tabBarActiveTintColor: '#000080',
                 tabBarInactiveTintColor: '#C7C7C7'
             })}
         >
 
-            <Tab.Screen name='Feed' component={Feed} />
+            <Tab.Screen name='Feed'  component={Feed} />
             <Tab.Screen name='Profile'  component={ProfileTabStack} />
             <Tab.Screen name='Contato' component={ContatoRotas} />
             <Tab.Screen name='Mapa' component={MapaRotas} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import ItemRender from "./componentes/ItemRender";
 import { StyleSheet, StatusBar, SafeAreaView,Image } from "react-native";
@@ -6,6 +6,7 @@ import ImgTeste from '../../assets/imgMapa.jpg'
 import HeaderComponent from "./componentes/HeaderComponent";
 import FabButton from "../../componentes/FabButton";
 import logo from '../../../assets/logoAzul.png';
+
 
 
 
@@ -34,6 +35,9 @@ const DATA = [
 
 
 const App = (props) => {
+ 
+
+
   const renderItem = ({ item }) => (
     <ItemRender
       title={item.title}

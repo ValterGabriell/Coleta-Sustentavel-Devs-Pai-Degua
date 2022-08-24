@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Chip } from 'react-native-paper';
 
+
 export default function HeaderComponent({ nomeUser }) {
     return <>
        
