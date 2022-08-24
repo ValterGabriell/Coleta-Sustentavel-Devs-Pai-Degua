@@ -4,9 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import GoogleMaps from "./componente";
 import { MaterialCommunityIcons} from '@expo/vector-icons';
 import Detalhe from "./buttonMais";
-import Angry from '../../../assets/angry.png';
 
-export default function Mapa({props}){
+export default function Mapa(){
     return(
       <ScrollView>
       <SafeAreaView style={styles.container}>
@@ -15,20 +14,19 @@ export default function Mapa({props}){
             <Text style={styles.titulo}>Barraca da cheirosinha</Text>
 
             <TouchableOpacity style={styles.mapa}>
-              <MaterialCommunityIcons name="google-maps" size={22} color="#3700B3" />
-              <Text style={{color: "#3700B3"}}>Endereço do gps</Text>
+              <MaterialCommunityIcons name="google-maps" size={22} color="#0078AA" />
+              <Text style={{color:'#0078AA'}}>Endereço do gps</Text>
             </TouchableOpacity>
           </View>
 
           <GoogleMaps/>
 
           <Detalhe text='Detalhes do local' onPress={() => {
-              props.navigation.navigate('FeedScreen')
+              navigation.navigate('')
           }}/>
 
           <Text>Gravidade: </Text>
           <View style={styles.mensageGravidade}>
-            <Image style={styles.gravidade} source={Angry}/>
             <Text style={{color: '#E53935'}}>A situação está feia!</Text>
           </View>
         </View>
@@ -51,13 +49,13 @@ const styles = StyleSheet.create({
 
     LinkEndereco:{
       marginBottom: 10,
+      color: '#2E7D32', 
     },
 
     titulo:{
       fontSize: 20,
       fontWeight: '500',
-      marginBottom: 8,
-      color: '#2E7D32'
+      
     },
 
     endereco:{

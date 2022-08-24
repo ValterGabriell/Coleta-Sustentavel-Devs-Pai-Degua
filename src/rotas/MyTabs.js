@@ -14,9 +14,8 @@ export default function MyTabs() {
             screenOptions={({route})=> ({
                 headerShown: false,
                 tabBarIcon: ({color}) =>{
-                    let Icon = () => (<AntDesign name="appstore-o" size={24} color="#2E7D32" />)
+                    let Icon = () => (<AntDesign name="appstore-o" size={24} color="#0078AA" />)
             
-
                     if(route.name === 'Profile'){
                         Icon = () => <AntDesign name="user" size={24} color="#2E7D32" />;
                     }
