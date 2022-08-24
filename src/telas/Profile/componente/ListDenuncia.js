@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, TouchableHighlight, Text, StyleSheet } from "react-native";
 import { View } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { getAllComments } from '../../../services/requisicoes/comments'
+import { useIsFocused } from '@react-navigation/native';
+
 const DATA = [
     {
         local: 'Feira do peixe',
@@ -54,13 +57,21 @@ const DATA = [
 
 export default function ListaDenuncia({ props, isComumUser }) {
 
-    const [size, setSize] = useState()
+    const [comment, setComment] = useState([])
+    
+    useEffect(() => {
+        (async () => {
+            const result = await getAllComments()
+            setComment(result)
+        })()
+
+    }, [])
 
 
     return <>
         {!isComumUser ?
             <FlatList
-                data={DATA}
+                data={comment}
                 renderItem={({ item, index, separators }) => (
 
                     <TouchableHighlight
@@ -71,16 +82,16 @@ export default function ListaDenuncia({ props, isComumUser }) {
                             titulo: item.name,
                             place: item.local,
                             atendida: item.atendida
-                          
+
                         })}
                         onShowUnderlay={separators.highlight}
                         onHideUnderlay={separators.unhighlight}>
 
                         <View style={styles.viewOne}>
                             <View style={styles.viewTwo}>
-                                <Text style={styles.txtName}>{item.local}</Text>
+                                <Text style={styles.txtName}>{item.email}</Text>
                                 <Text style={styles.txtComent}>{item.name}</Text>
-                                <Text style={styles.txtComent}>{item.descricao}</Text>
+                                <Text style={styles.txtComent}>{item.body}</Text>
                             </View>
 
                             {

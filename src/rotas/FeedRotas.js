@@ -6,15 +6,16 @@ import Noticia from "../telas/Noticia";
 
 
 
-
 const Stack = createNativeStackNavigator();
 export default function ProfileTabStack() {
-    return (
-          <Stack.Navigator>
-            <Stack.Screen name="MyTabsScreen" options={{headerShown:false}} component={MyTabs} />
-            <Stack.Screen name="NoticiaScreen" component={Noticia} />
-            <Stack.Screen name="CameraRotas" options={{headerShown:false}} component={CameraRotas} />
-            <Stack.Screen name="GaleriaRotas" options={{headerShown:false}} component={GaleriaRotas} />
-          </Stack.Navigator>
-      );
-  }
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="MyTabsScreen" options={{headerShown:false}}
+        component={MyTabs} />
+
+      <Stack.Screen name="NoticiaScreen" component={Noticia} />
+      <Stack.Screen name="CameraRotas" options={{ headerShown: false }} component={CameraRotas} />
+      <Stack.Screen name="GaleriaRotas" options={{ headerShown: false }} component={GaleriaRotas} />
+    </Stack.Navigator>
+  );
+}

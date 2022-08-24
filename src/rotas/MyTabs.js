@@ -15,6 +15,7 @@ export default function MyTabs() {
                 headerShown: false,
                 tabBarIcon: ({color}) =>{
                     let Icon = () => (<AntDesign name="appstore-o" size={24} color="#2E7D32" />)
+            
 
                     if(route.name === 'Profile'){
                         Icon = () => <AntDesign name="user" size={24} color="#2E7D32" />;
@@ -34,7 +35,7 @@ export default function MyTabs() {
             })}
         >
 
-            <Tab.Screen name='Feed' component={Feed} />
+            <Tab.Screen name='Feed'  component={Feed} />
             <Tab.Screen name='Profile'  component={ProfileTabStack} />
             <Tab.Screen name='Contato' component={ContatoRotas} />
             <Tab.Screen name='Mapa' component={MapaRotas} />

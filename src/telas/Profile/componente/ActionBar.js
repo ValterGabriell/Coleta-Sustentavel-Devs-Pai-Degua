@@ -1,14 +1,13 @@
 import React from "react";
-import { FontAwesome } from '@expo/vector-icons'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { View } from "react-native";
 
 
-export default function ActionBarProfile({navigation}) {
+export default function ActionBarProfile({navigation, icon, color, screen}) {
     return <>
         <View style={{ flexDirection: 'row' }}>
-        <Ionicons style={{ marginRight: 16 }} name='trophy' size={32} color='gray' onPress={() => {
-                navigation.navigate("RankingScreen")
+        <Ionicons style={{ marginRight: 16 }} name={icon} size={32} color={color} onPress={() => {
+                navigation.navigate({screen})
             }} />
         </View>
 
