@@ -1,58 +1,146 @@
 import React, { useState } from "react";
-import { FlatList, TouchableHighlight, Text, Image, StyleSheet } from "react-native";
+import { FlatList, TouchableHighlight, Text, StyleSheet } from "react-native";
 import { View } from "react-native";
+import Ionicons from '@expo/vector-icons/Ionicons';
 const DATA = [
     {
         local: 'Feira do peixe',
-        status: false,
+        atendida: true,
         name: 'Iury',
         descricao: 'lorem ipisulum'
     },
     {
         local: 'Mulheres da coxinha',
-        status: false,
+        atendida: false,
         name: 'Gabriel',
         descricao: 'lorem ipisulum'
     },
     {
         local: 'açai da vanessa',
-        status: false,
+        atendida: false,
         name: 'Rebecca',
+        descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'
+    },
+    {
+        local: 'açai da vanessa',
+        atendida: false,
+        name: 'Rebecca',
+        descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'
+    }, {
+        local: 'Feira do peixe',
+        atendida: true,
+        name: 'Iury',
         descricao: 'lorem ipisulum'
+    },
+    {
+        local: 'Mulheres da coxinha',
+        atendida: false,
+        name: 'Gabriel',
+        descricao: 'lorem ipisulum'
+    },
+    {
+        local: 'açai da vanessa',
+        atendida: false,
+        name: 'Rebecca',
+        descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'
+    },
+    {
+        local: 'açai da vanessa',
+        atendida: false,
+        name: 'Rebecca',
+        descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'
     },
 ]
 
-export default function ListaDenuncia() {
+export default function ListaDenuncia({ props, isComumUser }) {
 
     const [size, setSize] = useState()
 
 
     return <>
-        <FlatList
-            data={DATA}
-            renderItem={({ item, index, separators }) => (
+        {!isComumUser ?
+            <FlatList
+                data={DATA}
+                renderItem={({ item, index, separators }) => (
 
-                <TouchableHighlight
+                    <TouchableHighlight
 
-                    style={styles.item}
-                    key={item.key}
-                    onPress={() => alert('item clicado')}
-                    onShowUnderlay={separators.highlight}
-                    onHideUnderlay={separators.unhighlight}>
+                        style={styles.item}
+                        key={item.key}
+                        onPress={() => props.navigation.navigate('NoticiaOrgaos', {
+                            titulo: item.name,
+                            place: item.local,
+                            atendida: item.atendida
+                          
+                        })}
+                        onShowUnderlay={separators.highlight}
+                        onHideUnderlay={separators.unhighlight}>
 
-                    <View style={styles.viewOne}>
-                        <View style={styles.viewTwo}>
-                            <Text style={styles.txtName}>{item.local}</Text>
-                            <Text style={styles.txtComent}>{item.name}</Text>
-                            <Text style={styles.txtComent}>{item.descricao}</Text>
+                        <View style={styles.viewOne}>
+                            <View style={styles.viewTwo}>
+                                <Text style={styles.txtName}>{item.local}</Text>
+                                <Text style={styles.txtComent}>{item.name}</Text>
+                                <Text style={styles.txtComent}>{item.descricao}</Text>
+                            </View>
+
+                            {
+                                item.atendida ?
+
+                                    <Ionicons name='checkmark' size={32} color='green' />
+
+                                    :
+
+                                    <Ionicons name='close' size={32} color='red' />
+
+                            }
+
+
 
                         </View>
+                    </TouchableHighlight>
+                )}
+                keyExtractor={item => item.id}
+            /> :
+            <FlatList
+                data={DATA}
+                renderItem={({ item, index, separators }) => (
 
-                    </View>
-                </TouchableHighlight>
-            )}
-            keyExtractor={item => item.id}
-        />
+                    <TouchableHighlight
+
+                        style={styles.item}
+                        key={item.key}
+                        onShowUnderlay={separators.highlight}
+                        onHideUnderlay={separators.unhighlight}>
+
+                        <View style={styles.viewOne}>
+                            <View style={styles.viewTwo}>
+                                <Text style={styles.txtName}>{item.local}</Text>
+                                <Text style={styles.txtComent}>{item.name}</Text>
+                                <Text style={styles.txtComent}>{item.descricao}</Text>
+                            </View>
+
+                            {
+                                item.atendida ?
+
+                                    <Ionicons name='checkmark' size={32} color='green' />
+
+                                    :
+
+                                    <Ionicons name='close' size={32} color='red' />
+
+                            }
+
+
+
+                        </View>
+                    </TouchableHighlight>
+                )}
+                keyExtractor={item => item.id}
+            />
+
+
+        }
+
     </>
 }
 
@@ -61,7 +149,7 @@ const styles = StyleSheet.create({
         padding: 8
     },
     viewOne: {
-        backgroundColor: 'white', flexDirection: "row"
+        backgroundColor: 'white', flexDirection: "row", backgroundColor: "#D3D3D3", borderRadius: 16
     },
     viewTwo: {
         width: '85%', marginLeft: 4
@@ -75,7 +163,7 @@ const styles = StyleSheet.create({
         marginLeft: 8
     },
     txtComent: {
-        marginLeft: 0
+        marginLeft: 8, marginBottom: 2
     },
     icon: {
         marginLeft: 8,

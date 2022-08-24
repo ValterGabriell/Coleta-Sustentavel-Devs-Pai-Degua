@@ -1,59 +1,40 @@
 import React, { useEffect } from "react";
-import { SafeAreaView, Text } from "react-native";
+import { SafeAreaView } from "react-native";
 import FotoPerfil from "./componente/FotoPerfil";
 import ProfilePic from '../../assets/profilePhoto.png'
-import { Chip } from 'react-native-paper';
 import ListaDenuncia from "./componente/ListDenuncia";
 
 
 
 export default function Profile(props) {
-   const isComumUser = true
-   const isOrgsUser = false
+   const isComumUser = false
    return <>
-      {isComumUser &&
+      {isComumUser ?
          <SafeAreaView>
             <FotoPerfil
                fotoUser={ProfilePic}
                nomeUser={"Gabriel"}
                emailUser={"vgabrielbri@hotrmail.com"}
-               props={props}
+              
             />
 
-            <Chip
-               icon="information"
-               mode="outlined"
-               selectedColor="black"
-               onPress={() => alert('Information chip pressed')}>
-               Comum usuario
-            </Chip>
+         
 
-
-            <ListaDenuncia />
+            <ListaDenuncia  props={props} isComumUser={isComumUser} />
          </SafeAreaView>
-      }
-
-      {isOrgsUser &&
+         : //ternario
          <SafeAreaView>
             <FotoPerfil
                fotoUser={ProfilePic}
                nomeUser={"orgs"}
                emailUser={"vgabrielbri@hotrmail.com"}
-               props={props}
+
             />
-
-            <Chip
-               icon="information"
-               mode="outlined"
-               selectedColor="black"
-               onPress={() => alert('Information chip pressed')}>
-               Orgao usuario
-            </Chip>
-
-
-            <ListaDenuncia />
+            <ListaDenuncia props={props} isComumUser={isComumUser}/>
          </SafeAreaView>
+
       }
+
    </>
 
 

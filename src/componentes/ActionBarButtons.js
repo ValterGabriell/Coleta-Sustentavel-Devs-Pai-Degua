@@ -1,14 +1,15 @@
 import React from "react";
-import { FontAwesome } from '@expo/vector-icons'
 import { View } from "react-native";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 
-export default function BotoesDeAcao({navigation}) {
+export default function BotoesDeAcao({ navigation }) {
     return <>
         <View style={{ flexDirection: 'row' }}>
-            <FontAwesome style={{ marginRight: 16 }} size={24} name="sign-out" onPress={() => {
+            <Ionicons style={{ marginRight: 16 }} name='checkmark' size={32} color='green' onPress={() => {
                 navigation.navigate("Login")
-            }}></FontAwesome>
+            }} />
+          
         </View>
 
     </>

@@ -1,15 +1,16 @@
 import React from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
-import { Button } from "react-native-paper";
 
 
-export default function FotoPerfil({ fotoUser, nomeUser, emailUser, props }) {
+
+export default function FotoPerfil({ fotoUser, nomeUser, emailUser }) {
     return <>
         <View style={styles.container}>
             <Image source={fotoUser} style={styles.imagem} />
             <Text style={styles.username}>{nomeUser}</Text>
             <Text style={styles.email} >{emailUser}</Text>
-            <Button variant="contained" color="#FF0000" onPress={()=>{props.navigation.navigate('LoginScreen')}}>Editar perfil</Button>
+            <Text style={styles.ranking} >8 no ranking</Text>
+         
         </View>
     </>
 }
@@ -29,10 +30,10 @@ const styles = StyleSheet.create({
         }
     },
     containerDown: {
-        alignItems:"flex-start",
-        marginTop:16,
-        borderTopLeftRadius:24,
-        borderTopRightRadius:24,
+        alignItems: "flex-start",
+        marginTop: 16,
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
         backgroundColor: "#FFF",
         elevation: 10,
         shadowRadius: 10,
@@ -53,7 +54,12 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         fontSize: 14,
         lineHeight: 15,
-        marginBottom: 24
+        marginBottom: 4
+    },
+    ranking: {
+        alignSelf: "center",
+        fontSize: 14,
+        lineHeight: 15,  marginBottom: 4
     },
     imagem: {
         marginTop: 30,
