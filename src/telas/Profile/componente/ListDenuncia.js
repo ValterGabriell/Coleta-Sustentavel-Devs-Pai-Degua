@@ -3,57 +3,7 @@ import { FlatList, TouchableHighlight, Text, StyleSheet } from "react-native";
 import { View } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { getAllComments } from '../../../services/requisicoes/comments'
-import { useIsFocused } from '@react-navigation/native';
 
-const DATA = [
-    {
-        local: 'Feira do peixe',
-        atendida: true,
-        name: 'Iury',
-        descricao: 'lorem ipisulum'
-    },
-    {
-        local: 'Mulheres da coxinha',
-        atendida: false,
-        name: 'Gabriel',
-        descricao: 'lorem ipisulum'
-    },
-    {
-        local: 'açai da vanessa',
-        atendida: false,
-        name: 'Rebecca',
-        descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'
-    },
-    {
-        local: 'açai da vanessa',
-        atendida: false,
-        name: 'Rebecca',
-        descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'
-    }, {
-        local: 'Feira do peixe',
-        atendida: true,
-        name: 'Iury',
-        descricao: 'lorem ipisulum'
-    },
-    {
-        local: 'Mulheres da coxinha',
-        atendida: false,
-        name: 'Gabriel',
-        descricao: 'lorem ipisulum'
-    },
-    {
-        local: 'açai da vanessa',
-        atendida: false,
-        name: 'Rebecca',
-        descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'
-    },
-    {
-        local: 'açai da vanessa',
-        atendida: false,
-        name: 'Rebecca',
-        descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'
-    },
-]
 
 export default function ListaDenuncia({ props, isComumUser }) {
 
