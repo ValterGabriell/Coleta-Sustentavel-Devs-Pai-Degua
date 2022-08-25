@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import ItemRender from "./componentes/ItemRender";
 import { StyleSheet, StatusBar, SafeAreaView,Image } from "react-native";
-import ImgTeste from '../../assets/imgMapa.jpg'
+import ImgTeste from '../../assets/lixoVeropa.jpg'
 import HeaderComponent from "./componentes/HeaderComponent";
 import FabButton from "../../componentes/FabButton";
 import logo from '../../../assets/logoAzul.png';
@@ -16,7 +16,6 @@ const App = (props) => {
     (async()=>{
       const result = await getDenuncias()
       setDenuncias(result)
-      console.log(result);
     })()
   },[])
 

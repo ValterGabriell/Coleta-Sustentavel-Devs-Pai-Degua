@@ -5,16 +5,19 @@ import { FontAwesome } from '@expo/vector-icons'
 import { Button } from "react-native-paper";
 import { View } from "react-native";
 import * as Location from 'expo-location';
-import { TextInput,Image } from "react-native";
+import { TextInput, Image } from "react-native";
+import { postDenuncia } from "../../services/requisicoes/apiDevs/denuncias";
 
 
 export default function FormularioDenuncia(props) {
 
+    //recebe a foto
+    const uri = props.route.params.uri
+
     const [latitude, setLatitude] = useState("Carregando localização...");
     const [longitude, setLongitude] = useState(null);
-    const uri = props.route.params.uri
-    const [titulo, setTitulo] = useState("")
-    const [descricao, setDescricao] = useState("")
+    const [title, settitle] = useState("")
+    const [description, setdescription] = useState("")
 
 
     useEffect(() => {
@@ -34,15 +37,22 @@ export default function FormularioDenuncia(props) {
 
 
     function sendToDatabase() {
-        if (titulo != "" && descricao != "" && uri != "") {
-            alert("Salvar no banco de dados: " + titulo + " - " + descricao + " - " + latitude + " - " + longitude + " - " + uri)
-            props.navigation.navigate('FeedScreen')
+        if (title != "" && description != "" && uri != "") {
+            var location = latitude + ',' + longitude
+            postDenuncia(
+                title,
+                description,
+                "'",
+                "15",
+                false,
+                location,
+                props
+            )  
         } else {
             alert("Preencha tudo corretamente")
         }
 
-        setTitulo("")
-        setDescricao("")
+      
 
     }
 
@@ -57,8 +67,8 @@ export default function FormularioDenuncia(props) {
                 <TextInput
                     placeholder="Digite aqui seu título!"
                     style={styles.input}
-                    onChangeText={setTitulo}
-                    value={titulo}
+                    onChangeText={settitle}
+                    value={title}
                 />
                 <Image style={styles.imgModal} source={{ uri }} />
 
@@ -71,8 +81,8 @@ export default function FormularioDenuncia(props) {
                 <TextInput
                     placeholder="Descreva sua denúncia"
                     style={styles.input}
-                    onChangeText={setDescricao}
-                    value={descricao}
+                    onChangeText={setdescription}
+                    value={description}
                 />
 
 
