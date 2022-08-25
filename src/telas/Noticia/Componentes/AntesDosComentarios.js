@@ -7,9 +7,9 @@ import { View } from "react-native";
 
 
 
-export default function AntesDosComentarios() {
+export default function AntesDosComentarios({atendida}) {
 
-    const [atendida, setAtendida] = useState(false)
+    
     const [txtStatus, setTxtStatus] = useState("Não atendida")
     const [icon, setIcon] = useState("ban")
 

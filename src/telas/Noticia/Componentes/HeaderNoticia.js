@@ -2,12 +2,12 @@ import React from "react";
 import { FontAwesome } from '@expo/vector-icons'
 import { Image, Text, StyleSheet } from "react-native";
 import { View } from "react-native";
-import imgMapa from '../../../assets/imgMapa.jpg'
 
 
-export default function HeaderNoticia({local}) {
+
+export default function HeaderNoticia({local, imagem}) {
     return <>
-        <Image source={imgMapa} style={styles.imgTitle} />
+        <Image source={imagem} style={styles.imgTitle} />
         <View style={{ flexDirection: "row" }}>
             <FontAwesome size={16} style={styles.mapMarker} name="map-marker"></FontAwesome>
             <Text style={styles.txtLocal}>{local}</Text>
