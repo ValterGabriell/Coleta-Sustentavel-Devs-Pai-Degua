@@ -18,19 +18,16 @@ export default function ButtonContact(){
 }
 
 const styles = StyleSheet.create({
-    contanier:{
-        alignItems: 'center',
-    },
     botoes:{
         height: 50,
         flexDirection: 'row',
         alignItems: "center",
         alignContent: "center",
-        marginStart: 85,
+        alignSelf:'center',
+        marginLeft:35
     },
     item:{
-        width: 100,
+        width: 80,
         height: 100
-
     }
 })

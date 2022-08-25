@@ -11,7 +11,7 @@ export default function ProfileTabStack() {
           <Stack.Navigator>
             <Stack.Screen name="CameraScreen" options={{headerShown:false}} component={CameraScreen} />
             <Stack.Screen name="FormularioScreen" options={{headerBackVisible: false}} component={FormularioDenuncia} />
-    
+          
           </Stack.Navigator>
       );
   }

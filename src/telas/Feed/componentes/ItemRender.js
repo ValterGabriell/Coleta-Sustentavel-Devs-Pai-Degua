@@ -4,25 +4,27 @@ import Save from '../../../assets/save.png'
 import Place from '../../../assets/place.png'
 
 
-const Item = ({ title, imagem, local, props }) => (
+const Item = ({ title, imagem, local, descricao, isAtendida, props }) => (
   <View style={styles.viewMain} >
     <View style={styles.viewImg} >
       <ImageBackground source={imagem} style={styles.imagem}  >
 
-      
+
         <TouchableOpacity
           style={styles.buttonStyle}
-          onPress={()=>{
-            props.navigation.navigate('NoticiaScreen',{
-              titulo:title,
-              place:local,
-              image:imagem
+          onPress={() => {
+            props.navigation.navigate('NoticiaScreen', {
+              titulo: title,
+              place: local,
+              image: imagem,
+              descricao: descricao,
+              isAtendida:isAtendida
             })
           }
-          
+
           }
           activeOpacity={0.5}
-          >
+        >
           <Image
             source={Save}
             style={styles.buttonImageIconStyle}
@@ -41,8 +43,8 @@ const Item = ({ title, imagem, local, props }) => (
   </View>
 );
 
-export default function ItemRender({ title, imagem, local, props }) {
-  return Item({ title, imagem,local, props})
+export default function ItemRender({ title, imagem, local, descricao, isAtendida, props }) {
+  return Item({ title, imagem, local, descricao, isAtendida, props })
 }
 
 const styles = StyleSheet.create({
