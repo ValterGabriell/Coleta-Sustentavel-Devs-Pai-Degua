@@ -5,6 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { getAllComments } from '../../../services/requisicoes/comments'
 
 
+
 export default function ListaDenuncia({ props, isComumUser }) {
 
     const [comment, setComment] = useState([])

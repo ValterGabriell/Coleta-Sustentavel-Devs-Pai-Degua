@@ -1,59 +1,50 @@
 import React from 'react';
-import {View, StyleSheet, Text, FlatList} from 'react-native';
-import results from "./results";
-import ListItem from './ListItem';
+import { View, StyleSheet, Text } from 'react-native';
 import ButtonContact from './ButtonContact';
 import CardProfile from './cardProfile';
-
-export default function Componente(){
-
+import ListOrgs from './List';
 
 
-    return(
+export default function Componente() {
+
+   
+
+
+    return (
         <View style={StyleSheet.contanier}>
             <Text style={styles.titulo}>Contatos</Text>
-            <CardProfile/>
-            <ButtonContact/>
+            <CardProfile />
+            <ButtonContact />
             <Text style={styles.selecione}>Selecione: </Text>
-            <FlatList
-                data={results}
-                style={styles.lista}
-                keyExtractor={item => item.id}
-                renderItem = {(item) => {
-                    return <ListItem/>
-                }}  
-                ListEmptyComponent = {
-                    <Text>Nenhum contato salvo!</Text>
-                }
-            />
+            <ListOrgs />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    contanier:{
+    contanier: {
         flex: 1,
-        
+
     },
 
-    titulo:{
+    titulo: {
         marginTop: 32,
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 24,
-        marginBottom:40,
+        marginBottom: 40,
     },
-    separate:{
+    separate: {
         height: 1,
         width: '100%',
         backgroundColor: '#CCC',
     },
 
-    lista:{
+    lista: {
         marginTop: 10,
     },
 
-    selecione:{
+    selecione: {
         marginStart: 30,
     }
 

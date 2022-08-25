@@ -17,9 +17,6 @@ export default function Profile(props) {
                emailUser={"vgabrielbri@hotrmail.com"}
               
             />
-
-         
-
             <ListaDenuncia  props={props} isComumUser={isComumUser} />
          </SafeAreaView>
          : //ternario
