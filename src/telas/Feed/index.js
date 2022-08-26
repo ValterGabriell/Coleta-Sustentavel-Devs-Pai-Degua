@@ -6,7 +6,7 @@ import ImgTeste from '../../assets/lixoVeropa.jpg'
 import HeaderComponent from "./componentes/HeaderComponent";
 import FabButton from "../../componentes/FabButton";
 import logo from '../../../assets/logoAzul.png';
-import { getDenuncias } from "../../services/requisicoes/apiDevs/denuncias";
+
 
 const App = (props) => {
  
@@ -14,8 +14,10 @@ const App = (props) => {
 
   useEffect(()=>{
     (async()=>{
-      const result = await getDenuncias()
-      setDenuncias(result)
+      //const result = await getDenuncias()
+      //setDenuncias(result)
+ 
+
     })()
   },[])
 
