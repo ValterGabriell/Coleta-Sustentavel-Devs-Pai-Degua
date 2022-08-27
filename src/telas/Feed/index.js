@@ -6,17 +6,30 @@ import ImgTeste from '../../assets/lixoVeropa.jpg'
 import HeaderComponent from "./componentes/HeaderComponent";
 import FabButton from "../../componentes/FabButton";
 import logo from '../../../assets/logoAzul.png';
-
+import {getDenuncias} from '../../services/requisicoes/apiDevs/denuncias'
+import {verificarUsuarioAtual} from '../../services/requisicoes/apiDevs/users'
 
 const App = (props) => {
  
   const [denuncias, setDenuncias] = useState([])
+  const [usuarioAtual, setUsuarioAtual] = useState({})
 
   useEffect(()=>{
     (async()=>{
-      //const result = await getDenuncias()
-      //setDenuncias(result)
- 
+      /**
+       * Recupera todas as denuncias com este método
+       */
+      const result = await getDenuncias()
+      setDenuncias(result)
+
+      /**
+       * Método para recuperar usuário atual de maneira estática
+       */
+
+      const currentUser = await verificarUsuarioAtual(1)
+      setUsuarioAtual(currentUser)
+
+
 
     })()
   },[])
@@ -41,7 +54,7 @@ const App = (props) => {
         data={denuncias}
         renderItem={renderItem}
         keyExtractor={item => item.id}
-        ListHeaderComponent={HeaderComponent({ nomeUser: "Usuário" })}
+        ListHeaderComponent={HeaderComponent({ nomeUser: usuarioAtual.nome })}
       />
       <FabButton navigation={props.navigation} />
     </SafeAreaView>
