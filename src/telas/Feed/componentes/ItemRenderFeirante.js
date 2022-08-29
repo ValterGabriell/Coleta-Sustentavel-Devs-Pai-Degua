@@ -10,12 +10,10 @@ const Item = ({  name, email, foto, telefone, props }) => (
       <TouchableOpacity
         style={styles.item}
         onPress={() => {
-          props.navigation.navigate('NoticiaScreen', {
-            titulo: title,
-            place: local,
-            image: imagem,
-            descricao: descricao,
-            isAtendida: isAtendida
+          props.navigation.navigate('FeiranteScreen', {
+            name: name,
+            email: email,
+            telefone: telefone
           })
         }
         }>
