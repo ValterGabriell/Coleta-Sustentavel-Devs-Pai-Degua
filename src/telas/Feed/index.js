@@ -44,6 +44,9 @@ const App = (props) => {
 
 
 
+  /**
+   * Trexo de codigo responsavel para renderizar lista caso o usuario seja catador
+   */
   const renderItem = ({ item }) => (
     <ItemRender
       title={item.titulo}
@@ -55,6 +58,10 @@ const App = (props) => {
     />
   );
 
+
+  /**
+   * Trexo de codigo responsavel para renderizar lista caso o usuario seja feirante
+   */
   const renderItemFeirante = ({ item }) => (
     <ItemRenderFeirate
       name={item.nome}
