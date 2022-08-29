@@ -1,44 +1,34 @@
 import React from "react";
 import { View, TouchableOpacity, ImageBackground, StyleSheet, Image, Text } from "react-native";
-import Save from '../../../assets/save.png'
-import Place from '../../../assets/place.png'
+import Profile from '../../../assets/sorriso.jpg'
 
 
 const Item = ({ title, imagem, local, descricao, isAtendida, props }) => (
+
   <View style={styles.viewMain} >
     <View style={styles.viewImg} >
-      <ImageBackground source={imagem} style={styles.imagem}  >
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() => {
+          props.navigation.navigate('NoticiaScreen', {
+            titulo: title,
+            place: local,
+            image: imagem,
+            descricao: descricao,
+            isAtendida: isAtendida
+          })
+        }
+        }>
 
 
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          onPress={() => {
-            props.navigation.navigate('NoticiaScreen', {
-              titulo: title,
-              place: local,
-              image: imagem,
-              descricao: descricao,
-              isAtendida:isAtendida
-            })
-          }
-
-          }
-          activeOpacity={0.5}
-        >
-          <Image
-            source={Save}
-            style={styles.buttonImageIconStyle}
-          />
-        </TouchableOpacity>
-
-
-      </ImageBackground>
-    </View>
-
-    <Text style={styles.textFootViewMain}>{title}</Text>
-    <View style={styles.viewFootViewMain}>
-      <Image source={Place} style={styles.imgPLace}></Image>
-      <Text style={styles.textFootViewMainInsideOfView}>{local}</Text>
+        <View style={styles.viewOne}>
+          <Image source={Profile} style={styles.imgPerson}></Image>
+          <View>
+            <Text style={styles.txtName}>{title}</Text>
+            <Text style={styles.txtComent}>{descricao}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     </View>
   </View>
 );
@@ -48,59 +38,40 @@ export default function ItemRender({ title, imagem, local, descricao, isAtendida
 }
 
 const styles = StyleSheet.create({
+  viewOne:{
+    flexDirection:'row'
+  },
   viewImg: {
-    backgroundColor: '#808080',
+    backgroundColor: '#d3d3d3',
     padding: 5,
     borderRadius: 8,
-    marginVertical: 8,
+    marginTop:4,
     marginHorizontal: 16,
   },
   viewMain: {
     marginVertical: 8,
     elevation: 1
   },
-  imgPLace: {
-    width: 25,
-    height: 25
-  },
-  textFootViewMain: {
-    marginVertical: 3,
-    marginHorizontal: 21,
-  },
-  textFootViewMainInsideOfView: {
-    marginVertical: 3,
-    marginHorizontal: 4,
-  },
-  viewFootViewMain: {
-    marginVertical: 3,
-    marginHorizontal: 16,
-    flexDirection: 'row',
+  imgPerson: {
+    width: 65,
+    height: 65,
+    borderRadius:32
   },
   title: {
     fontSize: 32,
   },
-  imagem: {
-    borderRadius: 8,
-    width: 315,
-    height: 150,
-    marginLeft: 1,
-    padding: 5
+  item: {
+    padding: 8
   },
-  buttonStyle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#dcdcdc',
-    borderWidth: 0.5,
-    borderColor: '#fff',
-    height: 40,
-    borderRadius: 5,
-    marginLeft: 270
+  txtName:{
+    marginLeft:16,
+    marginTop:5,
+    fontWeight:'bold',
+    fontSize:18
   },
-  buttonImageIconStyle: {
-    margin: 2,
-    height: 30,
-    width: 30,
-    resizeMode: 'stretch',
+  txtComent:{
+    marginLeft:16,
+    fontSize:14
   }
 });
 

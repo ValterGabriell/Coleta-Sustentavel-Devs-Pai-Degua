@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { SafeAreaView } from "react-native";
+import React from "react";
+import { SafeAreaView,Text } from "react-native";
 import FotoPerfil from "./componente/FotoPerfil";
 import ProfilePic from '../../assets/profilePhoto.png'
 import Lista from "./componente/Lista";
@@ -17,6 +17,7 @@ export default function Profile(props) {
                emailUser={"vgabrielbri@hotrmail.com"}
               
             />
+            
             <Lista  props={props} isCatador={isCatador} />
          </SafeAreaView>
          : 
@@ -27,6 +28,7 @@ export default function Profile(props) {
                emailUser={"vgabrielbri@hotrmail.com"}
 
             />
+               
             <Lista props={props} isCatador={isCatador}/>
          </SafeAreaView>
 

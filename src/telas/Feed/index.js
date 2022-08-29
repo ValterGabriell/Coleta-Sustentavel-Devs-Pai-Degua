@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import ItemRender from "./componentes/ItemRender";
-import { StyleSheet, StatusBar, SafeAreaView,Image } from "react-native";
+import { StyleSheet, StatusBar, SafeAreaView, Image } from "react-native";
 import ImgTeste from '../../assets/lixoVeropa.jpg'
 import HeaderComponent from "./componentes/HeaderComponent";
 import FabButton from "../../componentes/FabButton";
 import logo from '../../../assets/logoAzul.png';
-import {getDenuncias} from '../../services/requisicoes/apiDevs/denuncias'
-import {verificarUsuarioAtual} from '../../services/requisicoes/apiDevs/users'
+import { getDenuncias } from '../../services/requisicoes/apiDevs/denuncias'
+import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
 
 const App = (props) => {
- 
+  const isCatador = true
   const [denuncias, setDenuncias] = useState([])
   const [usuarioAtual, setUsuarioAtual] = useState({})
 
-  useEffect(()=>{
-    (async()=>{
+  useEffect(() => {
+    (async () => {
       /**
        * Recupera todas as denuncias com este método
        */
@@ -32,7 +32,7 @@ const App = (props) => {
 
 
     })()
-  },[])
+  }, [])
 
 
 
@@ -44,20 +44,37 @@ const App = (props) => {
       local={item.localizacao}
       isAtendida={item.status}
       props={props}
+
     />
   );
 
-  return <>
-    <SafeAreaView style={styles.container}>
-      <Image source={logo} style={styles.logo}/>
-      <FlatList
-        data={denuncias}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        ListHeaderComponent={HeaderComponent({ nomeUser: usuarioAtual.nome })}
-      />
-      <FabButton navigation={props.navigation} />
-    </SafeAreaView>
+  return <>{
+    isCatador ?
+      <SafeAreaView style={styles.container}>
+        <Image source={logo} style={styles.logo} />
+        <FlatList
+          data={denuncias}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          ListHeaderComponent={HeaderComponent({ nomeUser: usuarioAtual.nome })}
+        />
+        <FabButton navigation={props.navigation} />
+      </SafeAreaView>
+
+      : //se nao for catador ->
+      <SafeAreaView style={styles.container}>
+        <Image source={logo} style={styles.logo} />
+        <FlatList
+          data={denuncias}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          ListHeaderComponent={HeaderComponent({ nomeUser: "xii" })}
+        />
+        <FabButton navigation={props.navigation} />
+      </SafeAreaView>
+
+  }
+
 
   </>
 }
@@ -68,7 +85,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
 
-  logo:{
+  logo: {
     width: 70,
     height: 70,
     marginStart: 16,

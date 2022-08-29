@@ -35,8 +35,7 @@ export default function Componente({ props }) {
                     if (email === "" || senha === "") {
                         alert('Preencha todos os campos')
                     } else {
-                        props.navigation.navigate("FeedScreen")
-                        //logarUser(email, senha, props)
+                        logarUser(email, senha, props)
                     }
 
                 }} />
