@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import ItemRender from "./componentes/ItemRender";
+import ItemRenderFeirate from './componentes/ItemRenderFeirante'
 import { StyleSheet, StatusBar, SafeAreaView, Image } from "react-native";
 import ImgTeste from '../../assets/lixoVeropa.jpg'
 import HeaderComponent from "./componentes/HeaderComponent";
 import FabButton from "../../componentes/FabButton";
 import logo from '../../../assets/logoAzul.png';
-import { getDenuncias } from '../../services/requisicoes/apiDevs/denuncias'
+import { getBarracas } from '../../services/requisicoes/apiDevs/denuncias'
+import { getUsers } from "../../services/requisicoes/apiDevs/users";
 import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
 
 const App = (props) => {
-  const isCatador = true
-  const [denuncias, setDenuncias] = useState([])
+  const isCatador = false
+  const [barracas, setbarracas] = useState([])
+  const [catadores, setCatadores] = useState([])
   const [usuarioAtual, setUsuarioAtual] = useState({})
 
   useEffect(() => {
@@ -19,15 +22,20 @@ const App = (props) => {
       /**
        * Recupera todas as denuncias com este método
        */
-      const result = await getDenuncias()
-      setDenuncias(result)
+      const result = await getBarracas()
+      setbarracas(result)
 
       /**
        * Método para recuperar usuário atual de maneira estática
        */
-
       const currentUser = await verificarUsuarioAtual(1)
       setUsuarioAtual(currentUser)
+
+      /**
+       * Metodo para recuperar todos os usuarios teoricamente catadores
+       */
+       const cata = await getUsers()
+       setCatadores(cata)
 
 
 
@@ -44,7 +52,16 @@ const App = (props) => {
       local={item.localizacao}
       isAtendida={item.status}
       props={props}
+    />
+  );
 
+  const renderItemFeirante = ({ item }) => (
+    <ItemRenderFeirate
+      name={item.nome}
+      email={item.email}
+      foto={item.foto}
+      telefone={item.telefone}
+      props={props}
     />
   );
 
@@ -53,7 +70,7 @@ const App = (props) => {
       <SafeAreaView style={styles.container}>
         <Image source={logo} style={styles.logo} />
         <FlatList
-          data={denuncias}
+          data={barracas}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           ListHeaderComponent={HeaderComponent({ nomeUser: usuarioAtual.nome })}
@@ -61,14 +78,14 @@ const App = (props) => {
         <FabButton navigation={props.navigation} />
       </SafeAreaView>
 
-      : //se nao for catador ->
+      : //se nao for catador, sera feirante e verá ->
       <SafeAreaView style={styles.container}>
         <Image source={logo} style={styles.logo} />
         <FlatList
-          data={denuncias}
-          renderItem={renderItem}
+          data={catadores}
+          renderItem={renderItemFeirante}
           keyExtractor={item => item.id}
-          ListHeaderComponent={HeaderComponent({ nomeUser: "xii" })}
+          ListHeaderComponent={HeaderComponent({ nomeUser: "Feirante" })}
         />
         <FabButton navigation={props.navigation} />
       </SafeAreaView>

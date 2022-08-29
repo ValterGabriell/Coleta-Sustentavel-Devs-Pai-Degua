@@ -1,7 +1,7 @@
 import apiDevs from '../../api/apiDevs'
 
 
-export async function getDenuncias() {
+export async function getBarracas() {
     try {
         const result = await apiDevs.get('denuncias')
         console.log(result.data)
