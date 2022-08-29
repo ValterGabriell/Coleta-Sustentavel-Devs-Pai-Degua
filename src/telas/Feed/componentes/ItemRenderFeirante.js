@@ -3,19 +3,17 @@ import { View, TouchableOpacity, ImageBackground, StyleSheet, Image, Text } from
 import Profile from '../../../assets/sorriso.jpg'
 
 
-const Item = ({ title, imagem, local, descricao, isAtendida, props }) => (
+const Item = ({  name, email, foto, telefone, props }) => (
 
   <View style={styles.viewMain} >
     <View style={styles.viewImg} >
       <TouchableOpacity
         style={styles.item}
         onPress={() => {
-          props.navigation.navigate('BarracaScreen', {
-            titulo: title,
-            place: local,
-            image: imagem,
-            descricao: descricao,
-            isAtendida: isAtendida
+          props.navigation.navigate('FeiranteScreen', {
+            name: name,
+            email: email,
+            telefone: telefone
           })
         }
         }>
@@ -24,8 +22,9 @@ const Item = ({ title, imagem, local, descricao, isAtendida, props }) => (
         <View style={styles.viewOne}>
           <Image source={Profile} style={styles.imgPerson}></Image>
           <View>
-            <Text style={styles.txtName}>{title}</Text>
-            <Text style={styles.txtComent}>{descricao}</Text>
+            <Text style={styles.txtName}>{name}</Text>
+            <Text style={styles.txtComent}>{email}</Text>
+            <Text style={styles.txtComent}>{telefone}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -33,8 +32,8 @@ const Item = ({ title, imagem, local, descricao, isAtendida, props }) => (
   </View>
 );
 
-export default function ItemRender({ title, imagem, local, descricao, isAtendida, props }) {
-  return Item({ title, imagem, local, descricao, isAtendida, props })
+export default function ItemRender({ name, email, foto, telefone, props }) {
+  return Item({ name, email, foto, telefone, props})
 }
 
 const styles = StyleSheet.create({
@@ -65,7 +64,6 @@ const styles = StyleSheet.create({
   },
   txtName:{
     marginLeft:16,
-    marginTop:5,
     fontWeight:'bold',
     fontSize:18
   },

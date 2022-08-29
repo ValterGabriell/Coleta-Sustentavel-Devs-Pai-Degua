@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import { SafeAreaView } from "react-native";
+import React from "react";
+import { SafeAreaView,Text } from "react-native";
 import FotoPerfil from "./componente/FotoPerfil";
 import ProfilePic from '../../assets/profilePhoto.png'
-import ListaDenuncia from "./componente/ListDenuncia";
+import Lista from "./componente/Lista";
 
 
 
 export default function Profile(props) {
-   const isComumUser = false
+   const isCatador = false
    return <>
-      {isComumUser ?
+      {isCatador ?
          <SafeAreaView>
             <FotoPerfil
                fotoUser={ProfilePic}
@@ -17,17 +17,19 @@ export default function Profile(props) {
                emailUser={"vgabrielbri@hotrmail.com"}
               
             />
-            <ListaDenuncia  props={props} isComumUser={isComumUser} />
+            
+            <Lista  props={props} isCatador={isCatador} />
          </SafeAreaView>
-         : //ternario
+         : 
          <SafeAreaView>
             <FotoPerfil
                fotoUser={ProfilePic}
-               nomeUser={"orgs"}
+               nomeUser={"Feirante"}
                emailUser={"vgabrielbri@hotrmail.com"}
 
             />
-            <ListaDenuncia props={props} isComumUser={isComumUser}/>
+               
+            <Lista props={props} isCatador={isCatador}/>
          </SafeAreaView>
 
       }
