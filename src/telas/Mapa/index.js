@@ -3,27 +3,15 @@ import { Platform, StyleSheet, View, Text, TouchableOpacity, Image, ScrollView} 
 import { SafeAreaView } from "react-native-safe-area-context";
 import GoogleMaps from "./componente";
 import { MaterialCommunityIcons} from '@expo/vector-icons';
-import Detalhe from "./buttonMais";
 
-export default function Mapa(){
+
+export default function Mapa(props){
     return(
       <ScrollView>
       <SafeAreaView style={styles.container}>
         <View style={styles.headerContainer}>
-          <View style={styles.LinkEndereco}>
-            <Text style={styles.titulo}>Barraca da cheirosinha</Text>
-
-            <TouchableOpacity style={styles.mapa}>
-              <MaterialCommunityIcons name="google-maps" size={22} color="#0078AA" />
-              <Text style={{color:'#0078AA'}}>Endereço do gps</Text>
-            </TouchableOpacity>
-          </View>
-
-          <GoogleMaps/>
-
-          <Detalhe text='Detalhes do local' onPress={() => {
-              navigation.navigate('')
-          }}/>
+      
+          <GoogleMaps props={props}/>
 
           <Text>Gravidade: </Text>
           <View style={styles.mensageGravidade}>
@@ -47,17 +35,7 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'android' ? 50 : 0
     },
 
-    LinkEndereco:{
-      marginBottom: 10,
-      color: '#2E7D32', 
-    },
-
-    titulo:{
-      fontSize: 20,
-      fontWeight: '500',
-      
-    },
-
+  
     endereco:{
       paddingStart: 8,
       color: '#3700B3',
@@ -67,10 +45,6 @@ const styles = StyleSheet.create({
     mensageGravidade:{
       alignItems: 'center',
       marginHorizontal: 16,
-    },
-
-    mapa:{
-      flexDirection: 'row',
     },
 
     gravidade:{
