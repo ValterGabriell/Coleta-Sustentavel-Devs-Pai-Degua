@@ -13,24 +13,25 @@ export default function MyTabs() {
         <Tab.Navigator
             screenOptions={({route})=> ({
                 headerShown: false,
+                
                 tabBarIcon: ({color}) =>{
-                    let Icon = () => (<AntDesign name="appstore-o" size={24} color="#0078AA" />)
+                    let Icon = () => (<AntDesign name="appstore-o" size={24} color={color} />)
             
                     if(route.name === 'Profile'){
-                        Icon = () => <AntDesign name="user" size={24} color="#2E7D32" />;
+                        Icon = () => <AntDesign name="user" size={24} color={color} />;
                     }
                     if(route.name === 'Contato'){
-                        Icon = () => <AntDesign name="contacts" size={24} color="#2E7D32" />;
+                        Icon = () => <AntDesign name="contacts" size={24} color={color} />;
                     }
                         
                     if(route.name === 'Mapa'){
-                        Icon = () => <Feather name="map" size={24} color="#2E7D32" />
+                        Icon = () => <Feather name="map" size={24} color={color} />
                     }
 
                     return <Icon color={color}/>
                 },
-                tabBarActiveTintColor: '#000080',
-                tabBarInactiveTintColor: '#C7C7C7'
+                tabBarActiveTintColor: '#2E7D32',
+                tabBarInactiveTintColor: '#c7c7c7'
             })}
         >
 
