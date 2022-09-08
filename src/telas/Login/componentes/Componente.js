@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { SafeAreaView, Image, StyleSheet, Text, View } from "react-native";
 import CustomInput from "../../../componentes/CustomInput";
 import CustomButton from "../../../componentes/CustomButton/CustomButton";
@@ -6,12 +6,14 @@ import CustonLink from "../../../componentes/Links/CustonLink";
 import LoginGoogle from "../Autenticacao/loginGoogle";
 import logo from '../../../../assets/logoAzul.png'
 import { logarUser } from "../../../services/requisicoes/apiDevs/users";
+import {AuthContext} from '../../../contexts/auth'
 
 
 export default function Componente({ props }) {
 
     const [email, setEmail] = useState('iury@gmail.com');
     const [senha, setSenha] = useState('123');
+    const {signIn} = useContext(AuthContext)
 
 
     return (
@@ -32,11 +34,7 @@ export default function Componente({ props }) {
 
                 />
                 <CustomButton text='Login' onPress={() => {
-                    if (email === "" || senha === "") {
-                        alert('Preencha todos os campos')
-                    } else {
-                        logarUser(email, senha, props)
-                    }
+                   signIn(email, senha)
 
                 }} />
 
