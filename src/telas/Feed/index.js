@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import ItemRender from "./componentes/ItemRender";
 import ItemRenderFeirate from './componentes/ItemRenderFeirante'
@@ -10,12 +10,15 @@ import logo from '../../../assets/logoAzul.png';
 import { getBarracas } from '../../services/requisicoes/apiDevs/denuncias'
 import { getUsers } from "../../services/requisicoes/apiDevs/users";
 import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
+import { AuthContext } from "../../contexts/auth";
 
 const App = (props) => {
-  const isCatador = false
+
   const [barracas, setbarracas] = useState([])
   const [catadores, setCatadores] = useState([])
   const [usuarioAtual, setUsuarioAtual] = useState({})
+  const {userType} = useContext(AuthContext)
+  const isCatador = userType.isCatador
 
   useEffect(() => {
     (async () => {
