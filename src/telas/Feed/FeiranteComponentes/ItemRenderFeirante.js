@@ -41,15 +41,11 @@ const styles = StyleSheet.create({
     flexDirection:'row'
   },
   viewImg: {
-    backgroundColor: '#d3d3d3',
-    padding: 5,
-    borderRadius: 8,
     marginTop:4,
-    marginHorizontal: 16,
+   
   },
   viewMain: {
-    marginVertical: 8,
-    elevation: 1
+   
   },
   imgPerson: {
     width: 65,

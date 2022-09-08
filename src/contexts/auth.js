@@ -23,7 +23,7 @@ export default function AuthProvider({children}){
             }).then(response => {
                 AsyncStorage.setItem('@token', response.data.token) 
                 setUserType({
-                    isCatador: true
+                    isCatador: false
                 })
                 navigation.navigate("FeedScreen")
             }).catch(erro =>{

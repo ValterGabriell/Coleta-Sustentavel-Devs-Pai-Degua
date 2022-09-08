@@ -10,6 +10,7 @@ export default function FotoPerfil({ fotoUser, nomeUser, emailUser }) {
             <Text style={styles.username}>{nomeUser}</Text>
             <Text style={styles.email} >{emailUser}</Text>
             <Text style={styles.ranking} >8 no ranking</Text>
+            
          
         </View>
     </>
