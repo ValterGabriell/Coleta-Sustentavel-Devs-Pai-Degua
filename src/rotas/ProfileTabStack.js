@@ -10,14 +10,7 @@ const Stack = createNativeStackNavigator();
 export default function ProfileTabStack() {
     return (
           <Stack.Navigator>
-            <Stack.Screen name="ProfileScreen" options={({ navigation }) => ({
-                    title: 'Perfil',
-                    headerRight: () => (
-                       <ActionBarProfile navigation={navigation}/>
-                    )})
-              
-              
-              } component={Profile} />
+            <Stack.Screen name="ProfileScreen" options={{headerShown:false}} component={Profile} />
             <Stack.Screen name="LoginScreen" options={{headerShown:false}} component={Login} />
             <Stack.Screen name="RankingScreen" component={RankingUsuarios} />
             <Stack.Screen name="NoticiaOrgaos" component={NoticiaOrgaos} />

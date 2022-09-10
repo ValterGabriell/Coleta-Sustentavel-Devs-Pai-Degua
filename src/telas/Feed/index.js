@@ -201,7 +201,7 @@ const App = (props) => {
         />
 
         <TouchableOpacity>
-          <Button mode="elevated" color="#FF0000" style={{ backgroundColor: "#FFF", alignSelf: "center", marginBottom: 12, }} onPress={() => alert("Press")}>
+          <Button mode="elevated" color="#FF0000" style={{ backgroundColor: "#FFF", alignSelf: "center", marginBottom: 12, }} onPress={()=>{props.navigation.navigate('CameraRotas')}}>
             {textForButton}
           </Button>
         </TouchableOpacity>

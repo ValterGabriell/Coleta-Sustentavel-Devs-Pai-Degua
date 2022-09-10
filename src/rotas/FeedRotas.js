@@ -13,9 +13,6 @@ export default function ProfileTabStack() {
     <Stack.Navigator>
       <Stack.Screen name="MyTabsScreen" options={{headerShown:false}}
         component={MyTabs} />
-
-      <Stack.Screen name="BarracaScreen" component={Barraca} />
-      <Stack.Screen name="FeiranteScreen" component={Feirante} />
       <Stack.Screen name="CameraRotas" options={{ headerShown: false }} component={CameraRotas} />
       <Stack.Screen name="GaleriaRotas" options={{ headerShown: false }} component={GaleriaRotas} />
     </Stack.Navigator>
