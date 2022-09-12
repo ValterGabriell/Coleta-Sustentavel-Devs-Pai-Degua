@@ -40,6 +40,9 @@ import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
 import { AuthContext } from "../../contexts/auth";
 
 
+/**
+ * Dados estaticos para renderizar as recycler views
+ */
 const DATA_POSTS = [{
   titulo: 'Preciso de catador urgente',
   material: '1KG garrafa pet',
