@@ -3,14 +3,22 @@ import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
 
 
-const Item = ({ imagem, titulo, material, data, descricao, props }) => (
+const Item = ({ imagem, titulo, material, data, descricao, props, localizacao }) => (
 
     <View>
         <View >
             <TouchableOpacity
                 style={styles.item}
                 onPress={() => {
-                   
+                   props.navigation.navigate("PostItem",{
+                    titulo: titulo,
+                    imagem:imagem,
+                    material:material,
+                    data:data,
+                    descricao:descricao,
+                    localizacao:localizacao
+                   })
+           
                 }
                 }>
                 <View style={styles.viewOne}>
@@ -26,8 +34,8 @@ const Item = ({ imagem, titulo, material, data, descricao, props }) => (
     </View>
 );
 
-export default function ItemRender({ imagem, titulo, material, data, descricao, props }) {
-    return Item({ imagem, titulo, material, data, descricao, props })
+export default function ItemRender({ imagem, titulo, material, data, descricao, props,localizacao }) {
+    return Item({ imagem, titulo, material, data, descricao, props,localizacao })
 }
 
 const styles = StyleSheet.create({

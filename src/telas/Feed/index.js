@@ -18,7 +18,7 @@ import { Button } from 'react-native-paper';
 import ItemRenderFeirate from './FeiranteComponentes/ItemRenderFeirante'
 import HeaderComponentFeirante from "./FeiranteComponentes/HeaderComponent";
 import HeaderComponentCatadorDisponivel from "./FeiranteComponentes/HeaderComponentCatadorDisponivel";
-import ItemRenderColetoresDisponiveis from './FeiranteComponentes/ItemRenderColetoresDisponiveis'
+import ItemRenderPostFeirante from './FeiranteComponentes/ItemRenderPostFeirante'
 import ItemRenderColetasAgendadas from './FeiranteComponentes/ItemRenderColetasAgendadas'
 import LixoVeropa from '../../assets/lixoVeropa.jpg'
 import LixoVeropa_ from '../../assets/imgMapa.jpg'
@@ -48,13 +48,15 @@ const DATA_POSTS = [{
   material: '1KG garrafa pet',
   data: '29/08/2022',
   descricao: 'Jogada na rua preciso de ajuda',
-  imagem: LixoVeropa
+  imagem: LixoVeropa,
+  localizacao:"Rua da marechal"
 }, {
   titulo: 'Catador aqui na barraca por favor!',
   material: 'Osso de peixe',
   data: '08/09/2022',
   descricao: 'Jogada na rua preciso de ajuda',
-  imagem: LixoVeropa_
+  imagem: LixoVeropa_,
+  localizacao:"Rua da marca"
 }
 ]
 
@@ -133,13 +135,17 @@ const App = (props) => {
     />
   );
 
-  const renderItemColetoresDisponiveis = ({ item }) => (
-    <ItemRenderColetoresDisponiveis
-      imagem={item.imagem}
+  const renderItemPostFeirante = ({ item }) => (
+    <ItemRenderPostFeirante
+    imagem={item.imagem}
       titulo={item.titulo}
       material={item.material}
       data={item.data}
-      descricao={item.descricao} />
+      descricao={item.descricao}
+      props={props}
+      localizacao={item.localizacao}
+      
+      />
   )
 
   const renderItemColetasAgendadas = ({ item }) => (
@@ -182,7 +188,7 @@ const App = (props) => {
           <FlatList
             horizontal
             data={DATA_POSTS}
-            renderItem={renderItemColetoresDisponiveis}
+            renderItem={renderItemPostFeirante}
             keyExtractor={item => item.id}
           />
 
@@ -204,7 +210,7 @@ const App = (props) => {
         />
 
         <TouchableOpacity>
-          <Button mode="elevated" color="#FF0000" style={{ backgroundColor: "#FFF", alignSelf: "center", marginBottom: 12, }} onPress={()=>{props.navigation.navigate('CameraRotas')}}>
+          <Button mode="elevated" color="#FF0000" style={{ backgroundColor: "#FFF", alignSelf: "center", marginBottom: 12, }} onPress={() => { props.navigation.navigate('CameraRotas') }}>
             {textForButton}
           </Button>
         </TouchableOpacity>
