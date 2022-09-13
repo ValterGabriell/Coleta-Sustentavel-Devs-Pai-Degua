@@ -109,7 +109,7 @@ export default function FormularioDenuncia(props) {
     return <>
         {
             /**
-             * Se for feirante
+             * Se for catador
              */
             isCatador ?
                 <SafeAreaView>
@@ -154,7 +154,7 @@ export default function FormularioDenuncia(props) {
                 </SafeAreaView>
 
                 : /**
-                Se for catador */
+                Se for feirante */
 
                 <SafeAreaView>
                     <ScrollView>
@@ -210,7 +210,7 @@ export default function FormularioDenuncia(props) {
                         </View>
 
 
-
+                        
 
 
                         <Text style={styles.materiaisName}>{"Materiais"}</Text>
