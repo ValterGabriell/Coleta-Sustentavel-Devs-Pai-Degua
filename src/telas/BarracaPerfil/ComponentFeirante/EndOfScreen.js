@@ -3,45 +3,30 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-nati
 import { FontAwesome } from '@expo/vector-icons'
 
 export default function EndOfScreen({ descricao }) {
-    const [isClicked, setIsClicked] = useState(false)
-    const [color, setColor] = useState("#696969")
-    const [color2, setColor2] = useState("#696969")
-    const [color3, setColor3] = useState("#696969")
+    const [check, setCheck] = useState('nulo')
 
 
-    function changeButtonColor(button) {
+    var arrayButtonsIcon = [
+        "phone",
+        "envelope-o",
+        "whatsapp"
+    ]
+    var arrayButtonsId = [
+        0, 1, 2
+    ]
 
-    
-        if (button === 1) {
-            if (!isClicked) {
-                setIsClicked(true)
-                setColor("#cc0000")
-            } else {
-                setIsClicked(false)
-                setColor("#696969")
-            }
+
+    function handleCheck(value) {
+        if (check === value) {
+            setCheck('nulo')
+        } else {
+            setCheck(value)
         }
 
-        if (button === 2) {
-            if (!isClicked) {
-                setIsClicked(true)
-                setColor2("#cc0000")
-            } else {
-                setIsClicked(false)
-                setColor2("#696969")
-            }
-        }
-
-        if (button === 3) {
-            if (!isClicked) {
-                setIsClicked(true)
-                setColor3("#cc0000")
-            } else {
-                setIsClicked(false)
-                setColor3("#696969")
-            }
-        }
     }
+
+
+
 
     return <>
 
@@ -54,23 +39,18 @@ export default function EndOfScreen({ descricao }) {
             <Text style={styles.txtDescricaoEContato} >Contato</Text>
 
             <View style={styles.viewLocal}>
-                <TouchableOpacity onPress={() => {
-                    changeButtonColor(1)
-                }} >
-                    <FontAwesome color={color} name="phone" size={45}></FontAwesome>
-                </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => {
-                    changeButtonColor(2)
-                }} >
-                    <FontAwesome color={color2} name="envelope-o" size={45}></FontAwesome>
-                </TouchableOpacity>
+                {arrayButtonsId.map((value) => (
+                    <TouchableOpacity key={value} onPress={() => {
+                        handleCheck(value)
+                    }} >
+                        {
+                            check === value ? <FontAwesome color={"#cc0000"} name={arrayButtonsIcon[value]} size={45}></FontAwesome> : <FontAwesome color={"#696969"} name={arrayButtonsIcon[value]} size={45}></FontAwesome>
+                        }
 
-                <TouchableOpacity onPress={() => {
-                    changeButtonColor(3)
-                }} >
-                    <FontAwesome color={color3} name="whatsapp" size={45}></FontAwesome>
-                </TouchableOpacity>
+                    </TouchableOpacity>
+                ))}
+
 
             </View>
         </ScrollView>
