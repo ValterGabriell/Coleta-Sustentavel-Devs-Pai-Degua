@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import TopTreeItem from "./TopTreeItem";
-import imageTeste from '../../../assets/imagemTeste.png'
+import imageTeste from '../../../assets/logo.png'
 
 
 export default function Head() {
