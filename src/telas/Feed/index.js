@@ -44,6 +44,7 @@ import { AuthContext } from "../../contexts/auth";
  * Dados estaticos para renderizar as recycler views
  */
 const DATA_POSTS = [{
+  id:1,
   titulo: 'Preciso de catador urgente',
   material: '1KG garrafa pet',
   data: '29/08/2022',
@@ -51,6 +52,7 @@ const DATA_POSTS = [{
   imagem: LixoVeropa,
   localizacao:"Rua da marechal"
 }, {
+  id:2,
   titulo: 'Catador aqui na barraca por favor!',
   material: 'Osso de peixe',
   data: '08/09/2022',
@@ -62,6 +64,7 @@ const DATA_POSTS = [{
 
 
 const DATA_AGENDADAS = [{
+  id:1,
   titulo: 'Refeições Regionais',
   material: '5kg de caroço de açai',
   local: 'praca de alimentacao',

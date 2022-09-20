@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 const CustomButton = ({onPress, text, type}) => {
     return (
-        <TouchableOpacity onPress={onPress} style={styles.contanier} type={type}>
+        <TouchableOpacity onPress={(onPress)} style={styles.contanier} type={type}>
             <Text style={styles.text}>{text}</Text>
         </TouchableOpacity>
     );
@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
         padding: 15,
         marginVertical: 10,
         borderRadius: 16,
-        alignItems: "center",
+        alignSelf: "center",
+        alignItems:'center',
         elevation: 4,
     },
     text:{

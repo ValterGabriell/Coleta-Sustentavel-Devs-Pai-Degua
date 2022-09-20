@@ -1,23 +1,47 @@
-import React from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import React, { useState } from "react";
+import { View, Image, StyleSheet, Text, Modal, TextInput } from "react-native";
 import { FontAwesome } from '@expo/vector-icons'
+import CustomButton from "../../../componentes/CustomButton/CustomButton";
 
 
 
 export default function ViewFotoPerfilFeirante({ fotoUser, nomeBarraca, emailUser }) {
+
+    const [nameVisible, setnameVisible] = useState(false)
+    const [newNAME, setnewNAME] = useState(nomeBarraca)
+
     return <>
         <View style={styles.container}>
             <Image source={fotoUser} style={styles.imagem} />
-            <FontAwesome name="camera" size={18} style={styles.iconBellowThePhoto}></FontAwesome>
-            
+            <FontAwesome name="camera" size={18} style={styles.iconBellowThePhoto} ></FontAwesome>
+
             <View style={styles.viewNameBarraca}>
-                <Text style={styles.nameBarraca}>{nomeBarraca}</Text>
-                <FontAwesome name="edit" size={16} style={{alignSelf:'center', marginLeft:8, marginTop:8}}></FontAwesome>
+                <Text style={styles.nameBarraca}>{newNAME}</Text>
+                <FontAwesome name="edit" size={16} style={{ alignSelf: 'center', marginLeft: 8, marginTop: 8 }} onPress={() => {
+                    setnameVisible(true)
+                }}></FontAwesome>
             </View>
 
 
-            <Text style={styles.email} >{emailUser}</Text>
-          
+            <Text style={styles.email}>{emailUser}</Text>
+
+
+            {nameVisible &&
+
+                <Modal animationType="slide" visible={nameVisible}>
+                    <View style={{marginTop:32}}>
+                        <TextInput style={styles.textInput} placeholder={"Digite o novo nome da barraca"} onChangeText={setnewNAME} clearButtonMode={"while-editing"}>{newNAME}</TextInput>
+                        <CustomButton onPress={() => {
+                            setnameVisible(false)
+                        }} text={"Salvar"} />
+
+                        <CustomButton onPress={() => {
+                            setnameVisible(false)
+                        }} text={"Cancelar"} />
+                    </View>
+                </Modal>}
+
+
         </View>
     </>
 }
@@ -33,6 +57,17 @@ const styles = StyleSheet.create({
         shadowOffset: {
             height: 10
         }
+    }, textInput: {
+        backgroundColor: "white",
+        width: 320,
+        height: 60,
+        borderRadius: 16,
+        marginVertical: 16,
+        padding: 16,
+        borderColor: "#0078AA",
+        borderWidth: 1,
+        fontWeight: '500',
+        alignSelf: "center"
     },
     iconBellowThePhoto: {
         alignSelf: 'center'
@@ -61,8 +96,8 @@ const styles = StyleSheet.create({
     },
     viewNameBarraca: {
         alignSelf: "center",
-        
-        flexDirection:'row'
+
+        flexDirection: 'row'
     },
     email: {
         alignSelf: "center",
