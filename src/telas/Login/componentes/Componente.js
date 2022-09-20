@@ -5,7 +5,6 @@ import CustomButton from "../../../componentes/CustomButton/CustomButton";
 import CustonLink from "../../../componentes/Links/CustonLink";
 import LoginGoogle from "../Autenticacao/loginGoogle";
 import logo from '../../../../assets/logoAzul.png'
-import { logarUser } from "../../../services/requisicoes/apiDevs/users";
 import {AuthContext} from '../../../contexts/auth'
 
 
@@ -33,7 +32,9 @@ export default function Componente({ props }) {
                     secureTextEntry={true}
 
                 />
+                
                 <CustomButton text='Login' onPress={() => {
+
                    signIn(email, senha)
 
                 }} />

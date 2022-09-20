@@ -50,7 +50,7 @@ export default function Profile(props) {
                />
                <DadosPessoais />
                <Descricao />
-               <Seguranca/>
+               <Seguranca />
 
             </SafeAreaView>
          </ScrollView>

@@ -1,22 +1,24 @@
 import React, {useState, createContext} from "react";
+import { ActivityIndicator } from "react-native";
 import apiDevs from '../services/api/apiDevs'
 export const AuthContext = createContext({})
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { Snackbar } from "react-native-paper";
 
 
 export default function AuthProvider({children}){
     const [userType, setUserType] = useState({})
+    const [visible, setVisible] = useState(true)
     const navigation = useNavigation()
-
-
+    const onDismissSnackBar = () => setVisible(false)
     
 /**
  * Função para logar o usuário gerando token e salvando localmente
  */
     function signIn(email, senha){
         if (email !== '' && senha !== '') {
+            <ActivityIndicator />
             apiDevs.post('login', {
                 email: email,
                 senha: senha
@@ -30,7 +32,7 @@ export default function AuthProvider({children}){
                 alert(erro)
             })    
         } else {
-            
+            <Snackbar visible={visible} onDismiss={onDismissSnackBar}></Snackbar>
         }
         
     

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Modal, TextInput, StyleSheet, Text } from "react-native";
 import { FontAwesome } from '@expo/vector-icons'
+import CustomButton from "../../../componentes/CustomButton/CustomButton";
 
 
 
@@ -10,30 +11,65 @@ export default function DadosPessoais() {
     const [telefone, setTelefone] = useState('91986123187')
     const [endereco, setEndereco] = useState('Rua antonio freire')
 
+    const [ModalVisible, setModalVisible] = useState(false)
+
     return <>
         <View>
             <View style={{ flexDirection: 'row' }}>
                 <Text style={styles.dadosPessoaisName}>{"Dados Pessoais"}</Text>
-                <FontAwesome name="edit" style={{ alignSelf: 'center', marginTop: 8, marginLeft: 8 }}></FontAwesome>
+                <FontAwesome name="edit" style={{ alignSelf: 'center', marginTop: 8, marginLeft: 8 }} onPress={() => {
+                    setModalVisible(true)
+                }}></FontAwesome>
             </View>
 
             <View>
                 <View style={{ flexDirection: 'row' }}>
                     <Text style={styles.dadosPessoais}>{"CPF / CNPJ:"}</Text>
-                    <Text style={{marginLeft:8, marginTop:4}}>{cpfCnpj}</Text>
+                    <Text style={{ marginLeft: 8, marginTop: 4 }}>{cpfCnpj}</Text>
                 </View>
 
                 <View style={{ flexDirection: 'row' }}>
                     <Text style={styles.dadosPessoais}>{"Telefone / Whatsapp:"}</Text>
-                    <Text style={{marginLeft:8, marginTop:4}}>{telefone}</Text>
+                    <Text style={{ marginLeft: 8, marginTop: 4 }}>{telefone}</Text>
                 </View>
 
-                  <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row' }}>
                     <Text style={styles.dadosPessoais}>{"Endereço:"}</Text>
-                    <Text style={{marginLeft:8, marginTop:4}}>{endereco}</Text>
-                </View>   
+                    <Text style={{ marginLeft: 8, marginTop: 4 }}>{endereco}</Text>
+                </View>
 
             </View>
+
+
+
+            {ModalVisible &&
+
+                <Modal animationType="slide" visible={ModalVisible}>
+                    <View style={{ marginTop: 16 }}>
+                        <Text style={styles.dadosPessoais}>{"CPF / CNPJ:"}</Text>
+                        <TextInput style={styles.textInput} placeholder={"Digite novo CPF"} keyboardType={"numeric"} onChangeText={setCpfCnpj} clearButtonMode={"while-editing"}>{cpfCnpj}</TextInput>
+
+                        <Text style={styles.dadosPessoais}>{"Telefone / Whatsapp:"}</Text>
+                        <TextInput style={styles.textInput} placeholder={"Digite novo numero"} keyboardType={"numeric"} onChangeText={setTelefone} clearButtonMode={"while-editing"}>{telefone}</TextInput>
+
+                        <Text style={styles.dadosPessoais}>{"Endereço:"}</Text>
+                        <TextInput style={styles.textInput} placeholder={"Digite novo endereco"} onChangeText={setEndereco} clearButtonMode={"while-editing"}>{endereco}</TextInput>
+
+
+
+
+                        <CustomButton onPress={() => {
+                            setModalVisible(false)
+                        }} text={"Salvar"} />
+
+                        <CustomButton onPress={() => {
+                            setModalVisible(false)
+                        }} text={"Cancelar"} />
+                    </View>
+                </Modal>
+
+
+            }
 
 
 
@@ -61,6 +97,17 @@ const styles = StyleSheet.create({
         marginTop: 4,
         marginLeft: 32,
         color: "#cc0000",
+    }, textInput: {
+        backgroundColor: "white",
+        width: 320,
+        height: 60,
+        borderRadius: 16,
+        marginVertical: 16,
+        padding: 16,
+        borderColor: "#0078AA",
+        borderWidth: 1,
+        fontWeight: '500',
+        alignSelf: "center"
     },
 
 })
