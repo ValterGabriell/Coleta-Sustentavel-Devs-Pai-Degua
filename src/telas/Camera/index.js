@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Camera } from "expo-camera";
-import { SafeAreaView, StyleSheet, Image } from "react-native";
+import { SafeAreaView, StyleSheet, Image, Button } from "react-native";
 import { View } from "react-native";
 import { TouchableOpacity, Modal } from "react-native";
 import { FontAwesome } from '@expo/vector-icons'
 import * as Permissions from 'expo-permissions'
 import * as MediaLibrary from 'expo-media-library';
-
+import * as ImagePicker from 'expo-image-picker';
 
 export default function CameraScreen(props) {
     const camRef = useRef(null)
@@ -14,6 +14,22 @@ export default function CameraScreen(props) {
     const [hasPermission, setHasPermission] = useState(null)
     const [caputuredPhoto, setCapturePhoto] = useState(null)
     const [open, setOpen] = useState(false)
+
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            quality: 1,
+        });
+
+        console.log(result);
+
+        if (!result.cancelled) {
+            props.navigation.navigate("FormularioScreen",{
+                uri:result.uri
+            })
+        }
+    };
 
     useEffect(() => {
         (async () => {
@@ -61,9 +77,10 @@ export default function CameraScreen(props) {
 
 
             <Camera
-                style={{ flex: 1 }}
+                style={{ borderRadius:32, flex:0 }}
                 type={type}
                 ref={camRef}
+
             >
 
                 <View style={styles.modalView}>
@@ -77,6 +94,10 @@ export default function CameraScreen(props) {
 
                     <TouchableOpacity style={styles.buttom} onPress={takePicture}>
                         <FontAwesome name="camera" size={45} color="#FFF"  />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.buttom} onPress={pickImage}>
+                        <FontAwesome name="picture-o" size={45} color="#FFF"  />
                     </TouchableOpacity>
 
                 </View>
@@ -97,6 +118,7 @@ export default function CameraScreen(props) {
                                 setOpen(false)
                                 }>
                                 <FontAwesome name="window-close" size={50} color="#FF0000"></FontAwesome>
+                            
                             </TouchableOpacity>
 
                             <TouchableOpacity style={{ margin: 10 }} onPress={savePicture}>
@@ -124,8 +146,7 @@ const styles = StyleSheet.create({
         height: 50,
         marginLeft: 35,
         marginRight: 35,
-        size: 45,
-        backgroundColor:"#000"
+        size: 45
     },
     switchSide: {
         fontSize: 20, marginBottom: 13, color: "#FFF"
