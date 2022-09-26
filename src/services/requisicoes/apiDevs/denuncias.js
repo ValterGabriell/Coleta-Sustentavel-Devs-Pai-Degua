@@ -11,7 +11,7 @@ export async function getBarracas() {
     }
 }
 
-export async function postDenuncia(title, description, photo, gravity,isDone,location,props) {
+export async function postDenuncia(title, description, photo, gravity,isDone,location,props, userId) {
     try {
         await apiDevs.post('denuncias', {
             titulo:title,
@@ -19,7 +19,8 @@ export async function postDenuncia(title, description, photo, gravity,isDone,loc
             foto:photo,
             gravidade:gravity,
             status:isDone,
-            localizacao:location
+            localizacao:location,
+            id_usuario:userId
         }).then((response)=>{
             if (response.status === 200) {
                 props.navigation.navigate('MyTabsScreen')
