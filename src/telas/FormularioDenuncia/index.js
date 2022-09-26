@@ -24,7 +24,9 @@ export default function FormularioDenuncia(props) {
     const uri = props.route.params.uri
     //receber se é catador ou nao
     const { userType } = useContext(AuthContext)
+    const { userId } = useContext(AuthContext)
     const isCatador = userType.isCatador
+    const id_usuario = userId.userId
 
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [latitude, setLatitude] = useState("Carregando localização...");
@@ -89,7 +91,8 @@ export default function FormularioDenuncia(props) {
                 "15",
                 false,
                 location,
-                props
+                props,
+                id_usuario
             )
         } else {
             alert("Preencha tudo corretamente")
@@ -218,7 +221,7 @@ export default function FormularioDenuncia(props) {
 
                         <View style={{ flexDirection:"column", marginLeft: 8, marginTop: 8, justifyContent: 'center' }}>
                             
-                            <SelectableChips initialChips={["Plastico", "Organico", "Papel", "Vidro", "Metal"]} onChangeChips={(chips) => setArrayChip(chips)} alertRequired={false} />
+                            <SelectableChips initialChips={["Plastico", "Organico", "Papel", "Vidro", "Metal"]} onChangeChips={(chips) => setArrayChip(chips)} alertRequired={false}  />
                             
 
                         </View>

@@ -2,8 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 
+
 export default function EndOfScreen({ material, estado, horario, qtd }) {
     return <>
+   
         <View style={{height:1, backgroundColor:"#cc0000", width:"85%", alignSelf:"center"}}></View>
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
             <Text style={styles.txtTitle}>Material:</Text>
@@ -19,6 +21,8 @@ export default function EndOfScreen({ material, estado, horario, qtd }) {
             <Text style={styles.txtTitle}>Horario:</Text>
             <Text style={styles.txtLocalizacao}>{horario}</Text>
         </View>
+       
+
 
     </>
 }
@@ -26,7 +30,7 @@ export default function EndOfScreen({ material, estado, horario, qtd }) {
 const styles = StyleSheet.create({
     txtTitle: {
         color: "#696969",
-        marginTop: 32,
+        marginTop: 16,
         fontWeight: "bold"
     },
     txtLocalizacao: {

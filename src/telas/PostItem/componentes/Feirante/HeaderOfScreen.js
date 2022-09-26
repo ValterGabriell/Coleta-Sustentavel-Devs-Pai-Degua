@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         color: "#cc0000",
         marginLeft: 16,
         fontSize:20,
-        marginTop: 32,
+        marginTop: 4,
         marginBottom: 4
     },
     txtLocalizacao: {
