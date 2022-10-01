@@ -6,7 +6,7 @@ import { Button } from "react-native-paper";
 import { View } from "react-native";
 import * as Location from 'expo-location';
 import { TextInput, Image, TouchableOpacity } from "react-native";
-import { postDenuncia } from "../../services/requisicoes/apiDevs/denuncias";
+import { postDenuncia } from "../../services/requisicoes/apiDevs/requisicoes";
 import { AuthContext } from "../../contexts/auth";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Picker } from '@react-native-picker/picker';

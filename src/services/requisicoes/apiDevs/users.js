@@ -1,5 +1,15 @@
 import apiDevs from '../../api/apiDevs'
 
+/**
+ * REQUISICOES PARA OS FEIRANTES
+ */
+
+
+
+/**
+ * Metodo para retornar lista de catadores online
+ * @returns lista de catadores ONLINE
+ */
 export async function getScavengers() {
     try {
         const result = await apiDevs.get('scavengers')
@@ -11,6 +21,11 @@ export async function getScavengers() {
 }
 
 
+/**
+ * Metodo para retornar usuario atual
+ * @param {Integer} idUser 
+ * @returns usuario atual
+ */
 export async function verificarUsuarioAtual(idUser) {
     try {
         const result = await apiDevs.get(`merchants/${idUser}`)

@@ -37,7 +37,7 @@ import FabButton from "../../componentes/FabButton";
 import logo from '../../../assets/logoAzul.png';
 
 
-import { getBarracas } from '../../services/requisicoes/apiDevs/denuncias'
+import { getBarracas } from '../../services/requisicoes/apiDevs/requisicoes'
 import { getScavengers } from "../../services/requisicoes/apiDevs/users";
 import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
 import { AuthContext } from "../../contexts/auth";
