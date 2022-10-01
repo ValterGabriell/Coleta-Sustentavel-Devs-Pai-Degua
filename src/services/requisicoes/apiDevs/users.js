@@ -36,11 +36,46 @@ export async function verificarUsuarioAtual(idUser) {
     }
 }
 
-export async function trocarEmailUsuario(email){
+/**
+ * atualizar email do usuario
+ * @param {email} email 
+ * @returns newEmail
+ */
+export async function trocarEmailUsuario(userId, email, name, cpf, phone){
     try {
-        console.log(email);
-        return email
+        const newEmail = await apiDevs.patch(`merchants/${userId}`, {email:email, name:name, cpf:cpf, phone:phone})
+        return newEmail
+    } catch (error) {
+        console.log(error);
+        return {}
+    }
+}
 
+/**
+ * atualizar cpf e telefone do usuario
+ * @param {cpf, phone}  
+ * @returns newResult
+ */
+ export async function trocarCpfAndPhoneUsuario(userId, cpf, phone){
+    try {
+        const newResult = await apiDevs.patch(`merchants/${userId}`, {email:email, cpf:cpf, phone:phone})
+        return newResult
+    } catch (error) {
+        console.log(error);
+        return {}
+    }
+}
+
+
+/**
+ * atualizar nome do usuario
+ * @param {nome}  
+ * @returns nome
+ */
+ export async function trocarNomeUser(userId, name){
+    try {
+        const name = await apiDevs.patch(`merchants/${userId}`, {name:name})
+        return name
     } catch (error) {
         console.log(error);
         return {}

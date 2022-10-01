@@ -8,7 +8,6 @@ import Lista from "./componente/Lista";
  */
 import ViewFotoPerfilFeirante from "./FeiranteComponent/ViewFotoPerfilFeirante";
 import DadosPessoais from './FeiranteComponent/DadosPessoais'
-import Descricao from './FeiranteComponent/Descricao'
 import Seguranca from "./FeiranteComponent/Seguranca";
 import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
 /**
@@ -26,17 +25,17 @@ export default function Profile(props) {
 
     */
 
-    const { userType } = useContext(AuthContext)
-    const isCatador = userType.isCatador
-    const [currentUser,setCurrentUser] = useState({})
+   const { userType } = useContext(AuthContext)
+   const isCatador = userType.isCatador
+   const [currentUser, setCurrentUser] = useState({})
 
    useEffect(function () {
-      (async() =>{
+      (async () => {
          const user = await verificarUsuarioAtual(1)
          setCurrentUser(user)
       })()
    }, [])
- 
+
 
 
    return <>
@@ -55,13 +54,13 @@ export default function Profile(props) {
          <ScrollView>
             <SafeAreaView>
                <ViewFotoPerfilFeirante
+                  userId={currentUser.id}
                   fotoUser={ProfilePic}
                   nomeBarraca={currentUser.name}
                   emailUser={currentUser.email}
                />
-               <DadosPessoais />
-               <Descricao />
-               <Seguranca />
+               <DadosPessoais userId={currentUser.id} cpf={currentUser.cpf} phone={currentUser.phone} />
+               <Seguranca userId={currentUser.id} email={currentUser.email} />
 
             </SafeAreaView>
          </ScrollView>
