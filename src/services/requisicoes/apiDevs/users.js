@@ -2,7 +2,7 @@ import apiDevs from '../../api/apiDevs'
 
 export async function getUsers() {
     try {
-        const result = await apiDevs.get('usuarios')
+        const result = await apiDevs.get('merchants')
         return result.data
     } catch (error) {
         console.log(error)
@@ -13,7 +13,7 @@ export async function getUsers() {
 
 export async function verificarUsuarioAtual(idUser) {
     try {
-        const result = await apiDevs.get(`usuarios/${idUser}`)
+        const result = await apiDevs.get(`merchants/${idUser}`)
         return result.data
     } catch (error) {
         console.log(error)

@@ -22,16 +22,19 @@ export default function AuthProvider({ children }) {
             <ActivityIndicator />
             apiDevs.post('login', {
                 email: email,
-                senha: senha
+                password: senha
             }).then(response => {
-                AsyncStorage.setItem('@token', response.data.token)
-                setUserType({
-                    isCatador: false
-                })
-                setUserId(
-                    { userId: 1 }
+                var token = response.data.token                
+                AsyncStorage.setItem('@token', token)
+                apiDevs.get("authenticated").then((user)=>{
+                    setUserType({
+                        isCatador: false
+                    })    
 
-                )
+                    setUserId(
+                        { userId: user.data.id }
+                    )
+                })
                 navigation.navigate("FeedScreen")
             }).catch(erro => {
                 alert(erro)

@@ -27,6 +27,9 @@ import LixoVeropa_ from '../../assets/imgMapa.jpg'
  */
 
 
+//import do metodo que faz requisição para ver todas as requisições dos feirantes
+import {getRequestMerchant} from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
+
 import ItemRender from "./componentes/ItemRender";
 import ImgTeste from '../../assets/lixoVeropa.jpg'
 import HeaderComponent from "./componentes/HeaderComponent";
@@ -78,9 +81,11 @@ const App = (props) => {
 
   const [barracas, setbarracas] = useState([])
   const [catadores, setCatadores] = useState([])
+  const [requests, setrequest] = useState([])
   const [usuarioAtual, setUsuarioAtual] = useState({})
   const { userType } = useContext(AuthContext)
   const isCatador = userType.isCatador
+  const userId= userType.userId
   const textForButton = "Nova Coleta"
 
   useEffect(() => {
@@ -102,6 +107,11 @@ const App = (props) => {
        */
       const cata = await getUsers()
       setCatadores(cata)
+
+      const request = await getRequestMerchant(1)
+      setrequest(request)
+      console.log("Index: " + requests);
+      
 
 
 
@@ -140,14 +150,15 @@ const App = (props) => {
 
   const renderItemPostFeirante = ({ item }) => (
     <ItemRenderPostFeirante
-    imagem={item.imagem}
-      titulo={item.titulo}
-      material={item.material}
-      data={item.data}
-      descricao={item.descricao}
+      id={item.id}
+      description={item.description}
+      photo={LixoVeropa}
       props={props}
-      localizacao={item.localizacao}
-      
+      localization={item.localization}
+      status={item.status}
+      state={item.state}
+      ideal_time={item.ideal_time}
+      amount={item.amount}
       />
   )
 
@@ -190,7 +201,7 @@ const App = (props) => {
         <View style={styles.viewOut}>
           <FlatList
             horizontal
-            data={DATA_POSTS}
+            data={requests}
             renderItem={renderItemPostFeirante}
             keyExtractor={item => item.id}
           />

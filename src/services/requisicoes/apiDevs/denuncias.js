@@ -3,7 +3,7 @@ import apiDevs from '../../api/apiDevs'
 
 export async function getBarracas() {
     try {
-        const result = await apiDevs.get('denuncias')
+        const result = await apiDevs.get('requests')
         return result.data
     } catch (error) {
         console.log(error)

@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react"
 import ListaBarracasAtendidas from "./ListaBarracasAtendida"
 import ListaSolicitacoes from "./ListaSolicitacoes"
-import { getAllComments } from "../../../services/requisicoes/comments"
+
 
 export default function Lista({ props, isCatador }) {
 

@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
 
 
-const Item = ({ imagem, titulo, material, data, descricao, props, localizacao }) => (
+const Item = ({ id,description, photo, props,localization,status,state,ideal_time,amount}) => (
 
     <View>
         <View >
@@ -11,22 +11,26 @@ const Item = ({ imagem, titulo, material, data, descricao, props, localizacao })
                 style={styles.item}
                 onPress={() => {
                    props.navigation.navigate("PostItem",{
-                    titulo: titulo,
-                    imagem:imagem,
+                    id:id,
+                    titulo: description,
+                    imagem:photo,
                     material:material,
-                    data:data,
-                    descricao:descricao,
-                    localizacao:localizacao
+                    data:ideal_time,
+                    descricao:description,
+                    localizacao:localization,
+                    status:status,
+                    state:state,
+                    quantidade:amount
                    })
            
                 }
                 }>
                 <View style={styles.viewOne}>
-                    <Image source={imagem} style={styles.imgLixo}></Image>
+                    <Image source={photo} style={styles.imgLixo}></Image>
                     <View>
-                        <Text style={styles.txtName}>{titulo}</Text>
-                        <Text style={styles.txtComent}>{material}</Text>
-                        <Text style={styles.txtData}>{data}</Text>
+                        <Text style={styles.txtName}>{description}</Text>
+                        <Text style={styles.txtComent}>{description}</Text>
+                        <Text style={styles.txtData}>{ideal_time}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -34,8 +38,8 @@ const Item = ({ imagem, titulo, material, data, descricao, props, localizacao })
     </View>
 );
 
-export default function ItemRender({ imagem, titulo, material, data, descricao, props,localizacao }) {
-    return Item({ imagem, titulo, material, data, descricao, props,localizacao })
+export default function ItemRender({ id, description, photo, props,localization,status,state,ideal_time,amount}) {
+    return Item({ id,description, photo, props,localization,status,state,ideal_time,amount})
 }
 
 const styles = StyleSheet.create({
@@ -65,7 +69,8 @@ const styles = StyleSheet.create({
     txtData: {
         marginRight: 8,
         fontSize: 14,
-        alignSelf:'flex-end'
+        alignSelf:'flex-end',
+        marginLeft:8
     }
 });
 
