@@ -6,7 +6,7 @@ import { trocarEmailUsuario } from "../../../services/requisicoes/apiDevs/users"
 import { trocarSenhaUsuario } from "../../../services/requisicoes/apiDevs/users";
 
 
-export default function Seguranca() {
+export default function Seguranca({ userId, email }) {
 
 
     const [emailVisible, setEmailVisible] = useState(false)
@@ -56,10 +56,10 @@ export default function Seguranca() {
         {emailVisible && <Modal animationType="slide" visible={emailVisible}>
 
             <View style={{ marginTop: 32 }}>
-                <TextInput style={styles.textInput} placeholder={"Digite seu novo email"} onChangeText={setNewEmail} clearButtonMode={"while-editing"}></TextInput>
+                <TextInput style={styles.textInput} placeholder={email} onChangeText={setNewEmail} clearButtonMode={"while-editing"}></TextInput>
                 <CustomButton onPress={() => {
                     setEmailVisible(false)
-                    trocarEmailUsuario(newEmail)
+                    trocarEmailUsuario(userId, newEmail)
                 }} text={"Salvar email"} />
 
                 <CustomButton onPress={() => {
