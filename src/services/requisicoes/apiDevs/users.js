@@ -1,8 +1,8 @@
 import apiDevs from '../../api/apiDevs'
 
-export async function getUsers() {
+export async function getScavengers() {
     try {
-        const result = await apiDevs.get('merchants')
+        const result = await apiDevs.get('scavengers')
         return result.data
     } catch (error) {
         console.log(error)

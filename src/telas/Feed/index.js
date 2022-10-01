@@ -38,7 +38,7 @@ import logo from '../../../assets/logoAzul.png';
 
 
 import { getBarracas } from '../../services/requisicoes/apiDevs/denuncias'
-import { getUsers } from "../../services/requisicoes/apiDevs/users";
+import { getScavengers } from "../../services/requisicoes/apiDevs/users";
 import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
 import { AuthContext } from "../../contexts/auth";
 
@@ -105,8 +105,8 @@ const App = (props) => {
       /**
        * Metodo para recuperar todos os usuarios
        */
-      const cata = await getUsers()
-      setCatadores(cata)
+      const scavengers = await getScavengers()
+      setCatadores(scavengers)
 
       const request = await getRequestMerchant(1)
       setrequest(request)
@@ -140,10 +140,11 @@ const App = (props) => {
    */
   const renderItemFeirante = ({ item }) => (
     <ItemRenderFeirate
-      name={item.nome}
+      id={item.id}
+      name={item.name}
       email={item.email}
-      foto={item.foto}
-      telefone={item.telefone}
+      photo={item.photo}
+      phone={item.phone}
       props={props}
     />
   );

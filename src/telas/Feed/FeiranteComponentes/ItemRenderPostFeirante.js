@@ -14,7 +14,6 @@ const Item = ({ id,description, photo, props,localization,status,state,ideal_tim
                     id:id,
                     titulo: description,
                     imagem:photo,
-                    material:material,
                     data:ideal_time,
                     descricao:description,
                     localizacao:localization,
