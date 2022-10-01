@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { View, Image, StyleSheet, Text, Modal, TextInput } from "react-native";
 import { FontAwesome } from '@expo/vector-icons'
 import CustomButton from "../../../componentes/CustomButton/CustomButton";
+import { trocarNomeUser } from "../../../services/requisicoes/apiDevs/users";
 
 
-
-export default function ViewFotoPerfilFeirante({ fotoUser, nomeBarraca, emailUser }) {
+export default function ViewFotoPerfilFeirante({ userId, fotoUser, nomeUser, emailUser }) {
 
     const [nameVisible, setnameVisible] = useState(false)
-    const [newNAME, setnewNAME] = useState(nomeBarraca)
+    const [newNAME, setnewNAME] = useState(nomeUser)
 
     return <>
         <View style={styles.container}>
@@ -16,7 +16,7 @@ export default function ViewFotoPerfilFeirante({ fotoUser, nomeBarraca, emailUse
             <FontAwesome name="camera" size={18} style={styles.iconBellowThePhoto} ></FontAwesome>
 
             <View style={styles.viewNameBarraca}>
-                <Text style={styles.nameBarraca}>{nomeBarraca}</Text>
+                <Text style={styles.nameBarraca}>{nomeUser}</Text>
                 <FontAwesome name="edit" size={16} style={{ alignSelf: 'center', marginLeft: 8, marginTop: 8 }} onPress={() => {
                     setnameVisible(true)
                 }}></FontAwesome>
@@ -30,9 +30,10 @@ export default function ViewFotoPerfilFeirante({ fotoUser, nomeBarraca, emailUse
 
                 <Modal animationType="slide" visible={nameVisible}>
                     <View style={{marginTop:32}}>
-                        <TextInput style={styles.textInput} placeholder={"Digite o novo nome da barraca"} onChangeText={setnewNAME} clearButtonMode={"while-editing"}>{nomeBarraca}</TextInput>
+                        <TextInput style={styles.textInput} placeholder={"Digite o novo nome da barraca"} onChangeText={setnewNAME} clearButtonMode={"while-editing"}>{nomeUser}</TextInput>
                         <CustomButton onPress={() => {
                             setnameVisible(false)
+                            trocarNomeUser(userId, nomeUser)
                         }} text={"Salvar"} />
 
                         <CustomButton onPress={() => {
