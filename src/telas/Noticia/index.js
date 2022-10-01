@@ -9,14 +9,16 @@ export default function Noticia(props) {
     const titulo = props.route.params.titulo
     const image = props.route.params.image
     const place = props.route.params.place
+    const description = props.route.params.descricao
+    const atendida = props.route.params.isAtendida
 
 
     return <>
         <Text style={styles.title}>{titulo}</Text>
-        <HeaderNoticia local={place}/>
-        <Text style={styles.description}>description</Text>
-        <AntesDosComentarios />
-        <CampoComentario />
+        <HeaderNoticia local={place} imagem={image}/>
+        <Text style={styles.description}>{description}</Text>
+        <AntesDosComentarios atendida={atendida}/>
+        <CampoComentario props={props}/>
         <ListaComentario />
     </>
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import { Text,SafeAreaView } from "react-native";
-
+import Componente from "./Componentes/componente";
 
 export default function Login() {
     return <>
-        <SafeAreaView>
-            <Text>Contato</Text>
+        <SafeAreaView style={{flex: 1}}>
+            <Componente/>
         </SafeAreaView>
     </>
 }

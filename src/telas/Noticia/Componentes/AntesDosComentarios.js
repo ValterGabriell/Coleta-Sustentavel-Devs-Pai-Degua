@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Chip } from 'react-native-paper';
 import { FontAwesome } from '@expo/vector-icons'
-import { Image, Text, StyleSheet } from "react-native";
+import {  Text, StyleSheet } from "react-native";
 import { View } from "react-native";
-import imgMapa from '../../../assets/imgMapa.jpg'
 
 
 
-export default function AntesDosComentarios() {
 
-    const [atendida, setAtendida] = useState(false)
+export default function AntesDosComentarios({atendida}) {
+
+    
     const [txtStatus, setTxtStatus] = useState("Não atendida")
     const [icon, setIcon] = useState("ban")
 
