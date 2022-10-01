@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { SafeAreaView, ScrollView, Text } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { SafeAreaView, ScrollView } from "react-native";
 import FotoPerfil from "./componente/FotoPerfil";
 import ProfilePic from '../../assets/profilePhoto.png'
 import Lista from "./componente/Lista";
@@ -10,6 +10,7 @@ import ViewFotoPerfilFeirante from "./FeiranteComponent/ViewFotoPerfilFeirante";
 import DadosPessoais from './FeiranteComponent/DadosPessoais'
 import Descricao from './FeiranteComponent/Descricao'
 import Seguranca from "./FeiranteComponent/Seguranca";
+import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
 /**
  * FIM DOS IMPORTS PARA FEIRANTE
  */
@@ -24,8 +25,18 @@ export default function Profile(props) {
     Usar esse mesmo codigo abaixo para as outras telas que fores criar, importando o "import {AuthContext} from '../../contexts/auth'""
 
     */
-   const { userType } = useContext(AuthContext)
-   const isCatador = userType.isCatador
+
+    const { userType } = useContext(AuthContext)
+    const isCatador = userType.isCatador
+    const [currentUser,setCurrentUser] = useState({})
+
+   useEffect(function () {
+      (async() =>{
+         const user = await verificarUsuarioAtual(1)
+         setCurrentUser(user)
+      })()
+   }, [])
+ 
 
 
    return <>
@@ -45,8 +56,8 @@ export default function Profile(props) {
             <SafeAreaView>
                <ViewFotoPerfilFeirante
                   fotoUser={ProfilePic}
-                  nomeBarraca={"Barraca da cheirosinha"}
-                  emailUser={"vgabrielbri@hotrmail.com"}
+                  nomeBarraca={currentUser.name}
+                  emailUser={currentUser.email}
                />
                <DadosPessoais />
                <Descricao />

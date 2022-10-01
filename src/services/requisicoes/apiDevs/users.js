@@ -1,8 +1,18 @@
 import apiDevs from '../../api/apiDevs'
 
-export async function getUsers() {
+/**
+ * REQUISICOES PARA OS FEIRANTES
+ */
+
+
+
+/**
+ * Metodo para retornar lista de catadores online
+ * @returns lista de catadores ONLINE
+ */
+export async function getScavengers() {
     try {
-        const result = await apiDevs.get('usuarios')
+        const result = await apiDevs.get('scavengers')
         return result.data
     } catch (error) {
         console.log(error)
@@ -11,9 +21,14 @@ export async function getUsers() {
 }
 
 
+/**
+ * Metodo para retornar usuario atual
+ * @param {Integer} idUser 
+ * @returns usuario atual
+ */
 export async function verificarUsuarioAtual(idUser) {
     try {
-        const result = await apiDevs.get(`usuarios/${idUser}`)
+        const result = await apiDevs.get(`merchants/${idUser}`)
         return result.data
     } catch (error) {
         console.log(error)

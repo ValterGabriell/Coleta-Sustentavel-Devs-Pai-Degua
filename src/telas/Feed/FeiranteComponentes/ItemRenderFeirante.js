@@ -3,7 +3,7 @@ import { View, TouchableOpacity, ImageBackground, StyleSheet, Image, Text } from
 import Profile from '../../../assets/sorriso.jpg'
 
 
-const Item = ({  name, email, foto, telefone, props }) => (
+const Item = ({ id, name, email, photo, phone, props }) => (
 
   <View style={styles.viewMain} >
     <View style={styles.viewImg} >
@@ -11,9 +11,11 @@ const Item = ({  name, email, foto, telefone, props }) => (
         style={styles.item}
         onPress={() => {
           props.navigation.navigate('FeiranteScreen', {
+            id:id,
             name: name,
             email: email,
-            telefone: telefone
+            photo:photo,
+            phone: phone
           })
         }
         }>
@@ -24,7 +26,7 @@ const Item = ({  name, email, foto, telefone, props }) => (
           <View>
             <Text style={styles.txtName}>{name}</Text>
             <Text style={styles.txtComent}>{email}</Text>
-            <Text style={styles.txtComent}>{telefone}</Text>
+            <Text style={styles.txtComent}>{phone}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -32,8 +34,8 @@ const Item = ({  name, email, foto, telefone, props }) => (
   </View>
 );
 
-export default function ItemRender({ name, email, foto, telefone, props }) {
-  return Item({ name, email, foto, telefone, props})
+export default function ItemRender({ id, name, email, photo, phone, props }) {
+  return Item({ id,name, email, photo, phone, props})
 }
 
 const styles = StyleSheet.create({

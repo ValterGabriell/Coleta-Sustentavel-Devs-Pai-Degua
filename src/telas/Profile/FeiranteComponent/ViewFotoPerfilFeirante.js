@@ -16,7 +16,7 @@ export default function ViewFotoPerfilFeirante({ fotoUser, nomeBarraca, emailUse
             <FontAwesome name="camera" size={18} style={styles.iconBellowThePhoto} ></FontAwesome>
 
             <View style={styles.viewNameBarraca}>
-                <Text style={styles.nameBarraca}>{newNAME}</Text>
+                <Text style={styles.nameBarraca}>{nomeBarraca}</Text>
                 <FontAwesome name="edit" size={16} style={{ alignSelf: 'center', marginLeft: 8, marginTop: 8 }} onPress={() => {
                     setnameVisible(true)
                 }}></FontAwesome>
@@ -30,7 +30,7 @@ export default function ViewFotoPerfilFeirante({ fotoUser, nomeBarraca, emailUse
 
                 <Modal animationType="slide" visible={nameVisible}>
                     <View style={{marginTop:32}}>
-                        <TextInput style={styles.textInput} placeholder={"Digite o novo nome da barraca"} onChangeText={setnewNAME} clearButtonMode={"while-editing"}>{newNAME}</TextInput>
+                        <TextInput style={styles.textInput} placeholder={"Digite o novo nome da barraca"} onChangeText={setnewNAME} clearButtonMode={"while-editing"}>{nomeBarraca}</TextInput>
                         <CustomButton onPress={() => {
                             setnameVisible(false)
                         }} text={"Salvar"} />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from "react";
-import { getUsersOrgs } from "../../../services/requisicoes/apiDevs/usersOrgs";
+import { getUsersOrgs } from "../../../services/requisicoes/apiDevs/usersCatador";
 import { getUsers } from "../../../services/requisicoes/apiDevs/users";
 import profile from '../../../../assets/profile.png'
 import { Text, FlatList, TouchableOpacity, Image, StyleSheet,View } from "react-native";
