@@ -42,10 +42,10 @@ export default function DadosPessoais({ userId, cpf, phone }) {
                 <Modal animationType="slide" visible={ModalVisible}>
                     <View style={{ marginTop: 16 }}>
                         <Text style={styles.dadosPessoais}>{"CPF / CNPJ:"}</Text>
-                        <TextInput style={styles.textInput} placeholder={"Digite novo CPF"} keyboardType={"numeric"} onChangeText={setCpfCnpj} clearButtonMode={"while-editing"}>{cpfCnpj}</TextInput>
+                        <TextInput style={styles.textInput} placeholder={cpf} keyboardType={"numeric"} onChangeText={setCpfCnpj} clearButtonMode={"while-editing"}></TextInput>
 
                         <Text style={styles.dadosPessoais}>{"Telefone / Whatsapp:"}</Text>
-                        <TextInput style={styles.textInput} placeholder={"Digite novo numero"} keyboardType={"numeric"} onChangeText={setTelefone} clearButtonMode={"while-editing"}>{telefone}</TextInput>
+                        <TextInput style={styles.textInput} placeholder={phone} keyboardType={"numeric"} onChangeText={setTelefone} clearButtonMode={"while-editing"}></TextInput>
 
                     
                         <CustomButton onPress={() => {

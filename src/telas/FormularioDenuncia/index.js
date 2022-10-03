@@ -6,17 +6,11 @@ import { Button } from "react-native-paper";
 import { View } from "react-native";
 import * as Location from 'expo-location';
 import { TextInput, Image, TouchableOpacity } from "react-native";
-import { postDenuncia } from "../../services/requisicoes/apiDevs/requisicoes";
+import { postRequest } from "../../services/requisicoes/apiDevs/requisicoes";
 import { AuthContext } from "../../contexts/auth";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Picker } from '@react-native-picker/picker';
 import SelectableChips from 'react-native-chip/SelectableChips'
 
-
-
-const dataSource = [
-    "Volvo", "Alpha Sports", "Ford", "Gräf & Stift", "Aston Martin", "BMW", "Tarrant Automobile", "Push", "Österreichische Austro-Fiat", "Mazda", "Rosenbauer"
-]
 
 export default function FormularioDenuncia(props) {
 
@@ -24,18 +18,15 @@ export default function FormularioDenuncia(props) {
     const uri = props.route.params.uri
     //receber se é catador ou nao
     const { userType } = useContext(AuthContext)
-    const { userId } = useContext(AuthContext)
     const isCatador = userType.isCatador
-    const id_usuario = userId.userId
+    const userId = userType.userId
 
-    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
     const [latitude, setLatitude] = useState("Carregando localização...");
     const [longitude, setLongitude] = useState(null);
     const [title, settitle] = useState("")
     const [description, setdescription] = useState("")
-    const [timeOne, setTimeOne] = useState("")
-    const [timeTwo, setTimeTwo] = useState("")
-    const [selectedLanguage, setSelectedLanguage] = useState();
+    const [quality, setQuality] = useState();
     const [Qtd, setQtd] = useState();
     const [arrayChip, setArrayChip] = useState([]);
 
@@ -52,47 +43,26 @@ export default function FormularioDenuncia(props) {
             let location = await Location.getCurrentPositionAsync({});
             setLatitude(location.coords.latitude)
             setLongitude(location.coords.longitude)
+
+
         })();
     }, []);
 
 
-    /**
-     * Seletor de hora
-     */
-    const showDatePicker = () => {
-        setDatePickerVisibility(true);
-    };
-
-    const hideDatePicker = () => {
-        setDatePickerVisibility(false);
-    };
-
-    const handleConfirm = (date = new Date()) => {
-        const hora = date.getHours() + ":" + date.getMinutes()
-        if (timeOne === "") {
-            setTimeOne(hora)
-        } else {
-            setTimeTwo(hora)
-        }
-        hideDatePicker();
-    };
-
-    /**
-     * Fim do seletor de hora
-     */
 
     function sendToDatabase() {
         if (title != "" && description != "" && uri != "") {
-            var location = latitude + ',' + longitude
-            postDenuncia(
-                title,
+            var localization = latitude + ',' + longitude
+            postRequest(
+                userId,
                 description,
-                "'",
-                "15",
+                "teste",
+                localization,
                 false,
-                location,
-                props,
-                id_usuario
+                quality,
+                "12:00:00",
+                Qtd,
+                props
             )
         } else {
             alert("Preencha tudo corretamente")
@@ -101,13 +71,6 @@ export default function FormularioDenuncia(props) {
 
     const pickerRef = useRef();
 
-    function open() {
-        pickerRef.current.focus();
-    }
-
-    function close() {
-        pickerRef.current.blur();
-    }
 
     return <>
         {
@@ -188,41 +151,20 @@ export default function FormularioDenuncia(props) {
 
                         <View style={{ flexDirection: "row", marginTop: 6, marginLeft: 8 }}>
                             <Text style={styles.txtCoordenadas}>Horário: </Text>
-
-                            <TouchableOpacity>
-                                <Button mode="elevated" color="#000" style={styles.buttonHour} onPress={showDatePicker}>
-                                    {timeOne}
-                                </Button>
-                            </TouchableOpacity>
-                            <Text style={styles.txtCoordenadas}>às </Text>
-                            <TouchableOpacity>
-                                <Button mode="elevated" color="#000" style={styles.buttonHour} onPress={showDatePicker}>
-                                    {timeTwo}
-                                </Button>
-                            </TouchableOpacity>
-
-
-                            <DateTimePickerModal
-                                isVisible={isDatePickerVisible}
-                                mode="time"
-
-                                onConfirm={handleConfirm}
-                                onCancel={hideDatePicker}
-                            />
-
+                           
                         </View>
 
 
-                        
+
 
 
                         <Text style={styles.materiaisName}>{"Materiais"}</Text>
 
 
-                        <View style={{ flexDirection:"column", marginLeft: 8, marginTop: 8, justifyContent: 'center' }}>
-                            
-                            <SelectableChips initialChips={["Plastico", "Organico", "Papel", "Vidro", "Metal"]} onChangeChips={(chips) => setArrayChip(chips)} alertRequired={false}  />
-                            
+                        <View style={{ flexDirection: "column", marginLeft: 8, marginTop: 8, justifyContent: 'center' }}>
+
+                            <SelectableChips initialChips={["Plastico", "Organico", "Papel", "Vidro", "Metal"]} onChangeChips={(chips) => setArrayChip(chips)} alertRequired={false} />
+
 
                         </View>
 
@@ -232,7 +174,7 @@ export default function FormularioDenuncia(props) {
                             <View>
                                 <Text style={styles.materiaisName}>{"Quantidade"}</Text>
                                 <TextInput
-                                placeholder="Ex. 1"
+                                    placeholder="Ex. 1"
                                     style={styles.inputQuantidade}
                                     onChangeText={setQtd}
                                     value={Qtd}
@@ -246,13 +188,15 @@ export default function FormularioDenuncia(props) {
                                 <Picker
                                     style={{ width: 120, marginLeft: 8 }}
                                     ref={pickerRef}
-                                    selectedValue={selectedLanguage}
+                                    selectedValue={quality}
                                     onValueChange={(itemValue, itemIndex) =>
-                                        setSelectedLanguage(itemValue)
+                                        setQuality(itemValue)
                                     }>
-                                    <Picker.Item label="Bom" value="bom" />
-                                    <Picker.Item label="Medio" value="medio" />
-                                    <Picker.Item label="Ruim" value="ruim" />
+                                    <Picker.Item label="Excelente" value="Excelente" />
+                                    <Picker.Item label="Bom" value="Bom" />
+                                    <Picker.Item label="Normal" value="Normal" />
+                                    <Picker.Item label="Ruim" value="Ruim" />
+
                                 </Picker>
                             </View>
 
@@ -264,7 +208,9 @@ export default function FormularioDenuncia(props) {
 
 
                         <TouchableOpacity>
-                            <Button mode="elevated" color="#FF0000" style={styles.buttonSend} onPress={sendToDatabase}>
+                            <Button mode="elevated" color="#FF0000" style={styles.buttonSend} onPress={() => {
+                                sendToDatabase()
+                            }}>
                                 Enviar
                             </Button>
                         </TouchableOpacity>
@@ -340,7 +286,7 @@ const styles = StyleSheet.create({
     },
     inputQuantidade: {
         marginLeft: 20,
-        marginTop:8,
+        marginTop: 8,
         borderLeftWidth: 1,
         borderTopWidth: 1,
         borderRightWidth: 1,

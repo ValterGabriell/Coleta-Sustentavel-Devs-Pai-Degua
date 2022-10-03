@@ -21,7 +21,7 @@ import HeaderComponentCatadorDisponivel from "./FeiranteComponentes/HeaderCompon
 import ItemRenderPostFeirante from './FeiranteComponentes/ItemRenderPostFeirante'
 import ItemRenderColetasAgendadas from './FeiranteComponentes/ItemRenderColetasAgendadas'
 import LixoVeropa from '../../assets/lixoVeropa.jpg'
-import LixoVeropa_ from '../../assets/imgMapa.jpg'
+
 /**
  * Fim do import de feirantes
  */
@@ -33,7 +33,6 @@ import {getRequestMerchant} from '../../services/requisicoes/apiDevs/solicitacao
 import ItemRender from "./componentes/ItemRender";
 import ImgTeste from '../../assets/lixoVeropa.jpg'
 import HeaderComponent from "./componentes/HeaderComponent";
-import FabButton from "../../componentes/FabButton";
 import logo from '../../../assets/logoAzul.png';
 
 
@@ -46,26 +45,6 @@ import { AuthContext } from "../../contexts/auth";
 /**
  * Dados estaticos para renderizar as recycler views
  */
-const DATA_POSTS = [{
-  id:1,
-  titulo: 'Preciso de catador urgente',
-  material: '1KG garrafa pet',
-  data: '29/08/2022',
-  descricao: 'Jogada na rua preciso de ajuda',
-  imagem: LixoVeropa,
-  localizacao:"Rua da marechal"
-}, {
-  id:2,
-  titulo: 'Catador aqui na barraca por favor!',
-  material: 'Osso de peixe',
-  data: '08/09/2022',
-  descricao: 'Jogada na rua preciso de ajuda',
-  imagem: LixoVeropa_,
-  localizacao:"Rua da marca"
-}
-]
-
-
 const DATA_AGENDADAS = [{
   id:1,
   titulo: 'Refeições Regionais',
@@ -88,33 +67,43 @@ const App = (props) => {
   const userId= userType.userId
   const textForButton = "Nova Coleta"
 
-  useEffect(() => {
-    (async () => {
-      /**
+
+  async function reloadCalls(){
+
+     /**
        * Recupera todas as denuncias com este método
        */
       const result = await getBarracas()
       setbarracas(result)
 
+
+    const currentUser = await verificarUsuarioAtual(userId)
+    setUsuarioAtual(currentUser)
+
       /**
        * Método para recuperar usuário atual de maneira estática
        */
-      const currentUser = await verificarUsuarioAtual(1)
-      setUsuarioAtual(currentUser)
+    const request = await getRequestMerchant(userId)
+    setrequest(request)
+
 
       /**
        * Metodo para recuperar todos os usuarios
        */
-      const scavengers = await getScavengers()
-      setCatadores(scavengers)
+       const scavengers = await getScavengers()
+       setCatadores(scavengers)
 
-      const request = await getRequestMerchant(1)
-      setrequest(request)
-      console.log("Index: " + requests);
-      
+  }
 
 
-
+  useEffect(() => {
+    (async () => {
+     
+      reloadCalls() 
+      props.navigation.addListener('focus', () => {
+        reloadCalls()
+      });
+    
     })()
   }, [])
 
@@ -223,6 +212,8 @@ const App = (props) => {
           renderItem={renderItemColetasAgendadas}
           keyExtractor={item => item.id}
         />
+
+      
 
         <TouchableOpacity>
           <Button mode="elevated" color="#FF0000" style={{ backgroundColor: "#FFF", alignSelf: "center", marginBottom: 12, }} onPress={() => { props.navigation.navigate('CameraRotas') }}>

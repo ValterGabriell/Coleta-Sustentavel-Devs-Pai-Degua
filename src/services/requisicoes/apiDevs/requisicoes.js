@@ -14,23 +14,27 @@ export async function getBarracas() {
     }
 }
 
-export async function postDenuncia(title, description, photo, gravity,isDone,location,props, userId) {
+
+export async function postRequest(merchant_id, description, photo, localization,status,state,ideal_time,amount, props) {
     try {
-        await apiDevs.post('denuncias', {
-            titulo:title,
-            descricao:description,
-            foto:photo,
-            gravidade:gravity,
-            status:isDone,
-            localizacao:location,
-            id_usuario:userId
+        await apiDevs.post('requests', {
+            merchant_id:merchant_id,
+            description:description,
+            photo:photo,
+            localization:localization,
+            status:status,
+            state:state,
+            ideal_time:ideal_time,
+            amount:amount
         }).then((response)=>{
             if (response.status === 200) {
-                props.navigation.navigate('MyTabsScreen')
-                alert('Salvo com sucesso')
+                props.navigation.navigate("MyTabsScreen")
             } else {
                 alert('Erro ao salvar')
             }
+        }).catch(erro=>{
+            alert(erro)
+            
         })
       
     } catch (error) {

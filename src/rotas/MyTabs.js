@@ -51,7 +51,7 @@ export default function MyTabs() {
                 <Tab.Screen name='Contato' component={ContatoRotas} />
                 <Tab.Screen name='Mapa' component={MapaRotas} />
             </Tab.Navigator>
-            :
+            : //se for feirante
             <Tab.Navigator
                 screenOptions={({ route }) => ({
                     headerShown: false,
@@ -62,10 +62,6 @@ export default function MyTabs() {
                         if (route.name === 'Perfil') {
                             Icon = () => <AntDesign name="user" size={24} color={color} />;
                         }
-                        if (route.name === 'Barraca') {
-                            Icon = () => <AntDesign name="contacts" size={24} color={color} />;
-                        }
-
                         if (route.name === 'Mapa') {
                             Icon = () => <Feather name="map" size={24} color={color} />
                         }
@@ -79,7 +75,6 @@ export default function MyTabs() {
 
                 <Tab.Screen name='Feed' component={Feed} />
                 <Tab.Screen name='Perfil' component={ProfileTabStack} />
-                <Tab.Screen name='Barraca' component={BarracaPerfil} />
                 <Tab.Screen name='Mapa' component={MapaRotas} />
             </Tab.Navigator>
 
