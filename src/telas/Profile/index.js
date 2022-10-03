@@ -10,6 +10,7 @@ import ViewFotoPerfilFeirante from "./FeiranteComponent/ViewFotoPerfilFeirante";
 import DadosPessoais from './FeiranteComponent/DadosPessoais'
 import Seguranca from "./FeiranteComponent/Seguranca";
 import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
+
 /**
  * FIM DOS IMPORTS PARA FEIRANTE
  */
@@ -27,11 +28,12 @@ export default function Profile(props) {
 
    const { userType } = useContext(AuthContext)
    const isCatador = userType.isCatador
+   const userId= userType.userId
    const [currentUser, setCurrentUser] = useState({})
 
    useEffect(function () {
       (async () => {
-         const user = await verificarUsuarioAtual(1)
+         const user = await verificarUsuarioAtual(userId)
          setCurrentUser(user)
       })()
    }, [])
@@ -56,7 +58,7 @@ export default function Profile(props) {
                <ViewFotoPerfilFeirante
                   userId={currentUser.id}
                   fotoUser={ProfilePic}
-                  nomeBarraca={currentUser.name}
+                  nomeUser={currentUser.name}
                   emailUser={currentUser.email}
                />
                <DadosPessoais userId={currentUser.id} cpf={currentUser.cpf} phone={currentUser.phone} />

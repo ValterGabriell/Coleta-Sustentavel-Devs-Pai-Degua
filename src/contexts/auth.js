@@ -9,7 +9,6 @@ import { Snackbar } from "react-native-paper";
 
 export default function AuthProvider({ children }) {
     const [userType, setUserType] = useState({})
-    const [userId, setUserId] = useState({})
     const [visible, setVisible] = useState(true)
     const navigation = useNavigation()
     const onDismissSnackBar = () => setVisible(false)
@@ -26,16 +25,16 @@ export default function AuthProvider({ children }) {
             }).then(response => {
                 var token = response.data.token                
                 AsyncStorage.setItem('@token', token)
+
                 apiDevs.get("authenticated").then((user)=>{
                     setUserType({
-                        isCatador: false
+                        isCatador: false,
+                        userId:user.data.id
                     })    
 
-                    setUserId(
-                        { userId: user.data.id }
-                    )
+                    navigation.navigate("FeedScreen")
                 })
-                navigation.navigate("FeedScreen")
+                
             }).catch(erro => {
                 alert(erro)
             })
@@ -49,7 +48,7 @@ export default function AuthProvider({ children }) {
 
 
     return (
-        <AuthContext.Provider value={{ nome: "PUTA", signIn, userType, userId }} >
+        <AuthContext.Provider value={{signIn, userType }} >
             {children}
         </AuthContext.Provider>
     )

@@ -17,7 +17,7 @@ export default class FabButton extends Component {
     }
 
     
-    render() {
+    render(props) {
 
         const cameraStyle = {
             transform: [
@@ -30,27 +30,6 @@ export default class FabButton extends Component {
             ]
         }
 
-        const location = {
-            transform: [
-                { scale: this.animation }, {
-                    translateY: this.animation.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, -140]
-                    })
-                }
-            ]
-        }
-
-        const galery = {
-            transform: [
-                { scale: this.animation }, {
-                    translateY: this.animation.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, -210]
-                    })
-                }
-            ]
-        }
 
         const rotation = {
             transform: [
@@ -72,14 +51,6 @@ export default class FabButton extends Component {
                         <Entypo name="camera" size={20} color="#00213b" />
                     </Animated.View>
                 </TouchableWithoutFeedback>
-
-                <TouchableWithoutFeedback onPress={()=>{
-                    this.props.navigation.navigate('GaleriaRotas')}}>
-                    <Animated.View style={[styles.button, styles.submenu, location]}>
-                        <Entypo name="image" size={20} color="#00213b" />
-                    </Animated.View>
-                </TouchableWithoutFeedback>
-
 
                 <TouchableWithoutFeedback onPress={this.toggleMenu}>
                     <Animated.View style={[styles.button, styles.menu, rotation]}>

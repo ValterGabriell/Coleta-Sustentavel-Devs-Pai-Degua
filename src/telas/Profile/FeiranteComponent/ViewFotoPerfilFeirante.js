@@ -27,13 +27,12 @@ export default function ViewFotoPerfilFeirante({ userId, fotoUser, nomeUser, ema
 
 
             {nameVisible &&
-
                 <Modal animationType="slide" visible={nameVisible}>
                     <View style={{marginTop:32}}>
-                        <TextInput style={styles.textInput} placeholder={"Digite o novo nome da barraca"} onChangeText={setnewNAME} clearButtonMode={"while-editing"}>{nomeUser}</TextInput>
+                        <TextInput style={styles.textInput} placeholder={nomeUser} onChangeText={setnewNAME} clearButtonMode={"while-editing"}></TextInput>
                         <CustomButton onPress={() => {
                             setnameVisible(false)
-                            trocarNomeUser(userId, nomeUser)
+                            trocarNomeUser(userId, newNAME)
                         }} text={"Salvar"} />
 
                         <CustomButton onPress={() => {

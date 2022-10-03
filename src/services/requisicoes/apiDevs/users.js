@@ -27,13 +27,18 @@ export async function getScavengers() {
  * @returns usuario atual
  */
 export async function verificarUsuarioAtual(idUser) {
-    try {
-        const result = await apiDevs.get(`merchants/${idUser}`)
-        return result.data
-    } catch (error) {
-        console.log(error)
-        return {}
+    if(idUser == undefined){
+        verificarUsuarioAtual(idUser)
+    }else{
+        try {
+            const result = await apiDevs.get(`merchants/${idUser}`)
+            return result.data
+        } catch (error) {
+            console.log(error)
+            return {}
+        }
     }
+    
 }
 
 /**
@@ -41,9 +46,9 @@ export async function verificarUsuarioAtual(idUser) {
  * @param {email} email 
  * @returns newEmail
  */
-export async function trocarEmailUsuario(userId, email, name, cpf, phone){
+export async function trocarEmailUsuario(userId, email){
     try {
-        const newEmail = await apiDevs.patch(`merchants/${userId}`, {email:email, name:name, cpf:cpf, phone:phone})
+        const newEmail = await apiDevs.patch(`merchants/${userId}`, {email:email})
         return newEmail
     } catch (error) {
         console.log(error);
@@ -58,7 +63,7 @@ export async function trocarEmailUsuario(userId, email, name, cpf, phone){
  */
  export async function trocarCpfAndPhoneUsuario(userId, cpf, phone){
     try {
-        const newResult = await apiDevs.patch(`merchants/${userId}`, {email:email, cpf:cpf, phone:phone})
+        const newResult = await apiDevs.patch(`merchants/${userId}`, { cpf:cpf, phone:phone})
         return newResult
     } catch (error) {
         console.log(error);
@@ -74,8 +79,8 @@ export async function trocarEmailUsuario(userId, email, name, cpf, phone){
  */
  export async function trocarNomeUser(userId, name){
     try {
-        const name = await apiDevs.patch(`merchants/${userId}`, {name:name})
-        return name
+        const newName = await apiDevs.patch(`merchants/${userId}`, {name:name})
+        return newName
     } catch (error) {
         console.log(error);
         return {}
