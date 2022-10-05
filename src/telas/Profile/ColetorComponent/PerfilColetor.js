@@ -17,7 +17,7 @@ export default function PerfilColetor({}){
     return<SafeAreaView style={styles.container}>
         
         <TopoPerfil/>
-        <Ionicons name="ios-notifications-outline" size={24} color="#777778" style={styles.notificacao} />
+        <Ionicons name="ios-notifications-outline" size={24} color="#777778" style={styles.notificacao} onPress={() => {}}/>
 
         <Text style={{textAlign: 'center', marginTop: 10, color: '#FF5353'}}>Material que coleta</Text> 
 
