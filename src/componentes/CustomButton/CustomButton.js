@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     },
     text:{
         fontWeight: "bold",
-        color: '#0078AA',
+        color: '#FF5353',
     }
 });
 

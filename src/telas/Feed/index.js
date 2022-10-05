@@ -168,14 +168,25 @@ const App = (props) => {
     isCatador ?
 
       <SafeAreaView style={styles.container}>
-        <Image source={logo} style={styles.logo} />
-        <FlatList
-          data={barracas}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-          ListHeaderComponent={HeaderComponent({ nomeUser: usuarioAtual.nome })}
-        />
-        <FabButton navigation={props.navigation} />
+        <HeaderComponentFeirante nomeUser={"Coletor"} />
+        <Text style={{color: "#FF0000"}}>Novas Solicitações</Text>
+        <View style={styles.viewOut}>
+          <FlatList
+            data={barracas}
+            renderItem={renderItemPostFeirante}
+            keyExtractor={item => item.id}  
+          />  
+        </View>
+        <View>
+          <Text style={styles.secondContainerName}>Coletas agendadas</Text>
+
+          <FlatList
+            horizontal
+            data={DATA_AGENDADAS}
+            renderItem={renderItemColetasAgendadas}
+            keyExtractor={item => item.id}
+          />   
+        </View> 
       </SafeAreaView>
 
 

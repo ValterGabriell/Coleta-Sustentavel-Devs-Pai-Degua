@@ -10,7 +10,7 @@ const Item = ({ id, name, email, photo, phone, props }) => (
       <TouchableOpacity
         style={styles.item}
         onPress={() => {
-          props.navigation.navigate('FeiranteScreen', {
+          props.navigation.navigate('PerfilUser', {
             id:id,
             name: name,
             email: email,

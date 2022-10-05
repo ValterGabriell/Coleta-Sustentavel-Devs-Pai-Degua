@@ -8,11 +8,9 @@ export default function HeaderComponent({ nomeUser }) {
 
         <View style={styles.container}>
             <Text style={styles.toolbarName}>Olá, {nomeUser}!</Text>
-            <FontAwesome name="question-circle-o" size={32} color={"#FF0000"} style={{ marginRight: 16 }}></FontAwesome>
+            <FontAwesome name="question-circle-o" size={32} color={"#FF0000"} style={{ marginRight: 16 }} onPress={ () =>{}}/>
         </View>
         
-
-
     </>
 
 }
