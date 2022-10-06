@@ -55,13 +55,16 @@ export default function FormularioDenuncia(props) {
             var localization = latitude + ',' + longitude
             postRequest(
                 userId,
+                title,
                 description,
                 "teste",
                 localization,
                 false,
                 quality,
+                false,
                 "12:00:00",
                 Qtd,
+                15,
                 props
             )
         } else {

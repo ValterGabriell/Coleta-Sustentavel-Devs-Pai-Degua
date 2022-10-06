@@ -98,7 +98,6 @@ const App = (props) => {
 
   useEffect(() => {
     (async () => {
-     
       reloadCalls() 
       props.navigation.addListener('focus', () => {
         reloadCalls()
@@ -175,7 +174,7 @@ const App = (props) => {
           keyExtractor={item => item.id}
           ListHeaderComponent={HeaderComponent({ nomeUser: usuarioAtual.nome })}
         />
-        <FabButton navigation={props.navigation} />
+        
       </SafeAreaView>
 
 

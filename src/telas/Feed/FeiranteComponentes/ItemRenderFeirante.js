@@ -1,32 +1,20 @@
 import React from "react";
 import { View, TouchableOpacity, ImageBackground, StyleSheet, Image, Text } from "react-native";
-import Profile from '../../../assets/sorriso.jpg'
 
 
-const Item = ({ id, name, email, photo, phone, props }) => (
+
+const Item = ({ id, name, price}) => (
 
   <View style={styles.viewMain} >
     <View style={styles.viewImg} >
       <TouchableOpacity
-        style={styles.item}
-        onPress={() => {
-          props.navigation.navigate('FeiranteScreen', {
-            id:id,
-            name: name,
-            email: email,
-            photo:photo,
-            phone: phone
-          })
-        }
-        }>
+        style={styles.item}>
 
 
         <View style={styles.viewOne}>
-          <Image source={Profile} style={styles.imgPerson}></Image>
           <View>
             <Text style={styles.txtName}>{name}</Text>
-            <Text style={styles.txtComent}>{email}</Text>
-            <Text style={styles.txtComent}>{phone}</Text>
+            <Text style={styles.txtComent}>{price}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -34,8 +22,8 @@ const Item = ({ id, name, email, photo, phone, props }) => (
   </View>
 );
 
-export default function ItemRender({ id, name, email, photo, phone, props }) {
-  return Item({ id,name, email, photo, phone, props})
+export default function ItemRender({ id, name, price}) {
+  return Item({ id, name, price})
 }
 
 const styles = StyleSheet.create({

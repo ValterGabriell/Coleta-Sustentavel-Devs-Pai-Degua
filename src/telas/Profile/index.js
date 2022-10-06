@@ -28,13 +28,22 @@ export default function Profile(props) {
 
    const { userType } = useContext(AuthContext)
    const isCatador = userType.isCatador
-   const userId= userType.userId
+   const userId = userType.userId
    const [currentUser, setCurrentUser] = useState({})
+
+
+
+   async function requestCall() {
+      const user = await verificarUsuarioAtual(userId)
+      setCurrentUser(user)
+   }
 
    useEffect(function () {
       (async () => {
-         const user = await verificarUsuarioAtual(userId)
-         setCurrentUser(user)
+         requestCall()
+         props.navigation.addListener("focus", () => {
+               requestCall()
+         })
       })()
    }, [])
 
