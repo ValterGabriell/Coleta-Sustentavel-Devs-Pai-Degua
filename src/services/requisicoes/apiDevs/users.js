@@ -27,9 +27,9 @@ export async function getScavengers() {
  * @returns usuario atual
  */
 export async function verificarUsuarioAtual(idUser) {
-    if(idUser == undefined){
+    if (idUser == undefined) {
         verificarUsuarioAtual(idUser)
-    }else{
+    } else {
         try {
             const result = await apiDevs.get(`merchants/${idUser}`)
             return result.data
@@ -38,7 +38,7 @@ export async function verificarUsuarioAtual(idUser) {
             return {}
         }
     }
-    
+
 }
 
 /**
@@ -46,9 +46,9 @@ export async function verificarUsuarioAtual(idUser) {
  * @param {email} email 
  * @returns newEmail
  */
-export async function trocarEmailUsuario(userId, email){
+export async function trocarEmailUsuario(userId, email) {
     try {
-        const newEmail = await apiDevs.patch(`merchants/${userId}`, {email:email})
+        const newEmail = await apiDevs.patch(`merchants/${userId}`, { email: email })
         return newEmail
     } catch (error) {
         console.log(error);
@@ -61,9 +61,9 @@ export async function trocarEmailUsuario(userId, email){
  * @param {cpf, phone}  
  * @returns newResult
  */
- export async function trocarCpfAndPhoneUsuario(userId, cpf, phone){
+export async function trocarCpfAndPhoneUsuario(userId, cpf, phone) {
     try {
-        const newResult = await apiDevs.patch(`merchants/${userId}`, { cpf:cpf, phone:phone})
+        const newResult = await apiDevs.patch(`merchants/${userId}`, { cpf: cpf, phone: phone })
         return newResult
     } catch (error) {
         console.log(error);
@@ -77,9 +77,9 @@ export async function trocarEmailUsuario(userId, email){
  * @param {nome}  
  * @returns nome
  */
- export async function trocarNomeUser(userId, name){
+export async function trocarNomeUser(userId, name) {
     try {
-        const newName = await apiDevs.patch(`merchants/${userId}`, {name:name})
+        const newName = await apiDevs.patch(`merchants/${userId}`, { name: name })
         return newName
     } catch (error) {
         console.log(error);
@@ -87,10 +87,15 @@ export async function trocarEmailUsuario(userId, email){
     }
 }
 
-export async function trocarSenhaUsuario(senha){
+export async function postMerchant(name, email, password, photo, phone, cpf, props) {
     try {
-        console.log(senha);
-        return senha
+        await apiDevs.post('merchants', {
+            name: name, email: email, password: password, photo: photo, phone: phone, cpf: cpf
+        }).then((response) => {
+            props.navigation.navigate("Login")
+        }).catch((erro) => {
+            console.log(erro);
+        })
 
     } catch (error) {
         console.log(error);

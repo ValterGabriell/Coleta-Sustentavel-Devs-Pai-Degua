@@ -14,7 +14,7 @@ export default function ProfileTabStack() {
       <Stack.Screen name="MyTabsScreen" options={{headerShown:false}}
         component={MyTabs} />
       <Stack.Screen name="CameraRotas" options={{ headerShown: false }} component={CameraRotas} />
-    
+      
       <Stack.Screen name="PostItem" options={{ headerShown: true, headerTitle:"Sua postagem" }} component={PostItem} />
     </Stack.Navigator>
   );
