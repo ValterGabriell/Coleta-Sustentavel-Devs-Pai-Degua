@@ -6,15 +6,15 @@ import { AntDesign } from '@expo/vector-icons';
 
 const {width} = Dimensions.get('screen');
 
-export default function TopoPerfil({}){
+export default function TopoPerfil(user){
     return<View style = {styles.topo}>
             <Image source={ColetorFoto} style={styles.picture}/>
             <View style= {{flexDirection: 'row', marginTop: 8}}>
                 <AntDesign name="star" size={20} color="#FF8C8C" />
                 <Text>{'4,8'}</Text>
             </View>
-            <Text style={styles.username}>{'João Paulo'}</Text>
-            <Text style={styles.email} >{'joaopaulo@hotmail.com'}</Text>
+            <Text style={styles.username}>{'Biel Javeiro'}</Text>
+            <Text style={styles.email} >{'bieljaveiro@gmail'}</Text>
     </View>
 }
 
@@ -27,6 +27,8 @@ const styles = StyleSheet.create({
     },
 
     picture:{
+        width: 100,
+        height: 100,
         marginTop: 50,
         borderRadius: 50,
     },

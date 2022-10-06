@@ -19,15 +19,14 @@ export default function ButtonContact(){
 
 const styles = StyleSheet.create({
     botoes:{
-        height: 50,
         flexDirection: 'row',
         alignItems: "center",
-        alignContent: "center",
-        alignSelf:'center',
-        marginLeft:35
+        marginHorizontal: 55,
+        marginTop: 40,
     },
     item:{
         width: 80,
-        height: 100
+        height: 100,
+        marginHorizontal: 16,
     }
 })

@@ -19,7 +19,7 @@ export default function Descricao({}){
 
 const styles = StyleSheet.create({
     contanier:{
-        marginTop: 30,
+        marginTop: 26,
     },
     titulo:{
         color: '#FF5353',

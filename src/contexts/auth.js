@@ -28,7 +28,7 @@ export default function AuthProvider({ children }) {
 
                 apiDevs.get("authenticated").then((user)=>{
                     setUserType({
-                        isCatador: false,
+                        isCatador: true,
                         userId:user.data.id
                     })    
 

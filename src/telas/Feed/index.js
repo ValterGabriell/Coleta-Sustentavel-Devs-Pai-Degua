@@ -168,8 +168,8 @@ const App = (props) => {
     isCatador ?
 
       <SafeAreaView style={styles.container}>
-        <HeaderComponentFeirante nomeUser={"Coletor"} />
-        <Text style={{color: "#FF0000"}}>Novas Solicitações</Text>
+        <HeaderComponentFeirante nomeUser={"Coletor"} props={props}/>
+        <Text style={styles.secondContainerName}>Novas Solicitações</Text>
         <View style={styles.viewOut}>
           <FlatList
             data={barracas}
@@ -237,9 +237,6 @@ const App = (props) => {
 
       </SafeAreaView>
 
-
-
-
   }
 
 
@@ -253,7 +250,7 @@ const styles = StyleSheet.create({
   },
   secondContainerName: {
     marginLeft: 16,
-    marginTop: 12,
+    marginVertical: 10,
     color: "#FF0000",
     fontSize: 17
   },
@@ -269,7 +266,7 @@ const styles = StyleSheet.create({
     height: 70,
     marginStart: 16,
     marginBottom: 10,
-  }
+  },
 });
 
 

@@ -3,12 +3,15 @@ import { View, Text, StyleSheet } from "react-native";
 import { FontAwesome } from '@expo/vector-icons'
 
 
-export default function HeaderComponent({ nomeUser }) {
+export default function HeaderComponent({ nomeUser, props }) {
     return <>
+
 
         <View style={styles.container}>
             <Text style={styles.toolbarName}>Olá, {nomeUser}!</Text>
-            <FontAwesome name="question-circle-o" size={32} color={"#FF0000"} style={{ marginRight: 16 }} onPress={ () =>{}}/>
+            <FontAwesome name="question-circle-o" size={32} color={"#FF0000"} style={{ marginRight: 16 }} onPress={ () =>{
+                props.navigation.navigate("Instrucao")
+            }}/>
         </View>
         
     </>
