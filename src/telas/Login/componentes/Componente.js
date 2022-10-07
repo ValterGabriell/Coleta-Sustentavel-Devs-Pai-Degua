@@ -10,8 +10,8 @@ import {AuthContext} from '../../../contexts/auth'
 
 export default function Componente({ props }) {
 
-    const [email, setEmail] = useState('gabriel@gmail.com');
-    const [senha, setSenha] = useState('123');
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
     const {signIn} = useContext(AuthContext)
 
 

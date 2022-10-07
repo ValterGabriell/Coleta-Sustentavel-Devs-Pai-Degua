@@ -6,7 +6,7 @@ import imgPerson from '../../../assets/profilePhoto.png'
 import {postMerchant} from '../../../services/requisicoes/apiDevs/users'
 
 
-export default function Forms(props) {
+export default function Forms({props}) {
     const [name, setname] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
