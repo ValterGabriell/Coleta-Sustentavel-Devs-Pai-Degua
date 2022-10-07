@@ -3,7 +3,7 @@ import { View, TouchableOpacity, ImageBackground, StyleSheet, Image, Text } from
 
 
 
-const Item = ({ id, name, price}) => (
+const Item = ({ id, name, email, photo, phone}) => (
 
   <View style={styles.viewMain} >
     <View style={styles.viewImg} >
@@ -12,9 +12,11 @@ const Item = ({ id, name, price}) => (
 
 
         <View style={styles.viewOne}>
+        <Image source={photo} style={styles.imgLixo}></Image>
           <View>
             <Text style={styles.txtName}>{name}</Text>
-            <Text style={styles.txtComent}>{price}</Text>
+            <Text style={styles.txtComent}>{email}</Text>
+            <Text style={styles.txtComent}>{phone}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -22,8 +24,8 @@ const Item = ({ id, name, price}) => (
   </View>
 );
 
-export default function ItemRender({ id, name, price}) {
-  return Item({ id, name, price})
+export default function ItemRender({  id, name, email, photo, phone}) {
+  return Item({  id, name, email, photo, phone})
 }
 
 const styles = StyleSheet.create({
@@ -37,6 +39,12 @@ const styles = StyleSheet.create({
   viewMain: {
    
   },
+
+    imgLixo: {
+        width: 95,
+        height: 60,
+        borderRadius:16
+    },
   imgPerson: {
     width: 65,
     height: 65,

@@ -21,7 +21,8 @@ import HeaderComponentCatadorDisponivel from "./FeiranteComponentes/HeaderCompon
 import ItemRenderPostFeirante from './FeiranteComponentes/ItemRenderPostFeirante'
 import ItemRenderColetasAgendadas from './FeiranteComponentes/ItemRenderColetasAgendadas'
 import LixoVeropa from '../../assets/lixoVeropa.jpg'
-
+import PhotoPerfil from '../../assets/profile.png'
+import ListaEmpty from "./FeiranteComponentes/ListaEmpty";
 /**
  * Fim do import de feirantes
  */
@@ -131,7 +132,7 @@ const App = (props) => {
       id={item.id}
       name={item.name}
       email={item.email}
-      photo={item.photo}
+      photo={PhotoPerfil}
       phone={item.phone}
       props={props}
     />
@@ -193,6 +194,7 @@ const App = (props) => {
             data={requests}
             renderItem={renderItemPostFeirante}
             keyExtractor={item => item.id}
+            ListEmptyComponent={ListaEmpty}
           />
 
           <FlatList
@@ -200,6 +202,7 @@ const App = (props) => {
             renderItem={renderItemFeirante}
             keyExtractor={item => item.id}
             ListHeaderComponent={HeaderComponentCatadorDisponivel}
+            ListEmptyComponent={ListaEmpty}
           />
         </View>
 
@@ -210,6 +213,7 @@ const App = (props) => {
           data={DATA_AGENDADAS}
           renderItem={renderItemColetasAgendadas}
           keyExtractor={item => item.id}
+          ListEmptyComponent={ListaEmpty}
         />
 
       
