@@ -13,13 +13,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
-
-//colocar scrollview
-
-export default function PerfilColetor(user){
+export default function PerfilColetor({}){
     return<SafeAreaView style={styles.container}>
         
-        <TopoPerfil user={user}/>
+        <TopoPerfil/>
         <Ionicons name="ios-notifications-outline" size={24} color="#777778" style={styles.notificacao} onPress={() => {}}/>
 
         <Text style={{textAlign: 'center', marginTop: 10, color: '#FF5353'}}>Material que coleta</Text> 

@@ -9,6 +9,7 @@ import TopoPerfil from './TopoPerfil';
 
 //icones
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 
 
@@ -17,8 +18,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 export default function PerfilUser({}){
     return<SafeAreaView style={styles.container}>
         <TopoPerfil/>
+        <Ionicons name="ios-notifications-outline" size={24} color="#777778" style={styles.notificacao} />
 
-        <Text style={{textAlign: 'center', marginVertical: 10, color: '#FF5353'}}>Material que coleta</Text> 
+        <Text style={{textAlign: 'center', marginTop: 10, color: '#FF5353'}}>Material que coleta</Text> 
         <View style={styles.material}>
             <View style={{marginStart: 10, alignItems: 'center', marginEnd: 10}}>
                 <MaterialCommunityIcons name="leaf-circle" size={48} color="#FF5353"/>
@@ -26,8 +28,10 @@ export default function PerfilUser({}){
             </View>
         </View>
 
+        <Text>Enderço: {'Av. Presidente Vargas, nº 336 '}</Text>
+
         <Descricao/>
-        <Text style={styles.titulo}>Contato</Text>
+        <Text>Contato</Text>
         <ButtonContact/>
         <CustomButton text='Aceitar' onPress={() => {}}/>     
     </SafeAreaView>
@@ -46,6 +50,7 @@ const styles = StyleSheet.create({
         width: 315,
         marginHorizontal: '34%',
         flexDirection: 'row',
+        //marginHorizontal: 150,
         alignItems: 'center',
     },
 
@@ -61,13 +66,5 @@ const styles = StyleSheet.create({
     dados:{
         flexDirection: 'row',
         marginVertical: 16,
-    },
-    titulo:{
-        color: '#FF5353',
-        fontWeight: '600', 
-        fontSize: 16, 
-        marginStart: 16,
-        marginTop: 20,
     }
-
 })

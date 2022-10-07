@@ -3,9 +3,6 @@ import { SafeAreaView, ScrollView } from "react-native";
 import FotoPerfil from "./componente/FotoPerfil";
 import ProfilePic from '../../assets/profilePhoto.png'
 import Lista from "./componente/Lista";
-
-
-import PerfilColetor from "./ColetorComponent/PerfilColetor";
 /**
  * IMPORTS PARA O FEIRANTE
  */
@@ -54,12 +51,16 @@ export default function Profile(props) {
 
    return <>
       {isCatador ?
-         <ScrollView>
          <SafeAreaView>
-            <PerfilColetor user={currentUser}/>
+            <FotoPerfil
+               fotoUser={ProfilePic}
+               nomeUser={"Catador"}
+               emailUser={"vgabrielbri@hotrmail.com"}
+
+            />
+
             <Lista props={props} isCatador={isCatador} />
          </SafeAreaView>
-         </ScrollView>
          : //SE FOR FEIRANTE
          <ScrollView>
             <SafeAreaView>
