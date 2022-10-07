@@ -3,7 +3,7 @@ import { View, TouchableOpacity, ImageBackground, StyleSheet, Image, Text } from
 
 
 
-const Item = ({ id, name, email, photo, phone}) => (
+const Item = ({ id, name, email, photo, phone, props}) => (
 
   <View style={styles.viewMain} >
     <View style={styles.viewImg} >
@@ -34,8 +34,8 @@ const Item = ({ id, name, email, photo, phone}) => (
   </View>
 );
 
-export default function ItemRender({  id, name, email, photo, phone}) {
-  return Item({  id, name, email, photo, phone})
+export default function ItemRender({  id, name, email, photo, phone, props}) {
+  return Item({  id, name, email, photo, phone, props})
 }
 
 const styles = StyleSheet.create({
