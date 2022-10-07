@@ -25,7 +25,7 @@ export default function Forms({props}) {
     }
 
     async function sendToDatabase() {
-       postMerchant(name, email, password, photo, phone, cpf, props)
+       postMerchant({name, email, password, photo, phone, cpf, props})
     }
 
 
