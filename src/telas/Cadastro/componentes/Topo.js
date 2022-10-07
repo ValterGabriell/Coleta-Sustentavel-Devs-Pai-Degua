@@ -20,18 +20,18 @@ export default function Topo({ props }) {
 
                 }}>
                     <Image style={styles.img} source={ProfilePhoto} />
-                    <Text style={styles.txtComumUser}>Usuário comum</Text>
+                    <Text style={styles.txtComumUser}>Catador</Text>
                 </View>
 
             </TouchableOpacity>
 
 
             <TouchableOpacity onPress={() => {
-                props.navigation.navigate('CadastroOrgao')
+                props.navigation.navigate('CadastroFeirante')
             }}>
                 <View style={styles.containerMiddle}>
                 <FontAwesome style={styles.icon} size={24} name="users"></FontAwesome>
-                <Text style={styles.txtComumOrgs}>Orgãos públicos ou não governamentais</Text>
+                <Text style={styles.txtComumOrgs}>Feirante</Text>
             </View>
 
 

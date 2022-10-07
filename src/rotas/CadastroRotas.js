@@ -8,7 +8,7 @@ export default function ProfileTabStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Cadastro" options={{ title: 'Cadastrar' }} component={Cadastro} />
-      <Stack.Screen name="CadastroOrgao" options={{ title: 'Cadastro Orgao' }} component={CadastroFeirante} />
+      <Stack.Screen name="CadastroFeirante" options={{ title: 'Cadastro Orgao' }} component={CadastroFeirante} />
       <Stack.Screen name="CadastroComum" component={CadastroComum} />
     </Stack.Navigator>
   );

@@ -3,15 +3,16 @@ import { SafeAreaView, View, TextInput, StyleSheet, TouchableOpacity, Image } fr
 import * as ImagePicker from 'expo-image-picker';
 import { Button } from "react-native-paper";
 import imgPerson from '../../../assets/profilePhoto.png'
+import {postMerchant} from '../../../services/requisicoes/apiDevs/users'
 
 
-export default function Forms() {
-    const [instituicao, setinstituicao] = useState("")
-    const [CNPJ, setCNPJ] = useState("")
-    const [emailInstitucional, setEmailInstitucional] = useState("")
-    const [senha, setSenha] = useState("")
-    const [senhaAgain, setsenhaAgain] = useState("")
-    const [image, setImage] = useState(imgPerson)
+export default function Forms(props) {
+    const [name, setname] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [cpf, setCPF] = useState("")
+    const [phone, setPhone] = useState("")
+    const [photo, setPhoto] = useState("imagem")
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -23,13 +24,8 @@ export default function Forms() {
         setImage(result.uri)
     }
 
-    function sendToDatabase() {
-        if (instituicao || CNPJ || senha || senhaAgain || emailInstitucional === "") {
-            alert('Preencha corretamente todos os campos')
-        } else {
-            alert("Save at database " + instituicao + '-' + CNPJ + '-' + emailInstitucional + '-' + senha + '-' + senhaAgain + '-' + image)
-        }
-
+    async function sendToDatabase() {
+       postMerchant(name, email, password, photo, phone, cpf, props)
     }
 
 
@@ -38,40 +34,44 @@ export default function Forms() {
             <View>
                 <Button onPress={pickImage}>Selecionar foto</Button>
                 <TextInput
-                    placeholder="Instituição / inscrição social"
+                    placeholder="Nome"
                     style={styles.input}
-                    onChangeText={setinstituicao}
-                    value={instituicao}
+                    onChangeText={setname}
+                    value={name}
                 />
 
                 <TextInput
-                    placeholder="CNPJ"
+                    placeholder="Email"
                     style={styles.input}
-                    onChangeText={setCNPJ}
-                    value={CNPJ}
+                    onChangeText={setEmail}
+                    value={email}
+                    
                 />
 
                 <TextInput
-                    placeholder="Email institucional"
+                    placeholder="Passoword"
                     style={styles.input}
-                    onChangeText={setEmailInstitucional}
-                    value={emailInstitucional}
-                />
-
-                <TextInput
-                    placeholder="Senha"
-                    style={styles.input}
-                    onChangeText={setSenha}
-                    value={senha}
+                    onChangeText={setPassword}
+                    value={password}
                     secureTextEntry={true}
+                    
+                    
                 />
 
                 <TextInput
-                    placeholder="Insira novamente sua senha"
+                    placeholder="Telefone"
                     style={styles.input}
-                    onChangeText={setsenhaAgain}
-                    value={senhaAgain}
-                    secureTextEntry={true}
+                    onChangeText={setPhone}
+                    value={phone}
+                    
+                />
+
+                <TextInput
+                    placeholder="Cpf"
+                    style={styles.input}
+                    onChangeText={setCPF}
+                    value={cpf}
+                
                 />
 
                 <Button onPress={() => {

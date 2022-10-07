@@ -27,8 +27,9 @@ export default function AuthProvider({ children }) {
                 AsyncStorage.setItem('@token', token)
 
                 apiDevs.get("authenticated").then((user)=>{
+                    var merchant = user.data.is_merchant
                     setUserType({
-                        isCatador: true,
+                        isCatador: !merchant,
                         userId:user.data.id
                     })    
 

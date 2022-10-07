@@ -20,7 +20,7 @@ export default function ProfileTabStack() {
         component={MyTabs} />
       <Stack.Screen name="CameraRotas" options={{ headerShown: false }} component={CameraRotas} />
       <Stack.Screen name='Instrucao'  options={{headerShown:false}} component={Instrucao}/>
-      <Stack.Screen name='PerfilUser'  options={{headerShown:false}} component={PerfilUser}/>
+      <Stack.Screen name='PerfilUser'  options={{headerShown:false}} component={PerfilUser}/>  
       <Stack.Screen name="PostItem" options={{ headerShown: true, headerTitle:"Sua postagem" }} component={PostItem} />
       
     </Stack.Navigator>

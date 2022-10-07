@@ -44,6 +44,7 @@ export default function FormularioDenuncia(props) {
             setLatitude(location.coords.latitude)
             setLongitude(location.coords.longitude)
 
+          
 
         })();
     }, []);
@@ -51,17 +52,22 @@ export default function FormularioDenuncia(props) {
 
 
     function sendToDatabase() {
+        
         if (title != "" && description != "" && uri != "") {
             var localization = latitude + ',' + longitude
             postRequest(
                 userId,
+                title,
                 description,
                 "teste",
                 localization,
                 false,
                 quality,
+                false,
                 "12:00:00",
                 Qtd,
+                15,
+                arrayChip,
                 props
             )
         } else {
