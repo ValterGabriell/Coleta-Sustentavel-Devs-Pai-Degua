@@ -20,7 +20,6 @@ export async function getScavengers() {
     }
 }
 
-
 /**
  * Metodo para retornar usuario atual
  * @param {Integer} idUser 
@@ -32,7 +31,9 @@ export async function verificarUsuarioAtual(idUser) {
     } else {
         try {
             const result = await apiDevs.get(`merchants/${idUser}`)
+            console.log(result.data);
             return result.data
+            
         } catch (error) {
             console.log(error)
             return {}
