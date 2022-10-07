@@ -6,7 +6,7 @@ import imgPerson from '../../../assets/profilePhoto.png'
 import {postMerchant} from '../../../services/requisicoes/apiDevs/users'
 
 
-export default function Forms() {
+export default function Forms(props) {
     const [name, setname] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -25,7 +25,7 @@ export default function Forms() {
     }
 
     async function sendToDatabase() {
-       postMerchant(name, email, password, photo, phone, cpf)
+       postMerchant(name, email, password, photo, phone, cpf, props)
     }
 
 
@@ -45,6 +45,7 @@ export default function Forms() {
                     style={styles.input}
                     onChangeText={setEmail}
                     value={email}
+                    
                 />
 
                 <TextInput
@@ -52,6 +53,9 @@ export default function Forms() {
                     style={styles.input}
                     onChangeText={setPassword}
                     value={password}
+                    secureTextEntry={true}
+                    
+                    
                 />
 
                 <TextInput
@@ -59,7 +63,7 @@ export default function Forms() {
                     style={styles.input}
                     onChangeText={setPhone}
                     value={phone}
-                    secureTextEntry={true}
+                    
                 />
 
                 <TextInput
@@ -67,7 +71,7 @@ export default function Forms() {
                     style={styles.input}
                     onChangeText={setCPF}
                     value={cpf}
-                    secureTextEntry={true}
+                
                 />
 
                 <Button onPress={() => {

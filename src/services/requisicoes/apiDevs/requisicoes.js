@@ -15,7 +15,7 @@ export async function getBarracas() {
 }
 
 
-export async function postRequest(merchant_id, title, description, photo, localization,status,state,on_the_way,ideal_time,amount, price,props) {
+export async function postRequest(merchant_id, title, description, photo, localization,status,state,on_the_way,ideal_time,amount, price,residues,props) {
     try {
         await apiDevs.post('requests', {
             merchant_id:merchant_id,
@@ -28,7 +28,8 @@ export async function postRequest(merchant_id, title, description, photo, locali
             on_the_way:on_the_way,
             ideal_time:ideal_time,
             amount:amount,
-            price:price
+            price:price,
+            residues:residues
         }).then((response)=>{
             if (response.status === 200) {
                 props.navigation.navigate("MyTabsScreen")
