@@ -88,7 +88,7 @@ export async function trocarNomeUser(userId, name) {
     }
 }
 
-export async function postMerchant(name, email, password, photo, phone, cpf, props) {
+export async function postMerchant({name, email, password, photo, phone, cpf, props}) {
     try {
         await apiDevs.post('merchants', {
             name: name, email: email, password: password, photo: photo, phone: phone, cpf: cpf
