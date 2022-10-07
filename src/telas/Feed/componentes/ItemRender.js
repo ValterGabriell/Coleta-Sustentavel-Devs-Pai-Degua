@@ -10,7 +10,7 @@ const Item = ({ title, imagem, local, descricao, isAtendida, props }) => (
       <TouchableOpacity
         style={styles.item}
         onPress={() => {
-          props.navigation.navigate('BarracaScreen', {
+          props.navigation.navigate('CameraRotas', {
             titulo: title,
             place: local,
             image: imagem,
