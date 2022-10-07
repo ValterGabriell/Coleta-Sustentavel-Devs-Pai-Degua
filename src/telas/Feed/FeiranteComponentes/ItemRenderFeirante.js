@@ -8,7 +8,17 @@ const Item = ({ id, name, email, photo, phone}) => (
   <View style={styles.viewMain} >
     <View style={styles.viewImg} >
       <TouchableOpacity
-        style={styles.item}>
+        style={styles.item}
+        onPress={() => {
+          props.navigation.navigate('PerfilUser', {
+            id:id,
+            name: name,
+            email: email,
+            photo:photo,
+            phone: phone
+          })
+        }
+        }>
 
 
         <View style={styles.viewOne}>

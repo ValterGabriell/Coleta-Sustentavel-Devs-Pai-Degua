@@ -31,9 +31,6 @@ export default function MyTabs() {
                         if (route.name === 'Profile') {
                             Icon = () => <AntDesign name="user" size={24} color={color} />;
                         }
-                        if (route.name === 'Contato') {
-                            Icon = () => <AntDesign name="contacts" size={24} color={color} />;
-                        }
 
                         if (route.name === 'Mapa') {
                             Icon = () => <Feather name="map" size={24} color={color} />
@@ -41,14 +38,13 @@ export default function MyTabs() {
 
                         return <Icon color={color} />
                     },
-                    tabBarActiveTintColor: '#2E7D32',
+                    tabBarActiveTintColor: '#FF5353',
                     tabBarInactiveTintColor: '#c7c7c7'
                 })}
             >
 
                 <Tab.Screen name='Feed' component={Feed} />
                 <Tab.Screen name='Profile' component={ProfileTabStack} />
-                <Tab.Screen name='Contato' component={ContatoRotas} />
                 <Tab.Screen name='Mapa' component={MapaRotas} />
             </Tab.Navigator>
             : //se for feirante
@@ -68,7 +64,7 @@ export default function MyTabs() {
 
                         return <Icon color={color} />
                     },
-                    tabBarActiveTintColor: '#2E7D32',
+                    tabBarActiveTintColor: '#FF5353',
                     tabBarInactiveTintColor: '#c7c7c7'
                 })}
             >

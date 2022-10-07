@@ -22,7 +22,7 @@ const estilos = StyleSheet.create({
         borderRadius: 16,
         marginVertical: 16,
         padding: 16,
-        borderColor:"#0078AA",
+        borderColor:"#FF5353",
         borderWidth: 1,
         fontWeight: '500',
     },
