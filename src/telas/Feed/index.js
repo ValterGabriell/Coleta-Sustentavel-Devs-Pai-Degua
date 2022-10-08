@@ -11,6 +11,7 @@
   * Fim dos imports react native
   */
  
+ import CatadorFeed from './Catador/feedCatador';
  
  /**
   * Imports do feirante
@@ -18,27 +19,24 @@
  import ItemRenderFeirate from './FeiranteComponentes/ItemRenderFeirante'
  import HeaderComponentFeirante from "./FeiranteComponentes/HeaderComponent";
  import HeaderComponentCatadorDisponivel from "./FeiranteComponentes/HeaderComponentCatadorDisponivel";
- import ItemRenderPostFeirante from './FeiranteComponentes/ItemRenderPostFeirante'
- import ItemRenderColetasAgendadas from './FeiranteComponentes/ItemRenderColetasAgendadas'
- import LixoVeropa from '../../assets/lixoVeropa.jpg'
+ import ItemRenderPostFeirante from './FeiranteComponentes/ItemRenderPostFeirante';
+ import ItemRenderColetasAgendadas from './FeiranteComponentes/ItemRenderColetasAgendadas';
+ import LixoVeropa from '../../assets/lixoVeropa.jpg';
  
  /**
   * Fim do import de feirantes
   */
  
- 
  //import do metodo que faz requisição para ver todas as requisições dos feirantes
- import {getRequestMerchant} from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
+ import {getRequestMerchant} from '../../services/requisicoes/apiDevs/solicitacaoFeirante';
  
  import ItemRender from "./componentes/ItemRender";
- import ImgTeste from '../../assets/lixoVeropa.jpg'
- import HeaderComponent from "./componentes/HeaderComponent";
- import logo from '../../../assets/logoAzul.png';
+ import ImgTeste from '../../assets/lixoVeropa.jpg';
  
  
- import { getBarracas } from '../../services/requisicoes/apiDevs/requisicoes'
+ import { getBarracas } from '../../services/requisicoes/apiDevs/requisicoes';
  import { getScavengers } from "../../services/requisicoes/apiDevs/users";
- import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
+ import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users';
  import { AuthContext } from "../../contexts/auth";
  
  
@@ -168,25 +166,7 @@
      isCatador ?
  
        <SafeAreaView style={styles.container}>
-         <HeaderComponentFeirante nomeUser={"Coletor"} props={props}/>
-         <Text style={styles.secondContainerName}>Novas Solicitações</Text>
-         <View style={styles.viewOut}>
-           <FlatList
-             data={barracas}
-             renderItem={renderItemPostFeirante}
-             keyExtractor={item => item.id}  
-           />  
-         </View>
-         <View>
-           <Text style={styles.secondContainerName}>Coletas agendadas</Text>
- 
-           <FlatList
-             horizontal
-             data={DATA_AGENDADAS}
-             renderItem={renderItemColetasAgendadas}
-             keyExtractor={item => item.id}
-           />   
-         </View> 
+         <CatadorFeed/>
        </SafeAreaView>
  
  
@@ -231,10 +211,6 @@
              {textForButton}
            </Button>
          </TouchableOpacity>
- 
- 
- 
- 
        </SafeAreaView>
  
    }
@@ -246,7 +222,8 @@
  const styles = StyleSheet.create({
    container: {
      flex: 1,
-     marginTop: StatusBar.currentHeight || 0
+     //marginTop: StatusBar.currentHeight || 0,
+     backgroundColor: 'white',
    },
    secondContainerName: {
      marginLeft: 16,
