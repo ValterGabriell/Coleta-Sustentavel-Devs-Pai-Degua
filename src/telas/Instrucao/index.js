@@ -42,6 +42,11 @@ export default function Instrucao(){
 
     ]
 
+    itemSeparator = () => {
+        return <View style={styles.separator}/>
+    }
+    
+
 
     function renderItem({item}){
         return <Corpo {...item}/>;
@@ -53,7 +58,7 @@ export default function Instrucao(){
             data={data}
             keyExtractor={item => item.titulo}
             renderItem={renderItem}
-            //ItemSeparatorComponent={}
+            ItemSeparatorComponent={itemSeparator }
         />
     </SafeAreaView>  
 }
@@ -65,7 +70,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFC4AB',
     },
     titulo:{
+        marginTop: 50,
+        marginStart: 16,
         fontSize: 20,
+        fontWeight: '600',
         color: '#740000',
-    }
+        paddingBottom: 12,
+    },
+    separator:{
+        height: 1,
+        width: '100%',
+        backgroundColor: 'white',
+    },
 })
