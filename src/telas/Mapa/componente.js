@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity,Image } from "react-native";
 import MapView, { Callout, Marker } from "react-native-maps";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Detalhe from "./buttonMais";
-import { DATA_COLETA_SESMA } from '../../services/constantes/MapConstant'
+import { DATA_COLETA_SESMA } from '../../services/constantes/MapConstant';
+import lixoveropa from '../../assets/lixoVeropa.jpg';
 
 export default function GoogleMaps({ props }) {
 
     const [valorClicado, setValorClicado] = useState({})
     const [press, setPress] = useState(false)
 
+    //
     //O elemento filho n consegue passar dados para o elemento pai, entao tive que jogar a tela de cima do mapa e a botao detalhes aqui pra dentro pra funcionar a programacao reativa
     return (
         <View>
             <View style={styles.LinkEndereco}>
-                <Text style={styles.titulo}>{press ? valorClicado.name : "Clique em um marcador"}</Text>
+                <Text style={styles.titulo} maxFontSizeMultiplier={1.3}>{'Encontre os pontos'}</Text>
                 <TouchableOpacity style={styles.mapa}>
-                    <MaterialCommunityIcons name="google-maps" size={22} color="#0078AA" />
-                    <Text style={{ color: '#0078AA' }}>{valorClicado.latitude} {valorClicado.longitude}</Text>
+                    <MaterialCommunityIcons name="google-maps" size={22} color="#FF5353" />
+                    <Text style={{ color: '#FF5353', fontSize: 14 }} maxFontSizeMultiplier={1.3}>{press ? valorClicado.name : "Clique em um marcador"}</Text>
                 </TouchableOpacity>
             </View>
-
-
+            
             <MapView style={styles.map}
                 initialRegion={{
                     latitude: -1.4529576253104869,
@@ -47,24 +48,26 @@ export default function GoogleMaps({ props }) {
                             setValorClicado(item)
                             setPress(true)
                         }}
+                        image={''}
+                        title= {'Barraca Da Joana'}
+                        description= {'Coleta de 2 kg de plastico'}
                     >
-                        <Callout>
-
+                        <Callout tooltip onPress={()=> {}}>
+                            <View>
+                                <View style={styles.balao}>
+                                    <Text style={styles.texto} maxFontSizeMultiplier={1.1}>{'Nome da Barraca'}</Text>
+                                    <Text style={styles.subtitulo} maxFontSizeMultiplier={1.1}>{'Coleta 2kg de plastico'}</Text>
+                                    <Image source={lixoveropa} style={styles.imagem}/>
+                                </View>
+                                <View style={styles.arrowBorder}/>
+                                <View style={styles.arrow}/>
+                            </View>
                         </Callout>
                     </Marker>
                 ))}
 
             </MapView>
-            <Text>Legenda</Text>
-            <View>
-                    <Text>Material Reciclável Misturado - verde</Text>
-            </View>
 
-
-            <Detalhe text='Detalhes do local' onPress={() => {
-                props.navigation.navigate("FeedScreen")
-                alert("Clicado: " + valorClicado.id)
-            }} />
 
         </View>
 
@@ -73,23 +76,65 @@ export default function GoogleMaps({ props }) {
 
 const styles = StyleSheet.create({
     map: {
-        height: 400,
+        height:'100%',
     },
     calloutText: {
-        fontSize: 12
+        fontSize: 14,
     },
+
     LinkEndereco: {
         marginBottom: 10,
         color: '#2E7D32',
-    }, titulo: {
+        marginHorizontal: 16,
+    },
+    titulo: {
         fontSize: 20,
-        fontWeight: '500',
-
+        fontWeight: '600',
+        marginBottom: 10,
+        marginHorizontal: 8,
     },
     mapa: {
         flexDirection: 'row',
     },
-
-
-
+    balao:{
+        flexDirection: 'column',
+        width: 150,
+        alignSelf: 'flex-start',
+        backgroundColor: 'white',
+        borderRadius: 6,
+        borderColor: '#ccc',
+        borderWidth: 0.5,
+        padding: 10,
+    },
+    arrow:{
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        borderTopColor: '#fff',
+        borderWidth: 16,
+        alignSelf: 'center',
+        marginTop: -32,
+    },
+    arrowBorder:{
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        borderTopColor: '#007a87',
+        borderWidth: 16,
+        alignSelf: 'center',
+        marginTop: -0.5,
+    },
+    texto:{
+        fontSize: 12,
+        marginBottom: 5,
+        fontWeight: '600',
+    },
+    subtitulo:{
+        fontSize: 12,
+        marginBottom: 5,
+        fontWeight: '500',
+        color: '#FF5353'
+    },
+    imagem:{
+        width: 120,
+        height: 80,
+    }
 })
