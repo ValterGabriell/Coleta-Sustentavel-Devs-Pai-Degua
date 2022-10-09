@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         marginVertical: 12,
         color: "#FF5353",
         fontSize: 18,
-        fontWeight: '450'
+        fontWeight: '500'
     },
 
 });
