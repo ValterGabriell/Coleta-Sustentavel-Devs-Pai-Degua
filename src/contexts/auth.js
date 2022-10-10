@@ -16,40 +16,43 @@ export default function AuthProvider({ children }) {
     /**
      * Função para logar o usuário gerando token e salvando localmente
      */
+
+
+
     function signIn(email, senha) {
-        if (email !== '' && senha !== '') {
-            <ActivityIndicator />
-            apiDevs.post('login', {
-                email: email,
-                password: senha
-            }).then(response => {
-                var token = response.data.token                
-                AsyncStorage.setItem('@token', token)
+    
+            if (email !== '' && senha !== '') {
+                <ActivityIndicator />
+                apiDevs.post('login', {
+                    email: email,
+                    password: senha
+                }).then(response => {
+                    var token = response.data.token
+                    AsyncStorage.setItem('@token', token)
 
-                apiDevs.get("authenticated").then((user)=>{
-                    var merchant = user.data.is_merchant
-                    setUserType({
-                        isCatador: !merchant,
-                        userId:user.data.id
-                    })    
+                    apiDevs.get("authenticated").then((user) => {
+                        var merchant = user.data.is_merchant
+                        setUserType({
+                            isCatador: !merchant,
+                            userId: user.data.id
+                        })
 
-                    navigation.navigate("FeedScreen")
+                        navigation.navigate("FeedScreen")
+                    })
+
+                }).catch(erro => {
+                    alert(erro)
                 })
-                
-            }).catch(erro => {
-                alert(erro)
-            })
-        } else {
-            <Snackbar visible={visible} onDismiss={onDismissSnackBar}></Snackbar>
-        }
-
+            } else {
+                <Snackbar visible={visible} onDismiss={onDismissSnackBar}></Snackbar>
+            }
 
     }
 
 
 
     return (
-        <AuthContext.Provider value={{signIn, userType }} >
+        <AuthContext.Provider value={{ signIn, userType }} >
             {children}
         </AuthContext.Provider>
     )

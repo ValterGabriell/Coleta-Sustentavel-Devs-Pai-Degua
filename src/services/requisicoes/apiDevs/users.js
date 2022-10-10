@@ -105,6 +105,23 @@ export async function postMerchant({name, email, password, photo, phone, cpf, pr
 }
 
 
+export async function postScarvenger({name, email, password, photo, phone, cpf, props}) {
+    try {
+        await apiDevs.post('scavengers', {
+            name: name, email: email, password: password, photo: photo, phone: phone, cpf: cpf
+        }).then((response) => {
+            props.navigation.navigate("Login")
+        }).catch((erro) => {
+            console.log(erro);
+        })
+
+    } catch (error) {
+        console.log(error);
+        return {}
+    }
+}
+
+
 
 
 

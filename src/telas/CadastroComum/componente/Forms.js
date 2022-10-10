@@ -3,14 +3,22 @@ import { SafeAreaView, View, TextInput, StyleSheet, TouchableOpacity, Image } fr
 import * as ImagePicker from 'expo-image-picker';
 import { Button } from "react-native-paper";
 import imgPerson from '../../../assets/profilePhoto.png'
+import { postScarvenger } from '../../../services/requisicoes/apiDevs/users'
 
 
-export default function Forms() {
-    const [nome, setNome] = useState("")
+export default function Forms(props) {
+    const [name, setNome] = useState("")
     const [email, setEmail] = useState("")
-    const [senha, setSenha] = useState("")
-    const [senhaAgain, setsenhaAgain] = useState("")
-    const [image, setImage] = useState(imgPerson)
+    const [password, setpassword] = useState("")
+    const [phone, setPhone] = useState("")
+    const [cpf, setCpf] = useState("")
+    const [photo, setPhoto] = useState(imgPerson)
+
+
+
+    async function sendToDatabase() {
+        postScarvenger({ name, email, password, photo, phone, cpf, props })
+    }
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -18,29 +26,21 @@ export default function Forms() {
             quality: 1,
         });
 
-        
+
         setImage(result.uri)
         console.log(image)
     }
 
-    function sendToDatabase() {
-       
-            alert("Save at database " + nome + '-' + email + '-' + senha + '-' + senhaAgain + '-' + image)
-       
-
-    }
-
-
     return <>
         <SafeAreaView>
             <View>
-                <Image style={styles.img} source={image}/>
+                <Image style={styles.img} source={photo} />
                 <Button onPress={pickImage}>Selecionar foto</Button>
                 <TextInput
                     placeholder="Nome"
                     style={styles.input}
                     onChangeText={setNome}
-                    value={nome}
+                    value={name}
                 />
 
                 <TextInput
@@ -53,16 +53,24 @@ export default function Forms() {
                 <TextInput
                     placeholder="Senha"
                     style={styles.input}
-                    onChangeText={setSenha}
-                    value={senha}
+                    onChangeText={setpassword}
+                    value={password}
                     secureTextEntry={true}
                 />
 
                 <TextInput
-                    placeholder="Insira novamente sua senha"
+                    placeholder="Telefone"
                     style={styles.input}
-                    onChangeText={setsenhaAgain}
-                    value={senhaAgain}
+                    onChangeText={setPhone}
+                    value={phone}
+                    secureTextEntry={true}
+                />
+
+                <TextInput
+                    placeholder="CPF"
+                    style={styles.input}
+                    onChangeText={setCpf}
+                    value={cpf}
                     secureTextEntry={true}
                 />
 
