@@ -5,13 +5,27 @@ import ColetorFoto from '../../../assets/ColetorFoto.jpg';
 import { AntDesign } from '@expo/vector-icons';
 
 import ImagePicker from 'react-native-image-picker';
+import cameraEdite from '../../../assets/camera.png';
 
 const {width} = Dimensions.get('screen');
 
 export default function TopoPerfil(user){
+
+    function ImagePickerCallback(data){
+        console.log(data);
+    }
+
     return<View style = {styles.topo}>
-            <Image source={ColetorFoto} style={styles.picture}/>
-            <View style= {{flexDirection: 'row', marginTop: 8}}>
+            <View style={styles.editeFoto}>
+                <Image source={ColetorFoto} style={styles.picture}/>
+                <TouchableOpacity style={styles.editeCamera} onPress={() => ImagePicker.launchImageLibrary({
+
+
+                }, ImagePickerCallback)}>
+                    <Image source={cameraEdite}/>
+                </TouchableOpacity>
+            </View>
+            <View style= {{flexDirection: 'row', marginTop: 22}}>
                 <AntDesign name="star" size={20} color="#FF8C8C" />
                 <Text>{'4,8'}</Text>
             </View>
@@ -31,13 +45,20 @@ const styles = StyleSheet.create({
     picture:{
         width: 100,
         height: 100,
-        marginTop: 50,
         borderRadius: 50,
     },
     username:{
         marginVertical:6,
         fontSize: 20,
         color: '#C60D0D',
+    },
+    editeFoto:{
+        alignItems: 'center',
+        marginTop: 36,
+    },
+    editeCamera:{
+        position: 'absolute',
+        marginTop: 80,
     },
 
 })

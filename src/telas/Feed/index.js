@@ -11,6 +11,8 @@ import { Button } from 'react-native-paper';
  * Fim dos imports react native
  */
 
+ import CatadorFeed from './Catador/feedCatador';
+
 
 /**
  * Imports do feirante
@@ -168,14 +170,7 @@ const App = (props) => {
     isCatador ?
 
       <SafeAreaView style={styles.container}>
-        <Image source={logo} style={styles.logo} />
-        <FlatList
-          data={barracas}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-          ListHeaderComponent={HeaderComponent({ nomeUser: usuarioAtual.nome })}
-        />
-        
+        <CatadorFeed/>
       </SafeAreaView>
 
 

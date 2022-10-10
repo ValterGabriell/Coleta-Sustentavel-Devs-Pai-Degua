@@ -1,10 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Dimensions, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Dimensions, Text, SafeAreaView, TouchableOpacity,Image } from "react-native";
 
 import Descricao from "../../../componentes/Descricao";
 import CampoSecurity from '../componente/CampoSecurity';
 import CampoDados from '../componente/CampoDados';
 import TopoPerfil from './TopoPerfil';
+import TopoPerfilEditavel from './TopoPerfilEditavel';
 
 //icones
 import { AntDesign } from '@expo/vector-icons';
@@ -19,8 +20,12 @@ import { Ionicons } from '@expo/vector-icons';
 export default function PerfilColetor(user){
     return<SafeAreaView style={styles.container}>
         
-        <TopoPerfil user={user}/>
+        <TopoPerfilEditavel user={user}/>
         <Ionicons name="ios-notifications-outline" size={24} color="#777778" style={styles.notificacao} onPress={() => {}}/>
+        
+        <TouchableOpacity onPress={() => {}} style={styles.editarTopo}>
+            <AntDesign name="edit" size={18} color="#777778"/>
+        </TouchableOpacity>
 
         <Text style={{textAlign: 'center', marginTop: 10, color: '#FF5353'}}>Material que coleta</Text> 
 
@@ -42,7 +47,7 @@ export default function PerfilColetor(user){
 
         <TouchableOpacity onPress={() => {}} style={styles.editar2}>
             <AntDesign name="edit" size={20} color="#777778"/>
-        </TouchableOpacity>
+        </TouchableOpacity> 
         <CampoDados/>
         <TouchableOpacity onPress={() => {}} style={styles.editar}>
             <AntDesign name="edit" size={20} color="#777778" />
@@ -69,6 +74,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    editarTopo:{
+        position: 'absolute',
+        marginStart: 280,
+        marginTop: 192,
+    },
     editar:{
         position: 'absolute',
         marginStart: 370,
@@ -79,4 +89,5 @@ const styles = StyleSheet.create({
         marginStart: 370,
         marginTop: 386,
     }
+
 })

@@ -49,29 +49,20 @@ export default function ColetaAguardo(props) {
             //se ainda ninguem aceitou a requisicao
             !loading ?
                 <>
-                    <View style={{ flex: 2 }}>
-                        //<LottieView source={require('../../assets/113756-ball-loader.json')} autoPlay loop />
-                    </View>
                     <Text style={styles.txtLoading}>Em espera por atendimento</Text>
                 </>
                 : !finished ? //se alguem aceitou mas nao finalizou
 
-                    <><View style={{ flex: 1 }}>
-                        <LottieView source={require('../../assets/113683-biker-animation.json')} autoPlay loop />
-                    </View>
+                    <>
                         <Text style={styles.txtLoading}>À caminho!</Text>
-
                     </>
                     ://se alguem  finalizou
-                    <><View style={{ flex: 1 }}>
-                        <LottieView source={require('../../assets/94227-ok-simple.json')} autoPlay loop />
-                    </View>
+                    <>
                         <Text style={styles.txtLoading}>Coleta finalizada!</Text>
-
                     </>
         }
 
-        <BotaoSublinhado texto={'Ler Qrcode'} onPress={''}/>
+        <BotaoSublinhado texto={'Ler Qrcode'} onPress={() => {}}/>
 
     </>
 }
