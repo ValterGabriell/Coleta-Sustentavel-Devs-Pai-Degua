@@ -1,9 +1,9 @@
 import React from "react";
 import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
+//pegar o id da request e recuperar os residuos
 
-
-const Item = ({ id,description, photo, props,localization,status,state,ideal_time,amount}) => (
+const Item = ({ id,title,description, photo, props,localization,status,state,ideal_time,amount, price}) => (
 
     <View>
         <View >
@@ -12,22 +12,23 @@ const Item = ({ id,description, photo, props,localization,status,state,ideal_tim
                 onPress={() => {
                    props.navigation.navigate("PostItem",{
                     id:id,
-                    titulo: description,
+                    titulo: title,
                     imagem:photo,
                     data:ideal_time,
                     descricao:description,
                     localizacao:localization,
                     status:status,
                     state:state,
-                    quantidade:amount
+                    quantidade:amount,
+                    price:price
                    })
-           
+                   
                 }
                 }>
                 <View style={styles.viewOne}>
                     <Image source={photo} style={styles.imgLixo}></Image>
                     <View>
-                        <Text style={styles.txtName}>{description}</Text>
+                        <Text style={styles.txtName}>{title}</Text>
                         <Text style={styles.txtComent}>{description}</Text>
                         <Text style={styles.txtData}>{ideal_time}</Text>
                     </View>
@@ -37,13 +38,14 @@ const Item = ({ id,description, photo, props,localization,status,state,ideal_tim
     </View>
 );
 
-export default function ItemRender({ id, description, photo, props,localization,status,state,ideal_time,amount}) {
-    return Item({ id,description, photo, props,localization,status,state,ideal_time,amount})
+export default function ItemRender({ id, title,description, photo, props,localization,status,state,ideal_time,amount,price}) {
+    return Item({ id,title,description, photo, props,localization,status,state,ideal_time,amount, price})
 }
 
 const styles = StyleSheet.create({
     viewOne: {
         flexDirection: 'row',
+        paddingBottom:15
     },
     imgLixo: {
         width: 95,

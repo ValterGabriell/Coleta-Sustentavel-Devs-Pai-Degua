@@ -43,16 +43,23 @@ export default function FormularioDenuncia(props) {
             let location = await Location.getCurrentPositionAsync({});
             setLatitude(location.coords.latitude)
             setLongitude(location.coords.longitude)
+            console.log("Photo: " + uri);
 
-          
+
 
         })();
     }, []);
 
 
+    function setArrayOfMaterials(chips) {
+
+        setArrayChip(chips)
+        console.log(chips);
+    }
+
 
     function sendToDatabase() {
-        
+
         if (title != "" && description != "" && uri != "") {
             var localization = latitude + ',' + longitude
             postRequest(
@@ -87,7 +94,9 @@ export default function FormularioDenuncia(props) {
                 <SafeAreaView>
                     <ScrollView>
                         <View style={{ flexDirection: "row" }}>
-                            <FontAwesome style={styles.iconPerson} name="user-o" size={20} color="#000" />
+                            <FontAwesome style={styles.iconPerson} name="user-o" size={20} color="#000" onPress={()=>{
+                                console.log("press")
+                            }}></FontAwesome>
                             <Text style={styles.txtMain}>Olá, user!</Text>
                         </View>
 
@@ -157,19 +166,26 @@ export default function FormularioDenuncia(props) {
 
                         <View style={{ flexDirection: "row", marginTop: 6, marginLeft: 8 }}>
                             <Text style={styles.txtCoordenadas}>Horário: </Text>
-                           
+
                         </View>
 
 
 
 
-
                         <Text style={styles.materiaisName}>{"Materiais"}</Text>
+                        
+                        
+                        <View style={{flexDirection:'column'}}>
+                        <Text style={styles.materiaisName}>{"1 - Plástico"}</Text>
+                        <Text style={styles.materiaisName}>{"2 - Papelão"}</Text>
+                        <Text style={styles.materiaisName}>{"3 - Vidro"}</Text>
+                        <Text style={styles.materiaisName}>{"4 - Oléos"}</Text>
 
-
+                        </View>
                         <View style={{ flexDirection: "column", marginLeft: 8, marginTop: 8, justifyContent: 'center' }}>
-
-                            <SelectableChips initialChips={["Plastico", "Organico", "Papel", "Vidro", "Metal"]} onChangeChips={(chips) => setArrayChip(chips)} alertRequired={false} />
+                            <SelectableChips initialChips={[1, 2, 3, 4]} onChangeChips={(chips) =>
+                                setArrayOfMaterials(chips)
+                            } alertRequired={false} />
 
 
                         </View>

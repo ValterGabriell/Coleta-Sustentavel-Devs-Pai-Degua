@@ -15,6 +15,8 @@ export default function PostItem(props) {
     const isAtentida = props.route.params.status
     const horario = props.route.params.data
     const qtd = props.route.params.quantidade
+    const residues = props.route.params.residues
+    const price = props.route.params.price
     const [loading, setLoading] = useState()
     const [finished, setfinished] = useState()
 
@@ -23,18 +25,21 @@ export default function PostItem(props) {
         var isGoingThere = isAtentida
         var finalizado = true
         setfinished(false)
-        
+
         if (isGoingThere && !finalizado) {
             setLoading(isGoingThere)
-        }else if(isGoingThere && finalizado){
+        } else if (isGoingThere && finalizado) {
             setfinished(true)
         }
-      
+
     }
 
 
     useEffect(() => {
         changeStatusOfColect()
+        console.log("User?" + id);
+        console.log("price" + price);
+        console.log("residues" + residues);
 
     }, [])
 
@@ -42,7 +47,7 @@ export default function PostItem(props) {
     return <>
         <HeaderOfScreen titulo={titulo} localizacao={localizacao} />
         <MiddleOfScreen imagem={imagem} descricao={descricao} />
-        <EndOfScreen material={"material"} estado={estado} horario={horario} qtd={qtd} />
+        <EndOfScreen material={"material"} estado={estado} horario={horario} qtd={qtd} price={price} />
 
         {
             //se ainda ninguem aceitou a requisicao

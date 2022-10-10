@@ -143,6 +143,7 @@ const App = (props) => {
   const renderItemPostFeirante = ({ item }) => (
     <ItemRenderPostFeirante
       id={item.id}
+      title={item.title}
       description={item.description}
       photo={LixoVeropa}
       props={props}
@@ -151,6 +152,8 @@ const App = (props) => {
       state={item.state}
       ideal_time={item.ideal_time}
       amount={item.amount}
+      price={item.price}
+
       />
   )
 
