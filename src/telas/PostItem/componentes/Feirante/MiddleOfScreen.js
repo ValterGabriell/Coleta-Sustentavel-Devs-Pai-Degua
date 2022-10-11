@@ -6,8 +6,6 @@ export default function MiddleOfScreen({ imagem, descricao }) {
     return <>
         <Image source={imagem} style={styles.img} />
         <Text style={styles.txtDescricao}>{descricao}</Text>
-
-
     </>
 }
 
@@ -16,7 +14,7 @@ const styles = StyleSheet.create({
         marginLeft: 16,
         marginTop: 16,
         fontSize:16,
-        marginBottom:32
+        marginBottom:4
     },
     img:{
         marginTop:8,

@@ -33,7 +33,7 @@ export async function verificarUsuarioAtual(idUser) {
             const result = await apiDevs.get(`merchants/${idUser}`)
             console.log(result.data);
             return result.data
-            
+
         } catch (error) {
             console.log(error)
             return {}
@@ -88,7 +88,10 @@ export async function trocarNomeUser(userId, name) {
     }
 }
 
-export async function postMerchant({name, email, password, photo, phone, cpf, props}) {
+/**
+ * Criar mercador
+ */
+export async function postMerchant({ name, email, password, photo, phone, cpf, props }) {
     try {
         await apiDevs.post('merchants', {
             name: name, email: email, password: password, photo: photo, phone: phone, cpf: cpf
@@ -105,7 +108,10 @@ export async function postMerchant({name, email, password, photo, phone, cpf, pr
 }
 
 
-export async function postScarvenger({name, email, password, photo, phone, cpf, props}) {
+/**
+ * Criar catador
+ */
+export async function postScarvenger({ name, email, password, photo, phone, cpf, props }) {
     try {
         await apiDevs.post('scavengers', {
             name: name, email: email, password: password, photo: photo, phone: phone, cpf: cpf
@@ -119,6 +125,10 @@ export async function postScarvenger({name, email, password, photo, phone, cpf, 
         console.log(error);
         return {}
     }
+}
+
+export async function logout({props}) {
+    console.log("logout");
 }
 
 

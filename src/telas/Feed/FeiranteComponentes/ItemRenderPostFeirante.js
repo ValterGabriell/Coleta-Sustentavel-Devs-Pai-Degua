@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
 //pegar o id da request e recuperar os residuos
 
-const Item = ({ id,title,description, photo, props,localization,status,state,ideal_time,amount, price}) => (
+const Item = ({ id,title,description, photo, props,localization,status,state,ideal_time,amount, price, residue}) => (
 
     <View>
         <View >
@@ -20,7 +20,8 @@ const Item = ({ id,title,description, photo, props,localization,status,state,ide
                     status:status,
                     state:state,
                     quantidade:amount,
-                    price:price
+                    price:price,
+                    residue:residue
                    })
                    
                 }
@@ -38,8 +39,8 @@ const Item = ({ id,title,description, photo, props,localization,status,state,ide
     </View>
 );
 
-export default function ItemRender({ id, title,description, photo, props,localization,status,state,ideal_time,amount,price}) {
-    return Item({ id,title,description, photo, props,localization,status,state,ideal_time,amount, price})
+export default function ItemRender({ id, title,description, photo, props,localization,status,state,ideal_time,amount,price, residue}) {
+    return Item({ id,title,description, photo, props,localization,status,state,ideal_time,amount, price, residue})
 }
 
 const styles = StyleSheet.create({
