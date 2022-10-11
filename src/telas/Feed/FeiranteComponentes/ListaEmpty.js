@@ -13,7 +13,7 @@ export default function ListaEmpty() {
                 fontWeight: 'bold'
             }}>Nenhum item na lista</Text>
 
-            <FontAwesome name="circle" color={"#00CCCC"} style={{marginTop:12, marginLeft:8}}></FontAwesome>
+            <FontAwesome name="bars" color={"#00CCCC"} style={{marginTop:12, marginLeft:8}}></FontAwesome>
 
         </View>
 

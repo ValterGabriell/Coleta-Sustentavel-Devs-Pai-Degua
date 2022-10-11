@@ -11,7 +11,7 @@ import { Button } from 'react-native-paper';
  * Fim dos imports react native
  */
 
- import CatadorFeed from './Catador/feedCatador';
+import CatadorFeed from './Catador/feedCatador';
 
 
 /**
@@ -31,13 +31,12 @@ import ListaEmpty from "./FeiranteComponentes/ListaEmpty";
 
 
 //import do metodo que faz requisição para ver todas as requisições dos feirantes
-import {getRequestMerchant} from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
-import {getResiduesByRequestId} from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
+import { getRequestMerchant } from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
+
 
 import ItemRender from "./componentes/ItemRender";
 import ImgTeste from '../../assets/lixoVeropa.jpg'
-import HeaderComponent from "./componentes/HeaderComponent";
-import logo from '../../../assets/logoAzul.png';
+
 
 
 import { getBarracas } from '../../services/requisicoes/apiDevs/requisicoes'
@@ -50,7 +49,7 @@ import { AuthContext } from "../../contexts/auth";
  * Dados estaticos para renderizar as recycler views
  */
 const DATA_AGENDADAS = [{
-  id:1,
+  id: 1,
   titulo: 'Refeições Regionais',
   material: '5kg de caroço de açai',
   local: 'praca de alimentacao',
@@ -65,52 +64,47 @@ const App = (props) => {
   const [barracas, setbarracas] = useState([])
   const [catadores, setCatadores] = useState([])
   const [requests, setrequest] = useState([])
-  const [residue, setResidues] = useState([])
   const [usuarioAtual, setUsuarioAtual] = useState({})
   const { userType } = useContext(AuthContext)
   const isCatador = userType.isCatador
-  const userId= userType.userId
-  const textForButton = "Nova Coleta"
+  const userId = userType.userId
 
 
-  async function reloadCalls(){
 
-     /**
-       * Recupera todas as denuncias com este método
-       */
-      const result = await getBarracas()
-      setbarracas(result)
+  async function reloadCalls() {
+
+    /**
+      * Recupera todas as denuncias com este método
+      */
+    const result = await getBarracas()
+    setbarracas(result)
 
 
     const currentUser = await verificarUsuarioAtual(userId)
     setUsuarioAtual(currentUser)
 
-      /**
-       * Método para recuperar usuário atual de maneira estática
-       */
+    /**
+     * Método para recuperar usuário atual de maneira estática
+     */
     const request = await getRequestMerchant(userId)
     setrequest(request)
 
-
-    const residues = await getResiduesByRequestId(1)
-    setResidues(residues)
-    
-      /**
-       * Metodo para recuperar todos os usuarios
-       */
-       const scavengers = await getScavengers()
-       setCatadores(scavengers)
+    /**
+     * Metodo para recuperar todos os usuarios
+     */
+    const scavengers = await getScavengers()
+    setCatadores(scavengers)
 
   }
 
 
   useEffect(() => {
     (async () => {
-      reloadCalls() 
+      reloadCalls()
       props.navigation.addListener('focus', () => {
         reloadCalls()
       });
-    
+
     })()
   }, [])
 
@@ -158,9 +152,7 @@ const App = (props) => {
       ideal_time={item.ideal_time}
       amount={item.amount}
       price={item.price}
-      residue={residue}
-
-      />
+    />
   )
 
   const renderItemColetasAgendadas = ({ item }) => (
@@ -179,7 +171,7 @@ const App = (props) => {
     isCatador ?
 
       <SafeAreaView style={styles.container}>
-        <CatadorFeed/>
+        <CatadorFeed />
       </SafeAreaView>
 
 
@@ -188,7 +180,7 @@ const App = (props) => {
       */
 
       <SafeAreaView style={styles.container}>
-        <HeaderComponentFeirante nomeUser={"Feirante"} props={props}/>
+        <HeaderComponentFeirante nomeUser={"Feirante"} props={props} />
 
         <Text style={styles.secondContainerName}>Suas postagens</Text>
 
