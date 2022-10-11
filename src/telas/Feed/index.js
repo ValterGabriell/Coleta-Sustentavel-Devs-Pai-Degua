@@ -34,9 +34,7 @@ import ListaEmpty from "./FeiranteComponentes/ListaEmpty";
 import {getRequestMerchant} from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
 
 import ItemRender from "./Catador/ItemRenderPostCatador";
-import ImgTeste from '../../assets/lixoVeropa.jpg'
 import HeaderComponent from "./componentes/HeaderComponent";
-import logo from '../../../assets/logoAzul.png';
 
 
 import { getBarracas } from '../../services/requisicoes/apiDevs/requisicoes'
@@ -175,7 +173,7 @@ const App = (props) => {
 
     
          <SafeAreaView style={styles.container_1}>
-            <HeaderComponent nomeUser={"Coletor"} props={props}/>
+            <HeaderComponentFeirante nomeUser={"Coletor"} props={props}/>
             <Text style={styles.secondContainerName}>Novas Solicitações</Text>
             <FlatList
                 data={DATA_AGENDADAS}
