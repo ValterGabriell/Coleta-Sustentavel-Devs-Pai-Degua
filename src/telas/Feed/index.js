@@ -32,6 +32,7 @@ import ListaEmpty from "./FeiranteComponentes/ListaEmpty";
 
 //import do metodo que faz requisição para ver todas as requisições dos feirantes
 import {getRequestMerchant} from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
+import {getResiduesByRequestId} from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
 
 import ItemRender from "./componentes/ItemRender";
 import ImgTeste from '../../assets/lixoVeropa.jpg'
@@ -64,6 +65,7 @@ const App = (props) => {
   const [barracas, setbarracas] = useState([])
   const [catadores, setCatadores] = useState([])
   const [requests, setrequest] = useState([])
+  const [residue, setResidues] = useState([])
   const [usuarioAtual, setUsuarioAtual] = useState({})
   const { userType } = useContext(AuthContext)
   const isCatador = userType.isCatador
@@ -90,6 +92,9 @@ const App = (props) => {
     setrequest(request)
 
 
+    const residues = await getResiduesByRequestId(1)
+    setResidues(residues)
+    
       /**
        * Metodo para recuperar todos os usuarios
        */
@@ -153,6 +158,7 @@ const App = (props) => {
       ideal_time={item.ideal_time}
       amount={item.amount}
       price={item.price}
+      residue={residue}
 
       />
   )
@@ -182,7 +188,7 @@ const App = (props) => {
       */
 
       <SafeAreaView style={styles.container}>
-        <HeaderComponentFeirante nomeUser={"Feirante"} />
+        <HeaderComponentFeirante nomeUser={"Feirante"} props={props}/>
 
         <Text style={styles.secondContainerName}>Suas postagens</Text>
 
@@ -213,16 +219,6 @@ const App = (props) => {
           keyExtractor={item => item.id}
           ListEmptyComponent={ListaEmpty}
         />
-
-      
-
-        <TouchableOpacity>
-          <Button mode="elevated" color="#FF0000" style={{ backgroundColor: "#FFF", alignSelf: "center", marginBottom: 12, }} onPress={() => { props.navigation.navigate('CameraRotas') }}>
-            {textForButton}
-          </Button>
-        </TouchableOpacity>
-
-
 
 
       </SafeAreaView>

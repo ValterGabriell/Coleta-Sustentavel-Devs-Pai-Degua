@@ -15,3 +15,19 @@ export async function getRequestMerchant(userId){
         }
     }
 }
+
+
+export async function getResiduesByRequestId(reqId){
+    if(reqId == undefined){
+        getResiduesByRequestId(reqId)
+    }else{
+        try {
+            const result = await apiDevs.get(`requests/${reqId}`)
+            var data = result.data.residues
+            return data
+        } catch (error) {
+            console.log(error)
+            return {}
+        }
+    }
+}

@@ -15,10 +15,11 @@ export default function PostItem(props) {
     const isAtentida = props.route.params.status
     const horario = props.route.params.data
     const qtd = props.route.params.quantidade
-    const residues = props.route.params.residues
+    const residue = props.route.params.residue
     const price = props.route.params.price
     const [loading, setLoading] = useState()
     const [finished, setfinished] = useState()
+    const [residuesArray, setresiduesArray] = useState([])
 
 
     var changeStatusOfColect = () => {
@@ -37,17 +38,20 @@ export default function PostItem(props) {
 
     useEffect(() => {
         changeStatusOfColect()
-        console.log("User?" + id);
-        console.log("price" + price);
-        console.log("residues" + residues);
-
+        var array = []
+        residue.forEach(item =>{
+            array.push(item.name)
+            array.push(" | ")
+            setresiduesArray(array)
+        })
     }, [])
 
 
     return <>
+        
         <HeaderOfScreen titulo={titulo} localizacao={localizacao} />
         <MiddleOfScreen imagem={imagem} descricao={descricao} />
-        <EndOfScreen material={"material"} estado={estado} horario={horario} qtd={qtd} price={price} />
+        <EndOfScreen material={residuesArray} estado={estado} horario={horario} qtd={qtd} price={price} />
 
         {
             //se ainda ninguem aceitou a requisicao
