@@ -23,7 +23,7 @@ import HeaderComponentCatadorDisponivel from "./FeiranteComponentes/HeaderCompon
 import ItemRenderPostFeirante from './FeiranteComponentes/ItemRenderPostFeirante'
 import ItemRenderColetasAgendadas from './FeiranteComponentes/ItemRenderColetasAgendadas'
 import LixoVeropa from '../../assets/lixoVeropa.jpg'
-import PhotoPerfil from '../../assets/profile.png'
+import PhotoPerfil from '../../assets/ColetorFoto.jpg'
 import ListaEmpty from "./FeiranteComponentes/ListaEmpty";
 /**
  * Fim do import de feirantes
