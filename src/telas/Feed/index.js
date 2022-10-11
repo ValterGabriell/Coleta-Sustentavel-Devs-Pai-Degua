@@ -33,7 +33,7 @@ import ListaEmpty from "./FeiranteComponentes/ListaEmpty";
 //import do metodo que faz requisição para ver todas as requisições dos feirantes
 import {getRequestMerchant} from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
 
-import ItemRender from "./componentes/ItemRender";
+import ItemRender from "./Catador/ItemRenderPostCatador";
 import ImgTeste from '../../assets/lixoVeropa.jpg'
 import HeaderComponent from "./componentes/HeaderComponent";
 import logo from '../../../assets/logoAzul.png';
@@ -48,15 +48,20 @@ import { AuthContext } from "../../contexts/auth";
 /**
  * Dados estaticos para renderizar as recycler views
  */
-const DATA_AGENDADAS = [{
-  id:1,
-  titulo: 'Refeições Regionais',
-  material: '5kg de caroço de açai',
-  local: 'praca de alimentacao',
-  data: '29/08/2022',
-  descricao: 'Jogada na rua preciso de ajuda',
-  imagem: LixoVeropa
+const DATA_AGENDADAS = [  {
+  id: 1,
+  titulo: "Preciso de catador Urgente",
+  distancia: '0.8 Km',
+  data: '29/08/2022'
+},
+{
+  id: 2,
+  titulo: "Preciso de catador Urgente",
+  distancia: '0.8 Km',
+  data: '29/08/2022'
 }]
+
+
 
 
 const App = (props) => {
@@ -114,14 +119,13 @@ const App = (props) => {
   /**
    * Trexo de codigo responsavel para renderizar lista caso o usuario seja catador
    */
-  const renderItem = ({ item }) => (
+  const renderItemCatador = ({ item }) => (
     <ItemRender
-      title={item.titulo}
-      imagem={ImgTeste}
-      descricao={item.descricao}
-      local={item.localizacao}
-      isAtendida={item.status}
-      props={props}
+       id = {item.id}
+        titulo = {item.titulo}
+        distancia = {item.distancia}
+        data = {item.data}
+        props={props}
     />
   );
 
@@ -169,10 +173,20 @@ const App = (props) => {
      */
     isCatador ?
 
-      <SafeAreaView style={styles.container}>
-        <CatadorFeed/>
-      </SafeAreaView>
-
+    
+         <SafeAreaView style={styles.container_1}>
+            <HeaderComponent nomeUser={"Coletor"} props={props}/>
+            <Text style={styles.secondContainerName}>Novas Solicitações</Text>
+            <FlatList
+                data={DATA_AGENDADAS}
+                renderItem={renderItemCatador}
+                keyExtractor={item => item.id}
+                ItemSeparatorComponent={ itemSeparator }
+             />
+            <Text style={styles.secondContainerName}>Coletas Agendadas</Text>
+          
+        </SafeAreaView>
+    
 
       :  /**
       * Trecho de codigo para definir as telas de feirante
@@ -256,7 +270,24 @@ const styles = StyleSheet.create({
     height: 70,
     marginStart: 16,
     marginBottom: 10,
-  }
+  },
+  container_1:{
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+    marginHorizontal: 16,
+    
+},
+separator:{
+    height: 1,
+    width: '100%',
+    backgroundColor: '#CCC',
+},
+secondContainerName: {
+    marginVertical: 12,
+    color: "#FF5353",
+    fontSize: 18,
+    fontWeight: '500'
+}
 });
 
 
