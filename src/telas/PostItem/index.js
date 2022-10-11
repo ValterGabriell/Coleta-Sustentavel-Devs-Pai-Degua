@@ -19,7 +19,6 @@ export default function PostItem(props) {
     const price = props.route.params.price
     const [loading, setLoading] = useState()
     const [finished, setfinished] = useState()
-    const [residue, setResidues] = useState([])
     const [getResidues, setGetResidues] = useState([])
 
     var changeStatusOfColect = () => {
