@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState}from "react";
 import { View, StyleSheet, Dimensions, Text, SafeAreaView, TouchableOpacity,Image } from "react-native";
 
 import Descricao from "../../../componentes/Descricao";
@@ -18,6 +18,22 @@ import { Ionicons } from '@expo/vector-icons';
 //colocar scrollview
 
 export default function PerfilColetor(user){
+
+    //Manipular a escolha dos residuos 
+
+    const [material, setMaterial] = useState({})
+
+    /*
+    function Manipular(resp){
+        if(resp == 'novo'){
+            switch(tipo){
+                case 'Plastico':
+
+            }
+        }
+    }
+    */
+
     return<SafeAreaView style={styles.container}>
         
         <TopoPerfilEditavel user={user}/>
@@ -35,23 +51,17 @@ export default function PerfilColetor(user){
                 <Text>{'Orgânico'}</Text>
             </View>
             <View  style={{marginStart: 10, alignItems: 'center'}}>
-                <FontAwesome5 name="plus-circle" size={34} color="#C9C9C9" />
-                <Text>{"Novo"}</Text>
-            </View>
-            <View  style={{marginStart: 30, alignItems: 'center'}}>
-                <FontAwesome5 name="plus-circle" size={34} color="#C9C9C9" />
+                <FontAwesome5 name="plus-circle" size={34} color="#C9C9C9" onPress={() => {}}/>
                 <Text>{"Novo"}</Text>
             </View>
         </View>
 
 
-        <TouchableOpacity onPress={() => {}} style={styles.editar2}>
-            <AntDesign name="edit" size={20} color="#777778"/>
-        </TouchableOpacity> 
+        <AntDesign name="edit" size={20} color="#777778" onPress={() => {}} style={styles.editar2}/>
+
         <CampoDados/>
-        <TouchableOpacity onPress={() => {}} style={styles.editar}>
-            <AntDesign name="edit" size={20} color="#777778" />
-        </TouchableOpacity>
+        
+        <AntDesign name="edit" size={20} color="#777778" onPress={() => {}} style={styles.editar}/>
         <Descricao/>
         <CampoSecurity/>
     </SafeAreaView>
@@ -68,8 +78,8 @@ const styles = StyleSheet.create({
     },
 
     material:{
-        width: 315,
-        marginHorizontal: 100,
+        //width: 315,
+        marginHorizontal: 134,
         marginTop: 8,
         flexDirection: 'row',
         alignItems: 'center',

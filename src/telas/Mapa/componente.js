@@ -52,7 +52,7 @@ export default function GoogleMaps({ props }) {
                         title= {'Barraca Da Joana'}
                         description= {'Coleta de 2 kg de plastico'}
                     >
-                        <Callout tooltip onPress={()=> {}}>
+                        <Callout tooltip onPress={()=> {props.navigation.navigate('AnaliseColeta')}}>
                             <View>
                                 <View style={styles.balao}>
                                     <Text style={styles.texto} maxFontSizeMultiplier={1.1}>{'Nome da Barraca'}</Text>

@@ -1,14 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 
 import { FontAwesome } from '@expo/vector-icons';
 import CustomButton from "../../../componentes/CustomButton/CustomButton";
+import imagem from "../../../assets/lixoVeropa.jpg";
 
 /*
 <HeaderOfScreen />
 <MiddleOfScreen/>
 <EndOfScreen/>
 */
+
 
 
 export default function AnaliseColeta({}) {
@@ -20,7 +22,8 @@ export default function AnaliseColeta({}) {
             <Text style={styles.txtLocalizacao}>{'Prox ao bar da Lurdes'}</Text>
         </View>
 
-
+        <Image source={imagem} style={styles.img} />
+        <Text style={styles.txtDescricao}>{'descricao'}</Text> 
         <View style={{height:1, backgroundColor:"#cc0000", width:"85%", alignSelf:"center"}}></View>
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
             <Text style={styles.txtTitle2}>Material:</Text>
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
         color: "#cc0000",
         marginLeft: 16,
         fontSize:20,
-        marginTop: 4,
+        marginTop: 50,
         marginBottom: 4
     },
     txtLocalizacao: {
@@ -66,6 +69,20 @@ const styles = StyleSheet.create({
         color: "#cc0000",
         marginLeft: 8,
         fontWeight: "bold"
+    },
+    txtDescricao: {
+        marginLeft: 16,
+        marginTop: 16,
+        fontSize:16,
+        marginBottom:32
+    },
+    img:{
+        marginTop:8,
+        width:"90%",
+        height:"35%",
+        alignSelf:"center",
+        borderRadius:16
+        
     }
 })
 

@@ -51,7 +51,7 @@ itemSeparator = () => {
 
   
 
-export default function CatadorFeed({props}){
+export default function CatadorFeed(props){
 
 
     return (

@@ -78,7 +78,9 @@ const styles = StyleSheet.create({
     },
     separator:{
         height: 1,
-        width: '100%',
+        width: '92%',
         backgroundColor: 'white',
+        alignItems: 'center',
+        marginHorizontal: 16,
     },
 })

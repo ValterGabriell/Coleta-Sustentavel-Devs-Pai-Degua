@@ -13,7 +13,7 @@ import lixoVeropa from '../../../assets/lixoVeropa.jpg'
     data = {item.data}
 */ 
 
-const Item = ({props, titulo,distancia, data}) => (
+const Item = ({id,titulo,distancia,data,props}) => (
 
  
     <View style={styles.contanier}>
@@ -33,8 +33,9 @@ const Item = ({props, titulo,distancia, data}) => (
 
 );
 
-export default function ItemRenderCatador({ props, titulo,distancia, data}) {
-    return Item({props, titulo,distancia, data})
+
+export default function ItemRenderCatador({ id,titulo,distancia,data,props}) {
+    return Item({id,titulo,distancia,data,props})
 }
 
 const styles = StyleSheet.create({
