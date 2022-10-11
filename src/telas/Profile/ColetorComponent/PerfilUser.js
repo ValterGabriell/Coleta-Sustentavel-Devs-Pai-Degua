@@ -1,5 +1,5 @@
 import React from "react";
-import { View,StyleSheet, Text, SafeAreaView} from "react-native";
+import { View, StyleSheet, Text, SafeAreaView } from "react-native";
 import CustomButton from "../../../componentes/CustomButton/CustomButton";
 
 //Componentes interno do app
@@ -14,42 +14,49 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 //Pagina que o feirante visualiza o perfil do coletor
 
-export default function PerfilUser({}){
-    return<SafeAreaView style={styles.container}>
-        <TopoPerfil/>
+export default function PerfilUser(props) {
 
-        <Text style={{textAlign: 'center', marginVertical: 10, color: '#FF5353'}}>Material que coleta</Text> 
+    var name = props.route.params.name
+    var email = props.route.params.email
+    var photo = props.route.params.photo
+    var phone = props.route.params.phone
+
+
+
+    return <SafeAreaView style={styles.container}>
+        <TopoPerfil nome={name} email={email} photo={photo} />
+        <Text style={{ textAlign: 'center', marginVertical: 10, color: '#FF5353' }}>Material que coleta</Text>
         <View style={styles.material}>
-            <View style={{marginStart: 10, alignItems: 'center', marginEnd: 10}}>
-                <MaterialCommunityIcons name="leaf-circle" size={48} color="#FF5353"/>
+            <View style={{ marginStart: 10, alignItems: 'center', marginEnd: 10 }}>
+                <MaterialCommunityIcons name="leaf-circle" size={48} color="#FF5353" />
                 <Text>{'Orgânico'}</Text>
             </View>
         </View>
 
-        <Descricao/>
+        <Descricao />
         <Text style={styles.titulo}>Contato</Text>
-        <ButtonContact/>
-        <CustomButton text='Aceitar' onPress={() => {}}/>     
+        <ButtonContact />
+        <CustomButton text='Aceitar' onPress={() => { }} />
     </SafeAreaView>
 }
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
 
     },
-    notificacao:{
+    notificacao: {
         position: 'absolute',
         marginStart: 350,
         marginTop: 30,
     },
-    material:{
+    material: {
         width: 315,
         marginHorizontal: '34%',
         flexDirection: 'row',
         alignItems: 'center',
     },
 
-    fundoIcon:{
+    fundoIcon: {
         width: 46,
         height: 46,
         backgroundColor: "#C60D0D",
@@ -58,14 +65,14 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 20
     },
-    dados:{
+    dados: {
         flexDirection: 'row',
         marginVertical: 16,
     },
-    titulo:{
+    titulo: {
         color: '#FF5353',
-        fontWeight: '600', 
-        fontSize: 16, 
+        fontWeight: '600',
+        fontSize: 16,
         marginStart: 16,
         marginTop: 20,
     }
