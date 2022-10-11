@@ -40,10 +40,8 @@ export default function PostItem(props) {
         residues.forEach(item =>{  
             array.push(item.name)
             array.push(" | ")
-            setGetResidues(array)
-          
         })
-        console.log(array);
+        setGetResidues(array)
     }
 
     
