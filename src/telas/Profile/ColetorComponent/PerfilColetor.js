@@ -51,19 +51,17 @@ export default function PerfilColetor(user){
                 <Text>{'Orgânico'}</Text>
             </View>
             <View  style={{marginStart: 10, alignItems: 'center'}}>
-                <FontAwesome5 name="plus-circle" size={34} color="#C9C9C9" />
+                <FontAwesome5 name="plus-circle" size={34} color="#C9C9C9" onPress={() => {}}/>
                 <Text>{"Novo"}</Text>
             </View>
         </View>
 
 
-        <TouchableOpacity onPress={() => {}} style={styles.editar2}>
-            <AntDesign name="edit" size={20} color="#777778"/>
-        </TouchableOpacity> 
+        <AntDesign name="edit" size={20} color="#777778" onPress={() => {}} style={styles.editar2}/>
+
         <CampoDados/>
-        <TouchableOpacity onPress={() => {}} style={styles.editar}>
-            <AntDesign name="edit" size={20} color="#777778" />
-        </TouchableOpacity>
+        
+        <AntDesign name="edit" size={20} color="#777778" onPress={() => {}} style={styles.editar}/>
         <Descricao/>
         <CampoSecurity/>
     </SafeAreaView>
@@ -80,7 +78,7 @@ const styles = StyleSheet.create({
     },
 
     material:{
-        width: 315,
+        //width: 315,
         marginHorizontal: 134,
         marginTop: 8,
         flexDirection: 'row',
