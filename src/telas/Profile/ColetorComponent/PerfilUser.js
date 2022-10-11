@@ -36,7 +36,7 @@ export default function PerfilUser(props) {
         <Descricao />
         <Text style={styles.titulo}>Contato</Text>
         <ButtonContact />
-        <CustomButton text='Aceitar' onPress={() => { }} />
+        
     </SafeAreaView>
 }
 
