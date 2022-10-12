@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
     toolbarName: {
         fontSize: 20,
-        fontWeight: "bold"
+        fontWeight: "700"
     }
 
 })

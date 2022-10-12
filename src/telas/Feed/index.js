@@ -3,14 +3,13 @@
  */
 
 import React, { useContext, useEffect, useState } from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
-import { StyleSheet, StatusBar, SafeAreaView, Image } from "react-native";
+import { FlatList, Text, View } from "react-native";
+import { StyleSheet, StatusBar, SafeAreaView, Dimensions } from "react-native";
 
 /**
  * Fim dos imports react native
  */
-
-
+import TrendingCard from "./componentes/TrendingCard";
 /**
  * Imports do feirante
  */
@@ -30,14 +29,17 @@ import ListaEmpty from "./FeiranteComponentes/ListaEmpty";
 //import do metodo que faz requisição para ver todas as requisições dos feirantes
 import { getRequestMerchant } from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
 
-
 import ItemRender from "./Catador/ItemRenderPostCatador";
-
 
 import { getBarracas } from '../../services/requisicoes/apiDevs/requisicoes'
 import { getScavengers } from "../../services/requisicoes/apiDevs/users";
 import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
 import { AuthContext } from "../../contexts/auth";
+
+
+import Coleta1 from '../../assets/barraca.png';
+import Coleta2 from '../../assets/sorriso.jpg';
+import Coleta3 from '../../assets/lixoVeropa.jpg';
 
 
 /**
@@ -57,7 +59,30 @@ const DATA_AGENDADAS = [
     distancia: '0.8 Km',
     data: '29/08/2022'
   }
+];
+
+
+const anuncios = [
+  {
+    id: 1,
+    title: 'Os melhores produtos para utilizar na manipulação de residuos',
+    url: Coleta1,
+  },
+  {
+    id: 2,
+    title: 'Dia nacional da coleta seletiva',
+    url: Coleta2,
+
+  },
+  {
+    id: 3,
+    title: 'Sesi abre inscrições para o curso de reciclagem',
+    url: Coleta3,
+  }
+
 ]
+
+
 
 
 
@@ -118,11 +143,11 @@ const App = (props) => {
    */
   const renderItemCatador = ({ item }) => (
     <ItemRender
-       id = {item.id}
-        titulo = {item.titulo}
-        distancia = {item.distancia}
-        data = {item.data}
-        props={props}
+      id = {item.id}
+      titulo = {item.titulo}
+      distancia = {item.distancia}
+      data = {item.data}
+      props={props}
     />
   );
 
@@ -166,6 +191,23 @@ const App = (props) => {
       descricao={item.descricao} />
   )
 
+  //Item render dos anuncios
+  const renderItemAnuncio = ({item}) => (
+    <TrendingCard
+      id = {item.id}
+      title = {item.title}
+      url = {item.url}
+    />
+  )
+
+  //Linha separador dos itens da fatlist
+  itemSeparator = () => {
+    return <View style={styles.separator}/>
+  }
+
+  //Pegar a dimensão da tela
+  const { width, heigth } = Dimensions.get('window')
+
   return <>{
     /**
      * Trecho de codigo para definir as telas de catador
@@ -174,7 +216,22 @@ const App = (props) => {
 
     
       <SafeAreaView style={styles.container_1}>
+        
         <HeaderComponentFeirante nomeUser={"Coletor"} props={props}/>
+
+        <FlatList
+          data={anuncios}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled
+          snapToAlignment={'start'}
+          scrollEventThrottle={16}
+          decelerationRate= 'fast'
+          renderItem={renderItemAnuncio}
+          keyExtractor={item => item.id}
+          style={{marginTop: 30}}
+        />
+
         <Text style={styles.secondContainerName}>Novas Solicitações</Text>
         <FlatList
           data={DATA_AGENDADAS}
@@ -183,6 +240,12 @@ const App = (props) => {
           ItemSeparatorComponent={ itemSeparator }
         />
         <Text style={styles.secondContainerName}>Coletas Agendadas</Text>
+        <FlatList
+          data={DATA_AGENDADAS}
+          renderItem={renderItemCatador}
+          keyExtractor={item => item.id}
+          ItemSeparatorComponent={ itemSeparator }
+        />
           
       </SafeAreaView>
     
@@ -239,12 +302,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight || 0
   },
-  secondContainerName: {
-    marginLeft: 16,
-    marginTop: 12,
-    color: "#FF0000",
-    fontSize: 17
-  },
   viewOut: {
     backgroundColor: '#FFFAFA',
     marginHorizontal: 16,
@@ -268,11 +325,12 @@ separator:{
     height: 1,
     width: '100%',
     backgroundColor: '#CCC',
+    
 },
 secondContainerName: {
     marginVertical: 12,
     color: "#FF5353",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '500'
 }
 });
