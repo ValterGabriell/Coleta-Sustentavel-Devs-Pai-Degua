@@ -20,27 +20,6 @@ export async function getScavengers() {
     }
 }
 
-/**
- * Metodo para retornar usuario atual
- * @param {Integer} idUser 
- * @returns usuario atual
- */
-export async function verificarUsuarioAtual(idUser) {
-    if (idUser == undefined) {
-        verificarUsuarioAtual(idUser)
-    } else {
-        try {
-            const result = await apiDevs.get(`merchants/${idUser}`)
-            console.log(result.data);
-            return result.data
-
-        } catch (error) {
-            console.log(error)
-            return {}
-        }
-    }
-
-}
 
 /**
  * atualizar email do usuario

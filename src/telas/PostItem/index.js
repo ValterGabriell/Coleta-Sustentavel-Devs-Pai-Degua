@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, TurboModuleRegistry } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import HeaderOfScreen from "./componentes/Feirante/HeaderOfScreen";
 import MiddleOfScreen from "./componentes/Feirante/MiddleOfScreen";
 import EndOfScreen from "./componentes/Feirante/EndOfScreen";
@@ -13,22 +13,19 @@ export default function PostItem(props) {
     const descricao = props.route.params.descricao
     const localizacao = props.route.params.localizacao
     const estado = props.route.params.state
-    const isAtentida = props.route.params.status
+    const isFinished = props.route.params.status
+    const on_the_way = props.route.params.on_the_way
     const horario = props.route.params.data
     const qtd = props.route.params.quantidade
     const price = props.route.params.price
-    const [loading, setLoading] = useState()
-    const [finished, setfinished] = useState()
+    const [on_way, setOnWay] = useState()
+    const [finished, setfinished] = useState(false)
     const [getResidues, setGetResidues] = useState([])
 
     var changeStatusOfColect = () => {
-        var isGoingThere = isAtentida
-        var finalizado = true
-        setfinished(false)
-
-        if (isGoingThere && !finalizado) {
-            setLoading(isGoingThere)
-        } else if (isGoingThere && finalizado) {
+        if (on_the_way && !isFinished) {
+            setOnWay(on_the_way)
+        } else if (on_the_way && isFinished) {
             setfinished(true)
         }
     }
@@ -58,7 +55,7 @@ export default function PostItem(props) {
 
         {
             //se ainda ninguem aceitou a requisicao
-            !loading ?
+            !on_way ?
                 <>
                     <View style={{ flex: 2 }}>
                         <LottieView source={require('../../assets/113756-ball-loader.json')} autoPlay loop />

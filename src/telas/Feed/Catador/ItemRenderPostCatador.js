@@ -1,20 +1,29 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet, Image, Text} from "react-native";
+import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
 import lixoVeropa from '../../../assets/lixoVeropa.jpg'
 
-const Item = ({id,titulo,distancia,data,props}) => (
+const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price }) => (
 
- 
+
     <View style={styles.contanier}>
         <TouchableOpacity
-            onPress={() => {props.navigation.navigate('AnaliseColeta')}}>
+            onPress={() => {
+                props.navigation.navigate("AnaliseColeta", {
+                    scarvengerId: userId,
+                    requestId: id,
+                    titulo: titulo,
+                    on_the_way:on_the_way
+                })
+
+            }
+            }>
             <View style={styles.viewOne}>
                 <Image source={lixoVeropa} style={styles.imgLixo}></Image>
-                <View style={{marginStart:16}}>
+                <View style={{ marginStart: 16 }}>
                     <Text style={styles.txtName}>{titulo}</Text>
-                    <Text style={styles.distancia}>Distância: {distancia}</Text>
-                    <Text style={styles.txtData}>{data}</Text>
+                    <Text style={styles.distancia}>Preço: {price}</Text>
+                    <Text style={styles.txtData}>{"Horário: " + ideal_time}</Text>
                 </View>
             </View>
         </TouchableOpacity>
@@ -23,13 +32,13 @@ const Item = ({id,titulo,distancia,data,props}) => (
 );
 
 
-export default function ItemRenderCatador({ id,titulo,distancia,data,props}) {
-    return Item({id,titulo,distancia,data,props})
+export default function ItemRenderCatador({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price }) {
+    return Item({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price })
 }
 
 const styles = StyleSheet.create({
-    contanier:{
-        marginVertical:12,
+    contanier: {
+        marginVertical: 12,
         alignItems: 'center',
     },
     viewOne: {
@@ -38,12 +47,12 @@ const styles = StyleSheet.create({
     imgLixo: {
         width: 100,
         height: 70,
-        borderRadius:16,
-      
+        borderRadius: 16,
+
     },
     title: {
         fontSize: 32,
-        
+
     },
     txtName: {
         marginLeft: 8,
@@ -59,13 +68,13 @@ const styles = StyleSheet.create({
     txtData: {
         marginRight: 8,
         fontSize: 12,
-        alignSelf:'flex-end',
-        marginLeft:8,
+        alignSelf: 'flex-end',
+        marginLeft: 8,
         color: '#454545'
     },
-    distancia:{
+    distancia: {
         marginStart: 8,
-        marginTop:12,
+        marginTop: 12,
         fontSize: 12,
     }
 });

@@ -31,9 +31,9 @@ import { getRequestMerchant } from '../../services/requisicoes/apiDevs/solicitac
 
 import ItemRender from "./Catador/ItemRenderPostCatador";
 
-import { getBarracas } from '../../services/requisicoes/apiDevs/requisicoes'
+import { getRequest, getRequestsByScarvengerId } from '../../services/requisicoes/apiDevs/requisicoes'
 import { getScavengers } from "../../services/requisicoes/apiDevs/users";
-import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
+
 import { AuthContext } from "../../contexts/auth";
 
 
@@ -89,10 +89,11 @@ const anuncios = [
 
 const App = (props) => {
 
-  const [barracas, setbarracas] = useState([])
+  const [request, setRequest] = useState([])
   const [catadores, setCatadores] = useState([])
   const [requests, setrequest] = useState([])
-  const [usuarioAtual, setUsuarioAtual] = useState({})
+  const [requestByScarvengerId, setRequestByScarvengerId] = useState([])
+ 
   const { userType } = useContext(AuthContext)
   const isCatador = userType.isCatador
   const userId = userType.userId
@@ -104,12 +105,15 @@ const App = (props) => {
     /**
       * Recupera todas as denuncias com este método
       */
-    const result = await getBarracas()
-    setbarracas(result)
+    const result = await getRequest()
+    setRequest(result)
 
+    /**
+          * Recupera lista de request aceita pelo id do usuario
+          */
+    const listOfRequestByScarvengerId = await getRequestsByScarvengerId(userId)
+    setRequestByScarvengerId(listOfRequestByScarvengerId)
 
-    const currentUser = await verificarUsuarioAtual(userId)
-    setUsuarioAtual(currentUser)
 
     /**
      * Método para recuperar usuário atual de maneira estática
@@ -143,11 +147,16 @@ const App = (props) => {
    */
   const renderItemCatador = ({ item }) => (
     <ItemRender
-      id = {item.id}
-      titulo = {item.titulo}
-      distancia = {item.distancia}
-      data = {item.data}
+      id={item.id}
+      userId={userId}
+      merchant_id={item.merchant_id}
+      on_the_way={item.on_the_way}
+      titulo={item.title}
+      ideal_time={item.ideal_time}
+      description={item.description}
+      localization={item.localization}
       props={props}
+      price={item.price}
     />
   );
 
@@ -176,6 +185,7 @@ const App = (props) => {
       localization={item.localization}
       status={item.status}
       state={item.state}
+      on_the_way={item.on_the_way}
       ideal_time={item.ideal_time}
       amount={item.amount}
       price={item.price}
@@ -192,17 +202,17 @@ const App = (props) => {
   )
 
   //Item render dos anuncios
-  const renderItemAnuncio = ({item}) => (
+  const renderItemAnuncio = ({ item }) => (
     <TrendingCard
-      id = {item.id}
-      title = {item.title}
-      url = {item.url}
+      id={item.id}
+      title={item.title}
+      url={item.url}
     />
   )
 
   //Linha separador dos itens da fatlist
   itemSeparator = () => {
-    return <View style={styles.separator}/>
+    return <View style={styles.separator} />
   }
 
   //Pegar a dimensão da tela
@@ -214,10 +224,10 @@ const App = (props) => {
      */
     isCatador ?
 
-    
+
       <SafeAreaView style={styles.container_1}>
-        
-        <HeaderComponentFeirante nomeUser={"Coletor"} props={props}/>
+
+        <HeaderComponentFeirante nomeUser={"Coletor"} props={props} />
 
         <FlatList
           data={anuncios}
@@ -226,29 +236,30 @@ const App = (props) => {
           pagingEnabled
           snapToAlignment={'start'}
           scrollEventThrottle={16}
-          decelerationRate= 'fast'
+          decelerationRate='fast'
           renderItem={renderItemAnuncio}
           keyExtractor={item => item.id}
-          style={{marginTop: 30}}
+          style={{ marginTop: 30 }}
         />
 
         <Text style={styles.secondContainerName}>Novas Solicitações</Text>
         <FlatList
-          data={DATA_AGENDADAS}
+          data={request}
           renderItem={renderItemCatador}
           keyExtractor={item => item.id}
-          ItemSeparatorComponent={ itemSeparator }
+          ItemSeparatorComponent={itemSeparator}
         />
         <Text style={styles.secondContainerName}>Coletas Agendadas</Text>
         <FlatList
-          data={DATA_AGENDADAS}
+
+          data={requestByScarvengerId}
           renderItem={renderItemCatador}
           keyExtractor={item => item.id}
-          ItemSeparatorComponent={ itemSeparator }
+          ItemSeparatorComponent={itemSeparator}
         />
-          
+
       </SafeAreaView>
-    
+
 
       :  /**
       * Trecho de codigo para definir as telas de feirante
@@ -315,24 +326,24 @@ const styles = StyleSheet.create({
     marginStart: 16,
     marginBottom: 10,
   },
-  container_1:{
+  container_1: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
     marginHorizontal: 16,
-    
-},
-separator:{
+
+  },
+  separator: {
     height: 1,
     width: '100%',
     backgroundColor: '#CCC',
-    
-},
-secondContainerName: {
+
+  },
+  secondContainerName: {
     marginVertical: 12,
     color: "#FF5353",
     fontSize: 16,
     fontWeight: '500'
-}
+  }
 });
 
 
