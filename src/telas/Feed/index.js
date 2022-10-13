@@ -31,12 +31,12 @@ import { getRequestMerchant } from '../../services/requisicoes/apiDevs/solicitac
 
 import ItemRender from "./Catador/ItemRenderPostCatador";
 
-import { getRequest, getRequestsByScarvengerId } from '../../services/requisicoes/apiDevs/requisicoes'
+import { getRequest, getRequestsByScarvengerId, getRequestsByMerchantId } from '../../services/requisicoes/apiDevs/requisicoes'
 import { getScavengers } from "../../services/requisicoes/apiDevs/users";
 
 import { AuthContext } from "../../contexts/auth";
 
-
+import HeaderComponentCatador from "./Catador/HeaderComponentCatador";
 import Coleta1 from '../../assets/barraca.png';
 import Coleta2 from '../../assets/sorriso.jpg';
 import Coleta3 from '../../assets/lixoVeropa.jpg';
@@ -93,7 +93,8 @@ const App = (props) => {
   const [catadores, setCatadores] = useState([])
   const [requests, setrequest] = useState([])
   const [requestByScarvengerId, setRequestByScarvengerId] = useState([])
- 
+  const [requestByMerchantId, setRequestByMerchantId] = useState([])
+
   const { userType } = useContext(AuthContext)
   const isCatador = userType.isCatador
   const userId = userType.userId
@@ -114,6 +115,8 @@ const App = (props) => {
     const listOfRequestByScarvengerId = await getRequestsByScarvengerId(userId)
     setRequestByScarvengerId(listOfRequestByScarvengerId)
 
+    const getRequestByMerchantId = await getRequestsByMerchantId(userId)
+    setRequestByMerchantId(getRequestByMerchantId)
 
     /**
      * Método para recuperar usuário atual de maneira estática
@@ -157,6 +160,7 @@ const App = (props) => {
       localization={item.localization}
       props={props}
       price={item.price}
+      requestByScarvengerId={requestByScarvengerId}
     />
   );
 
@@ -194,11 +198,11 @@ const App = (props) => {
 
   const renderItemColetasAgendadas = ({ item }) => (
     <ItemRenderColetasAgendadas
-      imagem={item.imagem}
-      titulo={item.titulo}
-      material={item.material}
-      data={item.data}
-      descricao={item.descricao} />
+      imagem={LixoVeropa}
+      title={item.title}
+      description={item.description}
+      ideal_time={item.ideal_time}
+/>
   )
 
   //Item render dos anuncios
@@ -227,7 +231,7 @@ const App = (props) => {
 
       <SafeAreaView style={styles.container_1}>
 
-        <HeaderComponentFeirante nomeUser={"Coletor"} props={props} />
+        <HeaderComponentCatador nomeUser={"Coletor"} props={props} />
 
         <FlatList
           data={anuncios}
@@ -292,7 +296,7 @@ const App = (props) => {
 
         <FlatList
           horizontal
-          data={DATA_AGENDADAS}
+          data={requestByMerchantId}
           renderItem={renderItemColetasAgendadas}
           keyExtractor={item => item.id}
           ListEmptyComponent={ListaEmpty}

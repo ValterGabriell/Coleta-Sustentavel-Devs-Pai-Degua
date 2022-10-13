@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 
 import { FontAwesome } from '@expo/vector-icons';
 import CustomButton from "../../../componentes/CustomButton/CustomButton";
 import imagem from "../../../assets/lixoVeropa.jpg";
-import { addRequestForScarvenger, removeRequestForScarvenger } from '../../../services/requisicoes/apiDevs/requisicoes'
+import { addRequestForScarvenger, removeRequestForScarvenger, checkIfCurrentRequestBelongsToCurrentScarvenger } from '../../../services/requisicoes/apiDevs/requisicoes'
 
 /*
 <HeaderOfScreen />
@@ -20,6 +20,23 @@ export default function AnaliseColeta(props) {
     const requestId = props.route.params.requestId
     const titulo = props.route.params.titulo
     const on_the_way = props.route.params.on_the_way
+    const [listToCheckIfRequestIdBelongsToCurrentUserId, setListToMakeLogicWithCurrentUser] = useState([])
+    const [itBelongs, setItBelongs] = useState(false)
+
+
+
+    useEffect(() => {
+        //recuperando a lsita pra salvar na variavel para controle
+        var list = checkIfCurrentRequestBelongsToCurrentScarvenger(scarvengerId, requestId)
+        setListToMakeLogicWithCurrentUser(list)
+
+         //se a lista de request retornada for igual a 0, significa que o id da requisicao atual nao pertence a nenhuma requisicao aceita pelo usuario
+        if (listToCheckIfRequestIdBelongsToCurrentUserId.length === 0) {
+            setItBelongs(false)
+        }else{
+            setItBelongs(true)
+        }
+    }, [])
 
     return <>
         <Text style={styles.txtTitle}>{titulo}</Text>
@@ -47,7 +64,7 @@ export default function AnaliseColeta(props) {
         </View>
 
         {
-            on_the_way ?
+            itBelongs ?
                 <CustomButton onPress={() => {
                     removeRequestForScarvenger(requestId, scarvengerId)
                 }} text={'Remover'} />

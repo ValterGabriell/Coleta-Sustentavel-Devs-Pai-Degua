@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
 import lixoVeropa from '../../../assets/lixoVeropa.jpg'
 
-const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price }) => (
+const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId }) => (
 
 
     <View style={styles.contanier}>
@@ -13,7 +13,8 @@ const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, descript
                     scarvengerId: userId,
                     requestId: id,
                     titulo: titulo,
-                    on_the_way:on_the_way
+                    on_the_way:on_the_way,
+                    requestByScarvengerId:requestByScarvengerId
                 })
 
             }
@@ -32,8 +33,8 @@ const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, descript
 );
 
 
-export default function ItemRenderCatador({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price }) {
-    return Item({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price })
+export default function ItemRenderCatador({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId }) {
+    return Item({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId })
 }
 
 const styles = StyleSheet.create({
