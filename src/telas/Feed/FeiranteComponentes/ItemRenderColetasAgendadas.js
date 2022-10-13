@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
 
 
-const Item = ({ imagem, titulo, material, data, local,descricao, props }) => (
+const Item = ({ imagem, title, description, ideal_time, props  }) => (
 
     <View>
         <View >
@@ -16,9 +16,9 @@ const Item = ({ imagem, titulo, material, data, local,descricao, props }) => (
                 <View style={styles.viewOne}>
                     <Image source={imagem} style={styles.imgLixo}></Image>
                     <View>
-                        <Text style={styles.txtName}>{titulo}</Text>
-                        <Text style={styles.txtComent}>{material}</Text>
-                        <Text style={styles.txtComent}>{local}</Text>
+                        <Text style={styles.txtName}>{title}</Text>
+                        <Text style={styles.txtComent}>{description}</Text>
+                        <Text style={styles.txtComent}>{ideal_time}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -26,8 +26,8 @@ const Item = ({ imagem, titulo, material, data, local,descricao, props }) => (
     </View>
 );
 
-export default function ItemRender({ imagem, titulo, material, data, descricao,local, props }) {
-    return Item({ imagem, titulo, material, data, descricao,local, props })
+export default function ItemRender({ imagem, title, description, ideal_time, props }) {
+    return Item({ imagem, title, description, ideal_time, props  })
 }
 
 const styles = StyleSheet.create({
