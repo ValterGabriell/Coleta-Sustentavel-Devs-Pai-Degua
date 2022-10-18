@@ -1,28 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity,Image } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import MapView, { Callout, Marker } from "react-native-maps";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Detalhe from "./buttonMais";
-import { DATA_COLETA_SESMA } from '../../services/constantes/MapConstant';
+import { getRequest } from "../../services/requisicoes/apiDevs/requisicoes";
 import lixoveropa from '../../assets/lixoVeropa.jpg';
+import { DATA_COLETA_SESMA } from "../../services/constantes/MapConstant";
 
 export default function GoogleMaps({ props }) {
 
     const [valorClicado, setValorClicado] = useState({})
     const [press, setPress] = useState(false)
+    const [requests, setrequest] = useState([])
+    const [arrayToMarker, setNewArray] = useState([])
 
-    //
+
+    useEffect(() => {
+        (async () => {
+          
+            const result = await getRequest()
+            setrequest(result)
+            
+         
+            
+        })()
+    }, [])
+
+
     //O elemento filho n consegue passar dados para o elemento pai, entao tive que jogar a tela de cima do mapa e a botao detalhes aqui pra dentro pra funcionar a programacao reativa
     return (
         <View>
             <View style={styles.LinkEndereco}>
-                <Text style={styles.titulo} maxFontSizeMultiplier={1.3}>{'Encontre os pontos'}</Text>
+                <Text style={styles.titulo} maxFontSizeMultiplier={1.3}>{press ? valorClicado.title : 'Encontre os pontos'}</Text>
                 <TouchableOpacity style={styles.mapa}>
                     <MaterialCommunityIcons name="google-maps" size={22} color="#FF5353" />
-                    <Text style={{ color: '#FF5353', fontSize: 14 }} maxFontSizeMultiplier={1.3}>{press ? valorClicado.name : "Clique em um marcador"}</Text>
+                    <Text style={{ color: '#FF5353', fontSize: 14 }} maxFontSizeMultiplier={1.3}>{press ? valorClicado.localization : "Clique em um marcador"}</Text>
                 </TouchableOpacity>
             </View>
-            
+
             <MapView style={styles.map}
                 initialRegion={{
                     latitude: -1.4529576253104869,
@@ -32,7 +46,7 @@ export default function GoogleMaps({ props }) {
                 }}
 
             >
-                {DATA_COLETA_SESMA.map((item) => (
+                {requests.map((item) => (
                     <Marker
                         key={item.id}
                         calloutAnchor={{
@@ -40,8 +54,8 @@ export default function GoogleMaps({ props }) {
                             y: 0.8,
                         }}
                         coordinate={{
-                            latitude: Number(item.latitude),
-                            longitude: Number(item.longitude),
+                            latitude: Number(item.localization.split(",", 2)[0]),
+                            longitude: Number(item.localization.split(",", 2)[1]),
                         }}
                         pinColor={item.gravidade === 10 && item.gravidade === 20 ? 'orange' : item.gravidade === 10 ? 'green' : 'red'}
                         onPress={() => {
@@ -49,18 +63,18 @@ export default function GoogleMaps({ props }) {
                             setPress(true)
                         }}
                         image={''}
-                        title= {'Barraca Da Joana'}
-                        description= {'Coleta de 2 kg de plastico'}
+                        title={'Barraca Da Joana'}
+                        description={'Coleta de 2 kg de plastico'}
                     >
-                        <Callout tooltip onPress={()=> {props.navigation.navigate('AnaliseColeta')}}>
+                        <Callout tooltip >
                             <View>
                                 <View style={styles.balao}>
-                                    <Text style={styles.texto} maxFontSizeMultiplier={1.1}>{'Nome da Barraca'}</Text>
-                                    <Text style={styles.subtitulo} maxFontSizeMultiplier={1.1}>{'Coleta 2kg de plastico'}</Text>
-                                    <Image source={lixoveropa} style={styles.imagem}/>
+                                    <Text style={styles.texto} maxFontSizeMultiplier={1.1}>{item.title}</Text>
+                                    <Text style={styles.subtitulo} maxFontSizeMultiplier={1.1}>{item.description}</Text>
+                                    <Image source={lixoveropa} style={styles.imagem} />
                                 </View>
-                                <View style={styles.arrowBorder}/>
-                                <View style={styles.arrow}/>
+                                <View style={styles.arrowBorder} />
+                                <View style={styles.arrow} />
                             </View>
                         </Callout>
                     </Marker>
@@ -76,7 +90,7 @@ export default function GoogleMaps({ props }) {
 
 const styles = StyleSheet.create({
     map: {
-        height:'100%',
+        height: '100%',
     },
     calloutText: {
         fontSize: 14,
@@ -96,7 +110,7 @@ const styles = StyleSheet.create({
     mapa: {
         flexDirection: 'row',
     },
-    balao:{
+    balao: {
         flexDirection: 'column',
         width: 150,
         alignSelf: 'flex-start',
@@ -106,7 +120,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         padding: 10,
     },
-    arrow:{
+    arrow: {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
         borderTopColor: '#fff',
@@ -114,7 +128,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: -32,
     },
-    arrowBorder:{
+    arrowBorder: {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
         borderTopColor: '#007a87',
@@ -122,18 +136,18 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: -0.5,
     },
-    texto:{
+    texto: {
         fontSize: 12,
         marginBottom: 5,
         fontWeight: '600',
     },
-    subtitulo:{
+    subtitulo: {
         fontSize: 12,
         marginBottom: 5,
         fontWeight: '500',
         color: '#FF5353'
     },
-    imagem:{
+    imagem: {
         width: 120,
         height: 80,
     }
