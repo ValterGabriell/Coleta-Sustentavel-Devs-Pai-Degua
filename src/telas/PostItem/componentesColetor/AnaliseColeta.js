@@ -26,10 +26,10 @@ export default function AnaliseColeta(props) {
 
 
     useEffect(() => {
+        
         //recuperando a lsita pra salvar na variavel para controle
         var list = checkIfCurrentRequestBelongsToCurrentScarvenger(scarvengerId, requestId)
-        setListToMakeLogicWithCurrentUser(list)
-
+        setListToMakeLogicWithCurrentUser(list)  
          //se a lista de request retornada for igual a 0, significa que o id da requisicao atual nao pertence a nenhuma requisicao aceita pelo usuario
         if (listToCheckIfRequestIdBelongsToCurrentUserId.length === 0) {
             setItBelongs(false)

@@ -5,6 +5,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 import { StyleSheet, StatusBar, SafeAreaView, Dimensions } from "react-native";
+import { FontAwesome } from '@expo/vector-icons'
 
 /**
  * Fim dos imports react native
@@ -202,7 +203,7 @@ const App = (props) => {
       title={item.title}
       description={item.description}
       ideal_time={item.ideal_time}
-/>
+    />
   )
 
   //Item render dos anuncios
@@ -271,7 +272,9 @@ const App = (props) => {
 
       <SafeAreaView style={styles.container}>
         <HeaderComponentFeirante nomeUser={"Feirante"} props={props} />
-
+        <FontAwesome name="plus" size={32} color={"#FF0000"} style={{ marginLeft: 16 }} onPress={() => {
+          props.navigation.navigate('CameraRotas')
+        }} />
         <Text style={styles.secondContainerName}>Suas postagens</Text>
 
         <View style={styles.viewOut}>
@@ -346,7 +349,8 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     color: "#FF5353",
     fontSize: 16,
-    fontWeight: '500'
+    fontWeight: '500',
+    marginLeft:16
   }
 });
 

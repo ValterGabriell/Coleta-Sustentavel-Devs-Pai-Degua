@@ -53,9 +53,6 @@ const styles = StyleSheet.create({
     txtComent: {
         marginLeft: 8,
         fontSize: 14
-    },
-    txtLocal:{
-
     }
 });
 

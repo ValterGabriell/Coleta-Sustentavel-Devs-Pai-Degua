@@ -7,7 +7,17 @@ import apiDevs from '../../api/apiDevs'
 export async function getRequest() {
     try {
         const result = await apiDevs.get('requests')
-        return result.data
+        var newList = []
+        var list = result.data
+        list.forEach((el)=>{
+            if(!el.on_the_way && el.localization !== "example"){
+                newList.push(el)
+            }
+        })
+       
+        return newList
+        
+      
     } catch (error) {
         console.log(error)
         return {}

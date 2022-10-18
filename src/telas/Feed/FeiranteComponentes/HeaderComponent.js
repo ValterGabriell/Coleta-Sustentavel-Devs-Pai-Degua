@@ -12,13 +12,8 @@ export default function HeaderComponent({ nomeUser, props }) {
         <View style={styles.container}>
             <Text style={styles.toolbarName}>Olá, {nomeUser}!</Text>
 
-            <FontAwesome name="question-circle-o" size={32} color={"#FF0000"} style={{ marginLeft: 16 }} onPress={() => {
-                props.navigation.navigate("Instrucao")
-            }} />
 
-            <FontAwesome name="plus" size={32} color={"#FF0000"} style={{ marginRight: 16 }} onPress={() => {
-                props.navigation.navigate('CameraRotas')
-            }} />
+         
 
             <FontAwesome name="sign-out" size={32} color={"#000"} style={{ marginRight: 16 }} onPress={() => {
                 logout(props)
