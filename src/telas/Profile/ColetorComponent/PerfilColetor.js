@@ -1,5 +1,5 @@
-import React, {useState}from "react";
-import { View, StyleSheet, Dimensions, Text, SafeAreaView, TouchableOpacity,Image } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Dimensions, Text, SafeAreaView, TouchableOpacity, Image } from "react-native";
 
 import Descricao from "../../../componentes/Descricao";
 import CampoSecurity from '../componente/CampoSecurity';
@@ -17,7 +17,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 //colocar scrollview
 
-export default function PerfilColetor(user){
+export default function PerfilColetor({user}) {
 
     //Manipular a escolha dos residuos 
 
@@ -34,70 +34,77 @@ export default function PerfilColetor(user){
     }
     */
 
-    return<SafeAreaView style={styles.container}>
-        
-        <TopoPerfilEditavel user={user}/>
-        <Ionicons name="ios-notifications-outline" size={24} color="#777778" style={styles.notificacao} onPress={() => {}}/>
-        
-        <TouchableOpacity onPress={() => {}} style={styles.editarTopo}>
-            <AntDesign name="edit" size={18} color="#777778"/>
-        </TouchableOpacity>
+    return <SafeAreaView style={styles.container}>
 
-        <Text style={{textAlign: 'center', marginTop: 10, color: '#FF5353'}}>Material que coleta</Text> 
+        <TopoPerfilEditavel user={user} />
+        <Ionicons name="ios-notifications-outline" size={24} color="#777778" style={styles.notificacao} onPress={() => { }} />
+
+        <Text style={{ textAlign: 'center', marginTop: 10, color: '#FF5353' }}>Material que coleta</Text>
 
         <View style={styles.material}>
-            <View style={{marginStart: 5, alignItems: 'center', marginEnd: 10}}>
-                <MaterialCommunityIcons name="leaf-circle" size={38} color="#FF5353"/>
+            <View style={{ marginStart: 5, alignItems: 'center', marginEnd: 10 }}>
+                <MaterialCommunityIcons name="leaf-circle" size={38} color="#FF5353" />
                 <Text>{'Orgânico'}</Text>
             </View>
-            <View  style={{marginStart: 10, alignItems: 'center'}}>
-                <FontAwesome5 name="plus-circle" size={34} color="#C9C9C9" onPress={() => {}}/>
+            <View style={{ marginStart: 10, alignItems: 'center' }}>
+                <FontAwesome5 name="plus-circle" size={34} color="#C9C9C9" onPress={() => { }} />
                 <Text>{"Novo"}</Text>
             </View>
         </View>
 
 
-        <AntDesign name="edit" size={20} color="#777778" onPress={() => {}} style={styles.editar2}/>
 
-        <CampoDados/>
-        
-        <AntDesign name="edit" size={20} color="#777778" onPress={() => {}} style={styles.editar}/>
-        <Descricao/>
-        <CampoSecurity/>
+        <AntDesign name="edit" size={20} color="#777778" onPress={() => { }} style={styles.editar2} />
+
+        <CampoDados />
+
+        <AntDesign name="edit" size={20} color="#777778" onPress={() => { }} style={styles.editar} />
+        <Descricao />
+
+        <TouchableOpacity style={styles.botao}>
+            <MaterialIcons name="email" size={30} color="#FF5353" />
+            <Text style={styles.subtitulo}>Alterar email</Text>
+        </TouchableOpacity>
     </SafeAreaView>
 }
 
 const styles = StyleSheet.create({
-    container:{
-
+    container: {
+            
     },
-    notificacao:{
+    notificacao: {
         position: 'absolute',
         marginStart: 350,
         marginTop: 30,
     },
 
-    material:{
+    material: {
         //width: 315,
         marginHorizontal: 134,
         marginTop: 8,
         flexDirection: 'row',
         alignItems: 'center',
     },
-    editarTopo:{
+    editarTopo: {
         position: 'absolute',
         marginStart: 280,
         marginTop: 192,
     },
-    editar:{
+    editar: {
         position: 'absolute',
         marginStart: 370,
         marginTop: 510,
     },
-    editar2:{
+    editar2: {
         position: 'absolute',
         marginStart: 370,
         marginTop: 386,
+    }, botao: {
+        flexDirection: 'row',
+        marginVertical: 30,
+        marginLeft:16,
+        marginEnd: 40,
+        alignItems: 'center',
     }
 
 })

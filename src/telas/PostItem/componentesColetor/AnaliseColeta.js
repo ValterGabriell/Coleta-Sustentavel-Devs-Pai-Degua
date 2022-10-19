@@ -19,25 +19,8 @@ export default function AnaliseColeta(props) {
     const scarvengerId = props.route.params.scarvengerId
     const requestId = props.route.params.requestId
     const titulo = props.route.params.titulo
-    const on_the_way = props.route.params.on_the_way
-    const [listToCheckIfRequestIdBelongsToCurrentUserId, setListToMakeLogicWithCurrentUser] = useState([])
-    const [itBelongs, setItBelongs] = useState(false)
-
-
-
-    useEffect(() => {
-        
-        //recuperando a lsita pra salvar na variavel para controle
-        var list = checkIfCurrentRequestBelongsToCurrentScarvenger(scarvengerId, requestId)
-        setListToMakeLogicWithCurrentUser(list)  
-         //se a lista de request retornada for igual a 0, significa que o id da requisicao atual nao pertence a nenhuma requisicao aceita pelo usuario
-        if (listToCheckIfRequestIdBelongsToCurrentUserId.length === 0) {
-            setItBelongs(false)
-        }else{
-            setItBelongs(true)
-        }
-    }, [])
-
+    const aceita = props.route.params.aceita
+ 
     return <>
         <Text style={styles.txtTitle}>{titulo}</Text>
         <View style={{ flexDirection: 'row', marginTop: 4 }}>
@@ -64,13 +47,19 @@ export default function AnaliseColeta(props) {
         </View>
 
         {
-            itBelongs ?
-                <CustomButton onPress={() => {
-                    removeRequestForScarvenger(requestId, scarvengerId)
-                }} text={'Remover'} />
+            aceita ?
+                <View>
+                    <CustomButton onPress={() => {
+                        removeRequestForScarvenger(requestId, scarvengerId, props)
+                    }} text={'Remover'} />
+
+                    <CustomButton onPress={() => {
+                        removeRequestForScarvenger(requestId, scarvengerId)
+                    }} text={'Finalizar'} />
+                </View>
                 :
                 <CustomButton onPress={() => {
-                    addRequestForScarvenger(requestId, scarvengerId)
+                    addRequestForScarvenger(requestId, scarvengerId,props)
                 }} text={'Solicitar'} />
         }
 

@@ -4,7 +4,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import { logout } from "../../../services/requisicoes/apiDevs/users";
 
 
-export default function HeaderComponentCatador({ nomeUser }) {
+export default function HeaderComponentCatador({ nomeUser, props }) {
     return <>
        
        

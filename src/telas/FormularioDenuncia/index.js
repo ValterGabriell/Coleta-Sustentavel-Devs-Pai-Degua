@@ -18,7 +18,6 @@ export default function FormularioDenuncia(props) {
     const uri = props.route.params.uri
     //receber se é catador ou nao
     const { userType } = useContext(AuthContext)
-    const isCatador = userType.isCatador
     const userId = userType.userId
 
 
@@ -28,8 +27,10 @@ export default function FormularioDenuncia(props) {
     const [description, setdescription] = useState("")
     const [quality, setQuality] = useState();
     const [Qtd, setQtd] = useState();
+    const [price, setPrice] = useState();
+    const [horario, setHorario] = useState();
     const [arrayChip, setArrayChip] = useState([]);
-
+    const formData = new FormData();
 
     useEffect(() => {
         (async () => {
@@ -43,7 +44,12 @@ export default function FormularioDenuncia(props) {
             let location = await Location.getCurrentPositionAsync({});
             setLatitude(location.coords.latitude)
             setLongitude(location.coords.longitude)
-            console.log("Photo: " + uri);
+
+
+
+            formData.append('file', uri)
+          
+
 
 
 
@@ -66,14 +72,14 @@ export default function FormularioDenuncia(props) {
                 userId,
                 title,
                 description,
-                "teste",
+                formData,
                 localization,
                 false,
                 quality,
                 false,
-                "12:00:00",
+                horario,
                 Qtd,
-                15,
+                price,
                 arrayChip,
                 props
             )
@@ -87,159 +93,129 @@ export default function FormularioDenuncia(props) {
 
     return <>
         {
-            /**
-             * Se for catador
-             */
-            isCatador ?
-                <SafeAreaView>
-                    <ScrollView>
-                        <View style={{ flexDirection: "row" }}>
-                            <FontAwesome style={styles.iconPerson} name="user-o" size={20} color="#000" onPress={()=>{
-                                console.log("press")
-                            }}></FontAwesome>
-                            <Text style={styles.txtMain}>Olá, user!</Text>
-                        </View>
 
+            <SafeAreaView>
+                <ScrollView>
+                    <FontAwesome style={styles.iconHeader} name="chevron-left" size={20} color="#000" />
+                    <TextInput
+                        placeholder="Digite um título!"
+                        style={styles.input}
+                        onChangeText={settitle}
+                        value={title}
+                    />
+
+                    <Image style={styles.imgModal} source={{ uri }} />
+
+                    <TextInput
+                        placeholder="Descrição"
+                        style={styles.inputDescricao}
+                        onChangeText={setdescription}
+                        value={description}
+                        multiline={true}
+                        numberOfLines={10}
+                    />
+
+                    <View style={{ flexDirection: "row" }}>
+                        <FontAwesome style={styles.iconPerson} name="map-marker" size={20} color="#000" />
+                        <Text style={styles.txtCoordenadas}>{latitude}</Text>
+                        <Text style={styles.txtCoordenadas}>{longitude}</Text>
+                    </View>
+
+                    <View>
+                        <Text style={styles.materiaisName}>{"Horário"}</Text>
+                    
                         <TextInput
-                            placeholder="Digite aqui seu título!"
-                            placeholderTextColor={"#000"}
-                            style={styles.input}
-                            onChangeText={settitle}
-                            value={title}
-                        />
-                        <Image style={styles.imgModal} source={{ uri }} />
-
-                        <View style={{ flexDirection: "row" }}>
-                            <FontAwesome style={styles.iconPerson} name="map-marker" size={20} color="#000" />
-                            <Text style={styles.txtCoordenadas}>{latitude}</Text>
-                            <Text style={styles.txtCoordenadas}>{longitude}</Text>
-                        </View>
-
-                        <TextInput
-                            placeholder="Descreva sua denúncia"
-                            style={styles.input}
-                            onChangeText={setdescription}
-                            value={description}
-                        />
-
-
-
-
-                        <Button onPress={sendToDatabase}>Enviar</Button>
-                        <Button onPress={() => {
-                            props.navigation.navigate("MyTabsScreen")
-                        }}>Cancelar</Button>
-
-
-                    </ScrollView>
-                </SafeAreaView>
-
-                : /**
-                Se for feirante */
-
-                <SafeAreaView>
-                    <ScrollView>
-                        <FontAwesome style={styles.iconHeader} name="chevron-left" size={20} color="#000" />
-                        <TextInput
-                            placeholder="Digite um título!"
-                            style={styles.input}
-                            onChangeText={settitle}
-                            value={title}
+                            placeholder="Basta por o valor inteiro. Ex. 12 se tornará 12:00"
+                            style={styles.inputHorario}
+                            onChangeText={setHorario}
+                            value={horario}
+                            keyboardType={"numeric"}
                         />
 
-                        <Image style={styles.imgModal} source={{ uri }} />
-
-                        <TextInput
-                            placeholder="Descrição"
-                            style={styles.inputDescricao}
-                            onChangeText={setdescription}
-                            value={description}
-                            multiline={true}
-                            numberOfLines={10}
-                        />
-
-                        <View style={{ flexDirection: "row" }}>
-                            <FontAwesome style={styles.iconPerson} name="map-marker" size={20} color="#000" />
-                            <Text style={styles.txtCoordenadas}>{latitude}</Text>
-                            <Text style={styles.txtCoordenadas}>{longitude}</Text>
-                        </View>
-
-                        <View style={{ flexDirection: "row", marginTop: 6, marginLeft: 8 }}>
-                            <Text style={styles.txtCoordenadas}>Horário: </Text>
-
-                        </View>
+                    </View>
 
 
 
 
-                        <Text style={styles.materiaisName}>{"Materiais"}</Text>
-                        
-                        
-                        <View style={{flexDirection:'column'}}>
+                    <Text style={styles.materiaisName}>{"Materiais"}</Text>
+
+
+                    <View style={{ flexDirection: 'row' }}>
                         <Text style={styles.materiaisName}>{"1 - Plástico"}</Text>
                         <Text style={styles.materiaisName}>{"2 - Papelão"}</Text>
                         <Text style={styles.materiaisName}>{"3 - Vidro"}</Text>
                         <Text style={styles.materiaisName}>{"4 - Oléos"}</Text>
 
+                    </View>
+                    <View style={{ flexDirection: "column", marginLeft: 8, marginTop: 8, justifyContent: 'center' }}>
+                        <SelectableChips initialChips={[1, 2, 3, 4]} onChangeChips={(chips) =>
+                            setArrayOfMaterials(chips)
+                        } alertRequired={false} />
+
+
+                    </View>
+
+
+
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                        <View>
+                            <Text style={styles.materiaisName}>{"Quantidade"}</Text>
+                            <TextInput
+                                placeholder="Ex. 1"
+                                style={styles.inputQuantidade}
+                                onChangeText={setQtd}
+                                value={Qtd}
+                                keyboardType={"number-pad"}
+                            />
+
                         </View>
-                        <View style={{ flexDirection: "column", marginLeft: 8, marginTop: 8, justifyContent: 'center' }}>
-                            <SelectableChips initialChips={[1, 2, 3, 4]} onChangeChips={(chips) =>
-                                setArrayOfMaterials(chips)
-                            } alertRequired={false} />
 
-
-                        </View>
-
-
-
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <View>
-                                <Text style={styles.materiaisName}>{"Quantidade"}</Text>
-                                <TextInput
-                                    placeholder="Ex. 1"
-                                    style={styles.inputQuantidade}
-                                    onChangeText={setQtd}
-                                    value={Qtd}
-                                    keyboardType={"number-pad"}
-                                />
-                            </View>
-
-                            <View>
-                                <Text style={styles.materiaisName}>{"Qualidade"}</Text>
-
-                                <Picker
-                                    style={{ width: 120, marginLeft: 8 }}
-                                    ref={pickerRef}
-                                    selectedValue={quality}
-                                    onValueChange={(itemValue, itemIndex) =>
-                                        setQuality(itemValue)
-                                    }>
-                                    <Picker.Item label="Excelente" value="Excelente" />
-                                    <Picker.Item label="Bom" value="Bom" />
-                                    <Picker.Item label="Normal" value="Normal" />
-                                    <Picker.Item label="Ruim" value="Ruim" />
-
-                                </Picker>
-                            </View>
-
-
+                        <View>
+                            <Text style={styles.materiaisName}>{"Valor em R$"}</Text>
+                            <TextInput
+                                placeholder="Ex. 1"
+                                style={styles.inputQuantidade}
+                                onChangeText={setPrice}
+                                value={price}
+                                keyboardType={"number-pad"}
+                            />
 
                         </View>
 
 
 
+                        <View>
+                            <Text style={styles.materiaisName}>{"Qualidade"}</Text>
 
-                        <TouchableOpacity>
-                            <Button mode="elevated" color="#FF0000" style={styles.buttonSend} onPress={() => {
-                                sendToDatabase()
-                            }}>
-                                Enviar
-                            </Button>
-                        </TouchableOpacity>
+                            <Picker
+                                style={{ width: 120, marginLeft: 8 }}
+                                ref={pickerRef}
+                                selectedValue={quality}
+                                onValueChange={(itemValue, itemIndex) =>
+                                    setQuality(itemValue)
+                                }>
+                                <Picker.Item label="Excelente" value="Excelente" />
+                                <Picker.Item label="Bom" value="Bom" />
+                                <Picker.Item label="Normal" value="Normal" />
+                                <Picker.Item label="Ruim" value="Ruim" />
+
+                            </Picker>
+                        </View>
+
+                    </View>
 
 
-                    </ScrollView>
-                </SafeAreaView >
+                    <TouchableOpacity>
+                        <Button mode="elevated" color="#FF0000" style={styles.buttonSend} onPress={() => {
+                            sendToDatabase()
+                        }}>
+                            Enviar
+                        </Button>
+                    </TouchableOpacity>
+
+
+                </ScrollView>
+            </SafeAreaView >
 
 
         }
@@ -308,6 +284,20 @@ const styles = StyleSheet.create({
     },
     inputQuantidade: {
         marginLeft: 20,
+        marginTop: 8,
+        borderLeftWidth: 1,
+        borderTopWidth: 1,
+        borderRightWidth: 1,
+        borderBottomWidth: 1,
+        borderTopLeftRadius: 12,
+        borderTopRightRadius: 12,
+        borderBottomRightRadius: 12,
+        borderBottomLeftRadius: 12,
+        textAlign: 'center'
+    },
+    inputHorario: {
+        marginLeft: 16,
+        marginRight: 16,
         marginTop: 8,
         borderLeftWidth: 1,
         borderTopWidth: 1,

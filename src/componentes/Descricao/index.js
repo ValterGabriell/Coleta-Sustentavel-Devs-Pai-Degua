@@ -1,16 +1,23 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native";
+import { AntDesign } from '@expo/vector-icons';
 
 
-
-export default function Descricao({}){
-    return(
+export default function Descricao({ }) {
+    return (
         <View style={styles.contanier}>
-            <Text style={styles.titulo}>Descrição</Text>
-            <Text style={{marginHorizontal: 16,marginTop: 10}}>
-            {
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
-            }
+            <View style={{ flexDirection: 'row' }}>
+                <Text style={styles.titulo}>Descrição</Text>
+                <TouchableOpacity onPress={() => { }} style={styles.editarTopo}>
+                    <AntDesign name="edit" size={18} color="#777778" />
+                </TouchableOpacity>
+            </View>
+
+            <Text style={{ marginHorizontal: 16, marginTop: 10 }}>
+                {
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                }
             </Text>
         </View>
     );
@@ -18,13 +25,13 @@ export default function Descricao({}){
 
 
 const styles = StyleSheet.create({
-    contanier:{
+    contanier: {
         marginTop: 26,
     },
-    titulo:{
+    titulo: {
         color: '#FF5353',
-        fontWeight: '600', 
-        fontSize: 16, 
+        fontWeight: '600',
+        fontSize: 16,
         marginStart: 16
     }
 })
