@@ -3,15 +3,17 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import MapView, { Callout, Marker } from "react-native-maps";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { getRequest } from "../../services/requisicoes/apiDevs/requisicoes";
+import { getPointsCollect } from "../../services/requisicoes/apiDevs/requisicoes";
 import lixoveropa from '../../assets/lixoVeropa.jpg';
-import { DATA_COLETA_SESMA } from "../../services/constantes/MapConstant";
+
 
 export default function GoogleMaps({ props }) {
 
     const [valorClicado, setValorClicado] = useState({})
     const [press, setPress] = useState(false)
     const [requests, setrequest] = useState([])
-    const [arrayToMarker, setNewArray] = useState([])
+    const [pointsCollect, setpointCollect] = useState([])
+    
 
 
     useEffect(() => {
@@ -19,6 +21,10 @@ export default function GoogleMaps({ props }) {
           
             const result = await getRequest()
             setrequest(result)
+
+
+            const resultPoints = await getPointsCollect()
+            setpointCollect(resultPoints)
             
          
             
@@ -57,14 +63,14 @@ export default function GoogleMaps({ props }) {
                             latitude: Number(item.localization.split(",", 2)[0]),
                             longitude: Number(item.localization.split(",", 2)[1]),
                         }}
-                        pinColor={item.gravidade === 10 && item.gravidade === 20 ? 'orange' : item.gravidade === 10 ? 'green' : 'red'}
+                        pinColor={'red'}
                         onPress={() => {
                             setValorClicado(item)
                             setPress(true)
                         }}
                         image={''}
-                        title={'Barraca Da Joana'}
-                        description={'Coleta de 2 kg de plastico'}
+                        title={'Ponto de coleta'}
+                
                     >
                         <Callout tooltip >
                             <View>
@@ -78,7 +84,44 @@ export default function GoogleMaps({ props }) {
                             </View>
                         </Callout>
                     </Marker>
-                ))}
+                ))
+                }
+
+                {
+                    pointsCollect.map((item) => (
+                        <Marker
+                            key={item.id}
+                            calloutAnchor={{
+                                x: 1.9,
+                                y: 0.8,
+                            }}
+                            coordinate={{
+                                latitude: Number(item.localization.split(",", 2)[0]),
+                                longitude: Number(item.localization.split(",", 2)[1]),
+                            }}
+                            pinColor={'green'}
+                            onPress={() => {
+                                setValorClicado(item)
+                                setPress(true)
+                            }}
+                            image={''}
+                            title={'Barraca Da Joana'}
+                            description={'Coleta de 2 kg de plastico'}
+                        >
+                            <Callout tooltip >
+                                <View>
+                                    <View style={styles.balao}>
+                                        <Text style={styles.texto} maxFontSizeMultiplier={1.1}>{item.name}</Text>
+                                        <Text style={styles.subtitulo} maxFontSizeMultiplier={1.1}>{item.description}</Text>
+                                        <Image source={lixoveropa} style={styles.imagem} />
+                                    </View>
+                                    <View style={styles.arrowBorder} />
+                                    <View style={styles.arrow} />
+                                </View>
+                            </Callout>
+                        </Marker>
+                    ))
+                }
 
             </MapView>
 

@@ -10,7 +10,28 @@ export async function getRequest() {
         var newList = []
         var list = result.data
         list.forEach((el)=>{
-            if(!el.on_the_way && el.localization !== "example"){
+            if(!el.on_the_way){
+                newList.push(el)
+            }
+        })
+       
+        return newList
+        
+      
+    } catch (error) {
+        console.log(error)
+        return {}
+    }
+}
+
+
+export async function getPointsCollect() {
+    try {
+        const result = await apiDevs.get('collection_points')
+        var newList = []
+        var list = result.data
+        list.forEach((el)=>{
+            if(!el.on_the_way){
                 newList.push(el)
             }
         })
@@ -26,6 +47,7 @@ export async function getRequest() {
 
 
 export async function postRequest(merchant_id, title, description, photo, localization, status, state, on_the_way, ideal_time, amount, price, residues, props) {
+    
     try {
         await apiDevs.post('requests', {
             merchant_id: merchant_id,
@@ -56,10 +78,12 @@ export async function postRequest(merchant_id, title, description, photo, locali
     }
 }
 
-export async function addRequestForScarvenger(requestId, scarvengerId) {
+export async function addRequestForScarvenger(requestId, scarvengerId,props) {
     try {
         await apiDevs.post(`scavengers/addRequest/${scarvengerId}/${requestId}`).then((res) => {
             if (res.status === 200) {
+                
+                props.navigation.goBack()
                 return true
             } else {
                 return false
@@ -74,11 +98,13 @@ export async function addRequestForScarvenger(requestId, scarvengerId) {
     }
 }
 
-export async function removeRequestForScarvenger(requestId, scarvengerId) {
+export async function removeRequestForScarvenger(requestId, scarvengerId, props) {
     try {
         await apiDevs.post(`scavengers/removeRequest/${scarvengerId}/${requestId}`).then((res) => {
             if (res.status === 200) {
+                props.navigation.goBack()
                 return true
+                
             } else {
                 return false
             }
@@ -123,28 +149,13 @@ export async function getRequestsByMerchantId(merchant_id) {
     }
 }
 
-export async function checkIfCurrentRequestBelongsToCurrentScarvenger(scarvengerId, requestId) {
+export async function checkIfCurrentRequestBelongsToCurrentScarvenger(scarvengerId) {
     try {
         //recuperamos todas as requisicoes do catador
         const result = await (await apiDevs.get(`scavengers/${scarvengerId}`))
         var requests = result.data.requests
-        //criando lista para receber a requisicao atual e que combina o id com as requisicoes aceitas pelo catador
-        var listWithRequisitionsThatDontHaveTheSameIdAsOurScarvengerId = []
-
-        //percorremos as requisicoes do catador
-        for (let index = 0; index < requests.length; index++) {
-            //salvamos os id das requisicoes na variavel element
-            const element = requests[index].id;
-
-            //checamos se o id da lista de requisicao aceita pelo usuario é igual ao id atual da requisicao
-            if (element === requestId) {
-                //se for, a gente salva na lista
-                listWithRequisitionsThatDontHaveTheSameIdAsOurScarvengerId.push(element)
-            }
-        }
-
         //retornando a lista
-        return listWithRequisitionsThatDontHaveTheSameIdAsOurScarvengerId
+        return requests
 
 
 

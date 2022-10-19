@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
 import lixoVeropa from '../../../assets/lixoVeropa.jpg'
 
-const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId }) => (
+const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita }) => (
 
 
     <View style={styles.contanier}>
@@ -14,7 +14,8 @@ const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, descript
                     requestId: id,
                     titulo: titulo,
                     on_the_way:on_the_way,
-                    requestByScarvengerId:requestByScarvengerId
+                    requestByScarvengerId:requestByScarvengerId,
+                    aceita:aceita
                 })
 
             }
@@ -33,14 +34,16 @@ const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, descript
 );
 
 
-export default function ItemRenderCatador({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId }) {
-    return Item({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId })
+export default function ItemRenderCatadorAceita({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita }) {
+    return Item({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita })
 }
 
 const styles = StyleSheet.create({
     contanier: {
-        marginBottom: 36,
-        marginLeft:16,
+        marginBottom: 12,
+        marginTop:12,
+        marginLeft:16
+        
     },
     viewOne: {
         flexDirection: 'row',
