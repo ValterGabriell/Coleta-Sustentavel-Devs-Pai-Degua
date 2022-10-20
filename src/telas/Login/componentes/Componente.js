@@ -1,18 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SafeAreaView, Image, StyleSheet, Text, View } from "react-native";
 import CustomInput from "../../../componentes/CustomInput";
 import CustomButton from "../../../componentes/CustomButton/CustomButton";
 import CustonLink from "../../../componentes/Links/CustonLink";
 import LoginGoogle from "../Autenticacao/loginGoogle";
 import logo from '../../../../assets/logoAzul.png'
-import {AuthContext} from '../../../contexts/auth'
+import { AuthContext } from '../../../contexts/auth'
 
 
 export default function Componente({ props }) {
 
     const [email, setEmail] = useState('catador@gmail.com');
     const [senha, setSenha] = useState('123');
-    const {signIn} = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
+    const { passIfIsLogged } = useContext(AuthContext)
+  
+
+    useEffect(()=>{
+        passIfIsLogged()
+    },[])
 
 
     return (
@@ -32,10 +38,10 @@ export default function Componente({ props }) {
                     secureTextEntry={true}
 
                 />
-                
+
                 <CustomButton text='Login' onPress={() => {
 
-                   signIn(email, senha)
+                    signIn(email, senha)
 
                 }} />
 
