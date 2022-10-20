@@ -147,6 +147,7 @@ export async function getRequestsByMerchantId(merchant_id) {
         const result = await (await apiDevs.get(`merchants/${merchant_id}`))
         var listRequest = result.data.requests
         var arrayWithRequestThatHaveOnTheWayEqualsTrue = []
+        
 
         for (let index = 0; index < listRequest.length; index++) {
             var isOnTheWay = listRequest[index].on_the_way
@@ -154,7 +155,8 @@ export async function getRequestsByMerchantId(merchant_id) {
                 arrayWithRequestThatHaveOnTheWayEqualsTrue.push(listRequest[index])
             }
         }
-
+       
+    
         return arrayWithRequestThatHaveOnTheWayEqualsTrue
     } catch (error) {
         console.log(error);

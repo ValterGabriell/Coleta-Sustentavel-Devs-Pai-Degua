@@ -20,23 +20,22 @@ export default function PerfilUser(props) {
     var email = props.route.params.email
     var photo = props.route.params.photo
     var phone = props.route.params.phone
+    var observation = props.route.params.observation
+    console.log(observation);
 
 
 
     return <SafeAreaView style={styles.container}>
         <TopoPerfil nome={name} email={email} photo={photo} />
-        <Text style={{ textAlign: 'center', marginVertical: 10, color: '#FF5353' }}>Material que coleta</Text>
-        <View style={styles.material}>
-            <View style={{ marginStart: 10, alignItems: 'center', marginEnd: 10 }}>
-                <MaterialCommunityIcons name="leaf-circle" size={48} color="#FF5353" />
-                <Text>{'Orgânico'}</Text>
-            </View>
-        </View>
 
-        <Descricao />
+        <Text style={styles.titulo}>Observações</Text>
+        <Text style={{  marginHorizontal: 16, marginTop: 8 }}>
+           {observation}
+        </Text>
+
         <Text style={styles.titulo}>Contato</Text>
-        <ButtonContact />
-        
+        <ButtonContact phone={phone} />
+
     </SafeAreaView>
 }
 
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 16,
         marginStart: 16,
-        marginTop: 20,
+        marginTop: 32,
     }
 
 })

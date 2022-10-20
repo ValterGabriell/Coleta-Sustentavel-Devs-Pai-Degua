@@ -9,33 +9,35 @@ import cameraEdite from '../../../assets/camera.png';
 
 const { width } = Dimensions.get('screen');
 
-export default function TopoPerfil({user}) {
+export default function TopoPerfil({ user }) {
 
     function ImagePickerCallback(data) {
         console.log(data);
     }
 
-    return <View style={styles.topo}>
-        <View style={styles.editeFoto}>
-            <Image source={ColetorFoto} style={styles.picture} />
-            <TouchableOpacity style={styles.editeCamera} onPress={() => ImagePicker.launchImageLibrary({
+    return <>
+        <View style={styles.topo}>
+            <View style={styles.editeFoto}>
+                <Image source={ColetorFoto} style={styles.picture} />
+                <TouchableOpacity style={styles.editeCamera} onPress={() => ImagePicker.launchImageLibrary({
 
 
-            }, ImagePickerCallback)}>
-                <Image source={cameraEdite} />
-            </TouchableOpacity>
+                }, ImagePickerCallback)}>
+                    <Image source={cameraEdite} />
+                </TouchableOpacity>
 
-            <Text style={styles.username}>{user.name}</Text>
-            <Text style={styles.email} >{user.email}</Text>
-            <View style={{ flexDirection: 'row', marginTop: 0 }}>
-                <AntDesign name="star" size={20} color="#FF8C8C" />
-                <Text>{'4,8'}</Text>
+                <Text style={styles.username}>{user.name}</Text>
+                <Text style={styles.email} >{user.email}</Text>
+                <View style={{ flexDirection: 'row', marginTop: 0 }}>
+                    <AntDesign name="star" size={20} color="#FF8C8C" />
+                    <Text>{'4,8'}</Text>
+                </View>
+
+
             </View>
 
-
         </View>
-
-    </View>
+    </>
 }
 
 const styles = StyleSheet.create({
