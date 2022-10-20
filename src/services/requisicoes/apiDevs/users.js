@@ -75,6 +75,7 @@ export async function trocarCpfAndPhoneUsuario(userId, cpf, phone) {
 }
 
 
+
 /**
  * atualizar nome do usuario
  * @param {nome}  

@@ -1,26 +1,28 @@
 import React from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Text, StyleSheet} from "react-native";
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
 //Componente do campo de segurança
-export default function CampoSecurity(){
-    return(
+export default function CampoSecurity({  }){
+
+
+    return<>
         <View style={{marginVertical: 20}}>
             <Text style={styles.titulo}>Segurança</Text>
             <View style={{marginHorizontal: 50, flexDirection: 'row'}}>
-                <TouchableOpacity style={styles.botao}>
-                    <MaterialIcons name="email" size={30} color="#FF5353" />
+                <TouchableOpacity style={styles.botao} onPress={() => {}}>
+                    <MaterialIcons name="email" size={30} color="#FF5353"/>
                     <Text style={styles.subtitulo}>Alterar email</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{flexDirection: 'row', marginVertical: 30, alignItems:'center'}}>
+                <TouchableOpacity style={{flexDirection: 'row', marginVertical: 30, alignItems:'center'}} onPress={()=>{}}>
                     <MaterialCommunityIcons name="shield-key" size={30} color="#FF5353" />
                     <Text style={styles.subtitulo}>Alterar a senha</Text>
                 </TouchableOpacity>
             </View>
         </View>
-    );
+    </>
 }
 
 const styles = StyleSheet.create({

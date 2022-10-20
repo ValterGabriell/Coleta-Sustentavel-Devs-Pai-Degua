@@ -4,15 +4,15 @@ import { View, StyleSheet, Dimensions, Text, SafeAreaView, TouchableOpacity,Imag
 import Descricao from "../../../componentes/Descricao";
 import CampoSecurity from '../componente/CampoSecurity';
 import CampoDados from '../componente/CampoDados';
-import TopoPerfil from './TopoPerfil';
 import TopoPerfilEditavel from './TopoPerfilEditavel';
 
+import {materialColeta} from '../../../services/requisicoes/apiDevs/usersCatador';
 //icones
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+
 
 
 //colocar scrollview
@@ -22,42 +22,39 @@ export default function PerfilColetor(user){
     //Manipular a escolha dos residuos 
 
     const [material, setMaterial] = useState({})
+    const [escolhe, setEscolher] = useState()
 
-    /*
-    function Manipular(resp){
-        if(resp == 'novo'){
-            switch(tipo){
-                case 'Plastico':
+    async function alteraMaterial(){
+        const resultado = await materialColeta()
 
-            }
+        if(resultado){
+            setMaterial(resultado)
+        }
+        else{
+            return{}
         }
     }
-    */
 
+    
     return<SafeAreaView style={styles.container}>
         
         <TopoPerfilEditavel user={user}/>
-        <Ionicons name="ios-notifications-outline" size={24} color="#777778" style={styles.notificacao} onPress={() => {}}/>
+        <Ionicons name="ios-notifications-outline" size={24} color="#777778" style={styles.notificacao} />
         
-        <TouchableOpacity onPress={() => {}} style={styles.editarTopo}>
-            <AntDesign name="edit" size={18} color="#777778"/>
-        </TouchableOpacity>
 
         <Text style={{textAlign: 'center', marginTop: 10, color: '#FF5353'}}>Material que coleta</Text> 
 
         <View style={styles.material}>
+    
             <View style={{marginStart: 5, alignItems: 'center', marginEnd: 10}}>
                 <MaterialCommunityIcons name="leaf-circle" size={38} color="#FF5353"/>
                 <Text>{'Orgânico'}</Text>
             </View>
-            <View  style={{marginStart: 10, alignItems: 'center'}}>
-                <FontAwesome5 name="plus-circle" size={34} color="#C9C9C9" onPress={() => {}}/>
+            <TouchableOpacity  style={{marginStart: 10, alignItems: 'center'}} onPress={() => {}}>
+                <FontAwesome5 name="plus-circle" size={34} color="#C9C9C9"/>
                 <Text>{"Novo"}</Text>
-            </View>
+            </TouchableOpacity>
         </View>
-
-
-        <AntDesign name="edit" size={20} color="#777778" onPress={() => {}} style={styles.editar2}/>
 
         <CampoDados/>
         
@@ -84,20 +81,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
-    editarTopo:{
-        position: 'absolute',
-        marginStart: 280,
-        marginTop: 192,
-    },
+   
     editar:{
         position: 'absolute',
         marginStart: 370,
-        marginTop: 510,
+        marginTop: 485,
     },
-    editar2:{
-        position: 'absolute',
-        marginStart: 370,
-        marginTop: 386,
-    }
+    
 
 })
