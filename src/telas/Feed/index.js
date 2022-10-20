@@ -177,6 +177,7 @@ const App = (props) => {
       email={item.email}
       photo={PhotoPerfil}
       phone={item.phone}
+      observation={item.observation}
       props={props}
     />
   );
@@ -204,6 +205,7 @@ const App = (props) => {
       title={item.title}
       description={item.description}
       ideal_time={item.ideal_time}
+     
     />
   )
 
@@ -274,9 +276,7 @@ const App = (props) => {
 
       <SafeAreaView style={styles.container}>
         <HeaderComponentFeirante nomeUser={"Feirante"} props={props} />
-        <FontAwesome name="plus" size={32} color={"#FF0000"} style={{ marginLeft: 16 }} onPress={() => {
-          props.navigation.navigate('CameraRotas')
-        }} />
+       
         <Text style={styles.secondContainerName}>Suas postagens</Text>
 
         <View style={styles.viewOut}>

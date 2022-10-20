@@ -30,7 +30,6 @@ const Item = ({ id,title,description, photo, props,localization,status,state,on_
                     <Image source={photo} style={styles.imgLixo}></Image>
                     <View>
                         <Text style={styles.txtName}>{title}</Text>
-                        <Text style={styles.txtComent}>{description}</Text>
                         <Text style={styles.txtData}>{ideal_time}</Text>
                     </View>
                 </View>
@@ -45,7 +44,7 @@ export default function ItemRender({ id, title,description, photo, props,localiz
 
 const styles = StyleSheet.create({
     viewOne: {
-        flexDirection: 'row',
+      
         paddingBottom:15
     },
     imgLixo: {
@@ -71,7 +70,6 @@ const styles = StyleSheet.create({
     txtData: {
         marginRight: 8,
         fontSize: 14,
-        alignSelf:'flex-end',
         marginLeft:8
     }
 });

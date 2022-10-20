@@ -30,7 +30,7 @@ export default function FormularioDenuncia(props) {
     const [price, setPrice] = useState();
     const [horario, setHorario] = useState();
     const [arrayChip, setArrayChip] = useState([]);
-    const formData = new FormData();
+
 
     useEffect(() => {
         (async () => {
@@ -47,8 +47,7 @@ export default function FormularioDenuncia(props) {
 
 
 
-            formData.append('file', uri)
-          
+    
 
 
 
@@ -64,15 +63,14 @@ export default function FormularioDenuncia(props) {
     }
 
 
-    function sendToDatabase() {
-
+    function sendToDatabase() {        
         if (title != "" && description != "" && uri != "") {
             var localization = latitude + ',' + longitude
             postRequest(
                 userId,
                 title,
                 description,
-                formData,
+                uri,
                 localization,
                 false,
                 quality,

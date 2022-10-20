@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     },
     viewOne: {
         flexDirection: 'row',
+       
     },
     imgLixo: {
         width: 100,

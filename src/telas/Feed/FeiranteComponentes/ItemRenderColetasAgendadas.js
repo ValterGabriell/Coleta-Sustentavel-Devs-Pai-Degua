@@ -3,7 +3,10 @@ import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
 
 
-const Item = ({ imagem, title, description, ideal_time, props  }) => (
+const Item = ({ imagem, title, description, ideal_time,props  }) => (
+
+
+    
 
     <View>
         <View >
@@ -27,12 +30,13 @@ const Item = ({ imagem, title, description, ideal_time, props  }) => (
 );
 
 export default function ItemRender({ imagem, title, description, ideal_time, props }) {
-    return Item({ imagem, title, description, ideal_time, props  })
+    return Item({ imagem, title, description, ideal_time,props  })
 }
 
 const styles = StyleSheet.create({
     viewOne: {
         flexDirection: 'row',
+        marginLeft:16
     },
     imgLixo: {
         width: 95,
