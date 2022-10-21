@@ -13,7 +13,7 @@ export default function ViewFotoPerfilFeirante({ userId, fotoUser, nomeUser, ema
 
 
     useEffect(()=>{
-        
+        console.log(`http://68.183.143.117:3333${fotoUser}`);
     },[])
 
     return <>
