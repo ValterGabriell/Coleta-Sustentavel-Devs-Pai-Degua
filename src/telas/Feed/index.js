@@ -136,6 +136,7 @@ const App = (props) => {
   const renderItemCatador = ({ item }) => (
     <ItemRender
       id={item.id}
+      photo={item.photo}
       userId={userId}
       merchant_id={item.merchant_id}
       on_the_way={item.on_the_way}
@@ -163,6 +164,7 @@ const App = (props) => {
       price={item.price}
       requestByScarvengerId={requestByScarvengerId}
       aceita={true}
+      photo={item.photo}
     />
   );
 
@@ -175,7 +177,7 @@ const App = (props) => {
       id={item.id}
       name={item.name}
       email={item.email}
-      photo={PhotoPerfil}
+      photo={item.photo}
       phone={item.phone}
       observation={item.observation}
       props={props}
@@ -206,7 +208,7 @@ const App = (props) => {
       description={item.description}
       ideal_time={item.ideal_time}
       photo={item.photo}
-     
+
     />
   )
 
@@ -224,8 +226,7 @@ const App = (props) => {
     return <View style={styles.separator} />
   }
 
-  //Pegar a dimensão da tela
-  const { width, heigth } = Dimensions.get('window')
+
 
 
   return <>{
@@ -254,6 +255,10 @@ const App = (props) => {
 
         <Text style={styles.secondContainerName}>Novas Solicitações</Text>
         <FlatList
+          pagingEnabled
+          snapToAlignment={'start'}
+          scrollEventThrottle={16}
+          decelerationRate='fast'
           data={request}
           renderItem={renderItemCatador}
           keyExtractor={item => item.id}
@@ -262,6 +267,10 @@ const App = (props) => {
         />
         <Text style={styles.secondContainerName}>Coletas Agendadas</Text>
         <FlatList
+          pagingEnabled
+          snapToAlignment={'start'}
+          scrollEventThrottle={16}
+          decelerationRate='fast'
           data={requestByScarvengerId}
           renderItem={renderItemCatadorAceita}
           keyExtractor={item => item.id}
@@ -278,11 +287,15 @@ const App = (props) => {
 
       <SafeAreaView style={styles.container}>
         <HeaderComponentFeirante nomeUser={"Feirante"} props={props} />
-       
+
         <Text style={styles.secondContainerName}>Suas postagens</Text>
 
         <View style={styles.viewOut}>
           <FlatList
+            pagingEnabled
+            snapToAlignment={'start'}
+            scrollEventThrottle={16}
+            decelerationRate='fast'
             horizontal
             data={requests}
             renderItem={renderItemPostFeirante}
@@ -291,6 +304,10 @@ const App = (props) => {
           />
 
           <FlatList
+            pagingEnabled
+            snapToAlignment={'start'}
+            scrollEventThrottle={16}
+            decelerationRate='fast'
             data={catadores}
             renderItem={renderItemFeirante}
             keyExtractor={item => item.id}
@@ -302,6 +319,10 @@ const App = (props) => {
         <Text style={styles.secondContainerName}>Coletas agendadas</Text>
 
         <FlatList
+          pagingEnabled
+          snapToAlignment={'start'}
+          scrollEventThrottle={16}
+          decelerationRate='fast'
           horizontal
           data={requestByMerchantId}
           renderItem={renderItemColetasAgendadas}
@@ -354,7 +375,7 @@ const styles = StyleSheet.create({
     color: "#FF5353",
     fontSize: 16,
     fontWeight: '500',
-    marginLeft:16
+    marginLeft: 16
   }
 });
 

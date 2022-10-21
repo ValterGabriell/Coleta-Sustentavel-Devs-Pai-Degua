@@ -58,7 +58,7 @@ export async function postRequest(merchant_id, title, description, photo, locali
     let formData = new FormData();
 
 
- 
+
 
     formData.append('merchant_id', merchant_id);
     formData.append('title', title);
@@ -72,14 +72,14 @@ export async function postRequest(merchant_id, title, description, photo, locali
     formData.append('amount', amount);
     formData.append('price', price);
 
-    
+
     try {
         await apiDevs.post('requests', formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         }).then(res => {
             props.navigation.navigate("MyTabsScreen")
         }).catch(err => {
-          
+
         });
     } catch (error) {
         console.log(error.response);
@@ -129,16 +129,14 @@ export async function removeRequestForScarvenger(requestId, scarvengerId, props)
 }
 
 
-export async function finishRequisition(requestId, scarvengerId, props) {
+export async function finishRequisition(requestId, props) {
     try {
-        await apiDevs.post(`scavengers/removeRequest/${scarvengerId}/${requestId}`).then((res) => {
-            if (res.status === 200) {
-                props.navigation.goBack()
-                return true
+        await apiDevs.patch(`requests/${requestId}`, {
+            status: true
+        }).then((res) => {
+            props.navigation.goBack()
+            return true
 
-            } else {
-                return false
-            }
         }).catch((erro) => {
             console.log(erro);
             return false

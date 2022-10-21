@@ -6,6 +6,7 @@ import EndOfScreen from "./componentes/Feirante/EndOfScreen";
 import LottieView from 'lottie-react-native'
 import { getResiduesByRequestId } from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
 
+
 export default function PostItem(props) {
     const id = props.route.params.id
     const titulo = props.route.params.titulo
