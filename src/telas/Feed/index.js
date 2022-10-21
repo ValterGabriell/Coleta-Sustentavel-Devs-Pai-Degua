@@ -226,6 +226,7 @@ const App = (props) => {
   //Pegar a dimensão da tela
   const { width, heigth } = Dimensions.get('window')
 
+
   return <>{
     /**
      * Trecho de codigo para definir as telas de catador
@@ -252,7 +253,7 @@ const App = (props) => {
 
         <Text style={styles.secondContainerName}>Novas Solicitações</Text>
         <FlatList
-          data={request}
+          data={request.slice(0,2)}
           renderItem={renderItemCatador}
           keyExtractor={item => item.id}
           ItemSeparatorComponent={itemSeparator}
@@ -260,8 +261,13 @@ const App = (props) => {
         />
         <Text style={styles.secondContainerName}>Coletas Agendadas</Text>
         <FlatList
+<<<<<<< HEAD
+          data={requestByScarvengerId.slice(0,2)}
+          renderItem={renderItemCatador}
+=======
           data={requestByScarvengerId}
           renderItem={renderItemCatadorAceita}
+>>>>>>> d98edd53078147f6af1ff27a75686add0ecc54c2
           keyExtractor={item => item.id}
           ItemSeparatorComponent={itemSeparator}
           ListEmptyComponent={ListaEmpty}
