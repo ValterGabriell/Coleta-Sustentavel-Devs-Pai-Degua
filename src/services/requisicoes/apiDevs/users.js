@@ -37,7 +37,7 @@ export async function verificarUsuarioAtual(idUser) {
             return result.data
 
         } catch (error) {
-           
+
             return {}
         }
     }
@@ -102,22 +102,22 @@ export async function trocarNomeUser(userId, name) {
  */
 export async function postMerchant({ name, email, password, photo, phone, cpf, props }) {
     try {
-      
+
         let filename = photo.split('/').pop();
 
         let match = /\.(\w+)$/.exec(filename);
         let type = match ? `image/${match[1]}` : `image`;
         let formData = new FormData();
-       
+
         formData.append('name', name);
         formData.append('email', email);
-        formData.append('password',password);
+        formData.append('password', password);
         formData.append('photo', { uri: photo, name: filename, type });
         formData.append('phone', phone);
-        formData.append('cpf',cpf);
-      
+        formData.append('cpf', cpf);
 
-    
+
+
         await apiDevs.post('merchants', formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         }).then((response) => {
@@ -138,8 +138,24 @@ export async function postMerchant({ name, email, password, photo, phone, cpf, p
  */
 export async function postScarvenger({ name, email, password, photo, phone, cpf, props }) {
     try {
-        await apiDevs.post('scavengers', {
-            name: name, email: email, password: password, photo: photo, phone: phone, cpf: cpf
+        let filename = photo.split('/').pop();
+
+        let match = /\.(\w+)$/.exec(filename);
+        let type = match ? `image/${match[1]}` : `image`;
+        let formData = new FormData();
+
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('photo', { uri: photo, name: filename, type });
+        formData.append('phone', phone);
+        formData.append('cpf', cpf);
+
+
+
+
+        await apiDevs.post('scavengers', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
         }).then((response) => {
             props.navigation.navigate("Login")
         }).catch((erro) => {
@@ -154,10 +170,10 @@ export async function postScarvenger({ name, email, password, photo, phone, cpf,
 
 export async function logout({ props }) {
     apiDevs.post('logout').then((res) => {
-        if(res.data.loggedOut){
+        if (res.data.loggedOut) {
             console.log(res.data.loggedOut);
         }
-    }).catch((err)=>{
+    }).catch((err) => {
         console.log(err);
     })
 }

@@ -1,38 +1,39 @@
 import React, { useState } from "react";
-import { SafeAreaView, View, TextInput, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { SafeAreaView, View, TextInput, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import { Button } from "react-native-paper";
-import imgPerson from '../../../assets/profilePhoto.png'
-import {postMerchant} from '../../../services/requisicoes/apiDevs/users'
+import { postMerchant } from '../../../services/requisicoes/apiDevs/users'
 
 
 
-export default function Forms({props}) {
+export default function Forms({ props }) {
     const [name, setname] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [cpf, setCPF] = useState("")
     const [phone, setPhone] = useState("")
-    const [photo, setPhoto] = useState("imagem")
+    const [photo, setPhoto] = useState("")
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
-            quality: 0,
+            quality:1,
         });
 
-       
+
         setPhoto(result.uri)
     }
 
     async function sendToDatabase() {
-       postMerchant({name, email, password, photo, phone, cpf, props})
+        postMerchant({ name, email, password, photo, phone, cpf, props })
     }
 
 
     return <>
         <SafeAreaView>
+            <ScrollView>
             <View>
+                <Image style={styles.img} source={{ uri: photo }} />
                 <Button onPress={pickImage}>Selecionar foto</Button>
                 <TextInput
                     placeholder="Nome"
@@ -46,17 +47,18 @@ export default function Forms({props}) {
                     style={styles.input}
                     onChangeText={setEmail}
                     value={email}
-                    
+
                 />
 
                 <TextInput
-                    placeholder="Passoword"
+                    placeholder="Password"
                     style={styles.input}
                     onChangeText={setPassword}
                     value={password}
                     secureTextEntry={true}
-                    
-                    
+                    keyboardType={"numeric"}
+
+
                 />
 
                 <TextInput
@@ -64,7 +66,8 @@ export default function Forms({props}) {
                     style={styles.input}
                     onChangeText={setPhone}
                     value={phone}
-                    
+                    keyboardType={"numeric"}
+
                 />
 
                 <TextInput
@@ -72,7 +75,8 @@ export default function Forms({props}) {
                     style={styles.input}
                     onChangeText={setCPF}
                     value={cpf}
-                
+                    keyboardType={"numeric"}
+
                 />
 
                 <Button onPress={() => {
@@ -80,6 +84,7 @@ export default function Forms({props}) {
                 }}>Cadastrar</Button>
 
             </View>
+            </ScrollView>
         </SafeAreaView>
     </>
 }

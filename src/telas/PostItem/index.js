@@ -9,7 +9,7 @@ import { getResiduesByRequestId } from '../../services/requisicoes/apiDevs/solic
 export default function PostItem(props) {
     const id = props.route.params.id
     const titulo = props.route.params.titulo
-    const imagem = props.route.params.imagem
+    const imagem = props.route.params.photo
     const descricao = props.route.params.descricao
     const localizacao = props.route.params.localizacao
     const estado = props.route.params.state
@@ -25,7 +25,8 @@ export default function PostItem(props) {
     var changeStatusOfColect = () => {
         if (on_the_way && !isFinished) {
             setOnWay(on_the_way)
-        } else if (on_the_way && isFinished) {
+        } else if (isFinished) {
+            setOnWay(true)
             setfinished(true)
         }
     }
@@ -42,6 +43,7 @@ export default function PostItem(props) {
 
     
     useEffect(() => {
+    
         changeStatusOfColect()
         _getResiduesByRequestId()
     }, [])
@@ -49,7 +51,7 @@ export default function PostItem(props) {
 
     return <>
         
-        <HeaderOfScreen titulo={titulo} localizacao={localizacao} />
+        <HeaderOfScreen titulo={titulo} localizacao={localizacao}  />
         <MiddleOfScreen imagem={imagem} descricao={descricao} />
         <EndOfScreen material={getResidues} estado={estado} horario={horario} qtd={qtd} price={price} />
 

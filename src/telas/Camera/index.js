@@ -22,7 +22,7 @@ export default function CameraScreen(props) {
             quality: 1,
         });
 
-        console.log("Result: " + result);
+        console.log("Result: " + result.uri);
 
         if (!result.cancelled) {
             props.navigation.navigate("FormularioScreen",{

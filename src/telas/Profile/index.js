@@ -41,8 +41,13 @@ export default function Profile(props) {
       const user = await verificarUsuarioAtual(userId)
       setCurrentUser(user)
 
-      const photo = await pegarFotoUsuario(user.photo.replace("/uploads/", ""))
-      setPhotoUser(photo)
+      console.log(user.photo);
+
+      if (user.photo != null) {
+         const photo = await pegarFotoUsuario(user.photo.replace("/uploads/", ""))
+         setPhotoUser(photo)
+      }
+
    }
 
    useEffect(function () {
@@ -66,10 +71,10 @@ export default function Profile(props) {
          : //SE FOR FEIRANTE
          <ScrollView>
             <SafeAreaView>
-              
+
                <ViewFotoPerfilFeirante
                   userId={currentUser.id}
-                  fotoUser={ProfilePic}
+                  fotoUser={currentUser.photo}
                   nomeUser={currentUser.name}
                   emailUser={currentUser.email}
                />

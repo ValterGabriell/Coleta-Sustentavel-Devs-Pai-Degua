@@ -45,13 +45,6 @@ export default function FormularioDenuncia(props) {
             setLatitude(location.coords.latitude)
             setLongitude(location.coords.longitude)
 
-
-
-    
-
-
-
-
         })();
     }, []);
 
@@ -59,7 +52,7 @@ export default function FormularioDenuncia(props) {
     function setArrayOfMaterials(chips) {
 
         setArrayChip(chips)
-        console.log(chips);
+      
     }
 
 
