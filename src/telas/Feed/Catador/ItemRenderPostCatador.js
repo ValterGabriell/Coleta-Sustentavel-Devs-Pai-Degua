@@ -21,7 +21,7 @@ const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, descript
             }>
             <View style={styles.viewOne}>
                 <Image source={lixoVeropa} style={styles.imgLixo}></Image>
-                <View style={{ marginStart: 16 }}>
+                <View style={{ marginStart: 30 }}>
                     <Text style={styles.txtName}>{titulo}</Text>
                     <Text style={styles.distancia}>Preço: {price}</Text>
                     <Text style={styles.txtData}>{"Horário: " + ideal_time}</Text>
@@ -39,8 +39,13 @@ export default function ItemRenderCatador({ id, userId, titulo, ideal_time,merch
 
 const styles = StyleSheet.create({
     contanier: {
+<<<<<<< HEAD
+        marginVertical: 12,
+        //alignItems: 'center',
+=======
         marginBottom: 36,
         marginLeft:16,
+>>>>>>> d98edd53078147f6af1ff27a75686add0ecc54c2
     },
     viewOne: {
         flexDirection: 'row',
@@ -49,6 +54,8 @@ const styles = StyleSheet.create({
         width: 100,
         height: 70,
         borderRadius: 16,
+        alignItems: 'flex-start',
+        marginStart: 20
 
     },
     title: {

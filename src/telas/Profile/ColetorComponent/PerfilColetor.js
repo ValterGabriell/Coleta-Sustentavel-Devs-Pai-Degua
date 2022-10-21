@@ -28,7 +28,6 @@ export default function PerfilColetor({user}) {
         if(resp == 'novo'){
             switch(tipo){
                 case 'Plastico':
-
             }
         }
     }
