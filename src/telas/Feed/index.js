@@ -5,6 +5,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 import { StyleSheet, StatusBar, SafeAreaView, Dimensions } from "react-native";
+import { FontAwesome } from '@expo/vector-icons'
 
 /**
  * Fim dos imports react native
@@ -30,6 +31,7 @@ import ListaEmpty from "./FeiranteComponentes/ListaEmpty";
 import { getRequestMerchant } from '../../services/requisicoes/apiDevs/solicitacaoFeirante'
 
 import ItemRender from "./Catador/ItemRenderPostCatador";
+import ItemRenderCatador from "./Catador/ItemRenderPostCatadorAceita";
 
 import { getRequest, getRequestsByScarvengerId, getRequestsByMerchantId } from '../../services/requisicoes/apiDevs/requisicoes'
 import { getScavengers } from "../../services/requisicoes/apiDevs/users";
@@ -45,23 +47,6 @@ import Coleta3 from '../../assets/lixoVeropa.jpg';
 /**
  * Dados estaticos para renderizar as recycler views
  */
-
-const DATA_AGENDADAS = [
-  {
-    id: 1,
-    titulo: "Preciso de catador Urgente",
-    distancia: '0.8 Km',
-    data: '29/08/2022'
-  },
-  {
-    id: 2,
-    titulo: "Preciso de catador Urgente",
-    distancia: '0.8 Km',
-    data: '29/08/2022'
-  }
-];
-
-
 const anuncios = [
   {
     id: 1,
@@ -164,6 +149,23 @@ const App = (props) => {
     />
   );
 
+  const renderItemCatadorAceita = ({ item }) => (
+    <ItemRenderCatador
+      id={item.id}
+      userId={userId}
+      merchant_id={item.merchant_id}
+      on_the_way={item.on_the_way}
+      titulo={item.title}
+      ideal_time={item.ideal_time}
+      description={item.description}
+      localization={item.localization}
+      props={props}
+      price={item.price}
+      requestByScarvengerId={requestByScarvengerId}
+      aceita={true}
+    />
+  );
+
 
   /**
    * Trexo de codigo responsavel para renderizar lista caso o usuario seja feirante
@@ -175,6 +177,7 @@ const App = (props) => {
       email={item.email}
       photo={PhotoPerfil}
       phone={item.phone}
+      observation={item.observation}
       props={props}
     />
   );
@@ -202,7 +205,8 @@ const App = (props) => {
       title={item.title}
       description={item.description}
       ideal_time={item.ideal_time}
-/>
+     
+    />
   )
 
   //Item render dos anuncios
@@ -253,13 +257,20 @@ const App = (props) => {
           renderItem={renderItemCatador}
           keyExtractor={item => item.id}
           ItemSeparatorComponent={itemSeparator}
+          ListEmptyComponent={ListaEmpty}
         />
         <Text style={styles.secondContainerName}>Coletas Agendadas</Text>
         <FlatList
+<<<<<<< HEAD
           data={requestByScarvengerId.slice(0,2)}
           renderItem={renderItemCatador}
+=======
+          data={requestByScarvengerId}
+          renderItem={renderItemCatadorAceita}
+>>>>>>> d98edd53078147f6af1ff27a75686add0ecc54c2
           keyExtractor={item => item.id}
           ItemSeparatorComponent={itemSeparator}
+          ListEmptyComponent={ListaEmpty}
         />
 
       </SafeAreaView>
@@ -271,7 +282,7 @@ const App = (props) => {
 
       <SafeAreaView style={styles.container}>
         <HeaderComponentFeirante nomeUser={"Feirante"} props={props} />
-
+       
         <Text style={styles.secondContainerName}>Suas postagens</Text>
 
         <View style={styles.viewOut}>
@@ -346,7 +357,8 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     color: "#FF5353",
     fontSize: 16,
-    fontWeight: '500'
+    fontWeight: '500',
+    marginLeft:16
   }
 });
 

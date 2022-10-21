@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
 import lixoVeropa from '../../../assets/lixoVeropa.jpg'
 
-const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId }) => (
+const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita }) => (
 
 
     <View style={styles.contanier}>
@@ -14,14 +14,15 @@ const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, descript
                     requestId: id,
                     titulo: titulo,
                     on_the_way:on_the_way,
-                    requestByScarvengerId:requestByScarvengerId
+                    requestByScarvengerId:requestByScarvengerId,
+                    aceita:aceita
                 })
 
             }
             }>
             <View style={styles.viewOne}>
                 <Image source={lixoVeropa} style={styles.imgLixo}></Image>
-                <View style={{ marginStart: 30 }}>
+                <View style={{ marginStart: 16 }}>
                     <Text style={styles.txtName}>{titulo}</Text>
                     <Text style={styles.distancia}>Preço: {price}</Text>
                     <Text style={styles.txtData}>{"Horário: " + ideal_time}</Text>
@@ -33,29 +34,25 @@ const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, descript
 );
 
 
-export default function ItemRenderCatador({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId }) {
-    return Item({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId })
+export default function ItemRenderCatadorAceita({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita }) {
+    return Item({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita })
 }
 
 const styles = StyleSheet.create({
     contanier: {
-<<<<<<< HEAD
-        marginVertical: 12,
-        //alignItems: 'center',
-=======
-        marginBottom: 36,
-        marginLeft:16,
->>>>>>> d98edd53078147f6af1ff27a75686add0ecc54c2
+        marginBottom: 12,
+        marginTop:12,
+        marginLeft:16
+        
     },
     viewOne: {
         flexDirection: 'row',
+       
     },
     imgLixo: {
         width: 100,
         height: 70,
         borderRadius: 16,
-        alignItems: 'flex-start',
-        marginStart: 20
 
     },
     title: {

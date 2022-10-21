@@ -27,13 +27,13 @@ export async function getScavengers() {
  * @param {Integer} idUser 
  * @returns usuario atual
  */
- export async function verificarUsuarioAtual(idUser) {
+export async function verificarUsuarioAtual(idUser) {
     if (idUser == undefined) {
         verificarUsuarioAtual(idUser)
     } else {
         try {
             const result = await apiDevs.get(`merchants/${idUser}`)
-            console.log(result.data);
+        
             return result.data
 
         } catch (error) {
@@ -130,8 +130,14 @@ export async function postScarvenger({ name, email, password, photo, phone, cpf,
     }
 }
 
-export async function logout({props}) {
-    console.log("logout");
+export async function logout({ props }) {
+    apiDevs.post('logout').then((res) => {
+        if(res.data.loggedOut){
+            console.log(res.data.loggedOut);
+        }
+    }).catch((err)=>{
+        console.log(err);
+    })
 }
 
 

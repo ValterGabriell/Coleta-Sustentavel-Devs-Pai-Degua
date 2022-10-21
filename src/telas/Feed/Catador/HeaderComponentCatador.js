@@ -1,26 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { FontAwesome } from '@expo/vector-icons'
-import { logout } from "../../../services/requisicoes/apiDevs/users";
 
 
-export default function HeaderComponentCatador({ nomeUser }) {
+
+export default function HeaderComponentCatador({ nomeUser, props }) {
     return <>
        
        
        <View style={styles.container}>
             <Text style={styles.toolbarName}>Olá, {nomeUser}!</Text>
 
-            <FontAwesome name="question-circle-o" size={32} color={"#FF0000"} style={{ marginLeft: 16 }} onPress={() => {
-                props.navigation.navigate("Instrucao")
-            }} />
-            
-            <FontAwesome name="sign-out" size={32} color={"#000"} style={{ marginRight: 16 }} onPress={() => {
-                logout(props)
-            }} />
-
-
-
+        
+          
         </View>
 
 

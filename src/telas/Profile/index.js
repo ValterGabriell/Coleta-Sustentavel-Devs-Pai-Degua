@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
-import FotoPerfil from "./componente/FotoPerfil";
 import ProfilePic from '../../assets/profilePhoto.png'
-import Lista from "./componente/Lista";
 
 
 import PerfilColetor from "./ColetorComponent/PerfilColetor";
@@ -57,7 +55,6 @@ export default function Profile(props) {
          <ScrollView>
          <SafeAreaView>
             <PerfilColetor user={currentUser}/>
-            <Lista props={props} isCatador={isCatador} />
          </SafeAreaView>
          </ScrollView>
          : //SE FOR FEIRANTE

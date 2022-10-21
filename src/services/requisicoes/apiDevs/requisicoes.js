@@ -7,7 +7,38 @@ import apiDevs from '../../api/apiDevs'
 export async function getRequest() {
     try {
         const result = await apiDevs.get('requests')
-        return result.data
+        var newList = []
+        var list = result.data
+        list.forEach((el) => {
+            if (!el.on_the_way) {
+                newList.push(el)
+            }
+        })
+
+        return newList
+
+
+    } catch (error) {
+        console.log(error)
+        return {}
+    }
+}
+
+
+export async function getPointsCollect() {
+    try {
+        const result = await apiDevs.get('collection_points')
+        var newList = []
+        var list = result.data
+        list.forEach((el) => {
+            if (!el.on_the_way) {
+                newList.push(el)
+            }
+        })
+
+        return newList
+
+
     } catch (error) {
         console.log(error)
         return {}
@@ -16,12 +47,22 @@ export async function getRequest() {
 
 
 export async function postRequest(merchant_id, title, description, photo, localization, status, state, on_the_way, ideal_time, amount, price, residues, props) {
+
     try {
+        let filename = photo.split('/').pop();
+
+        let match = /\.(\w+)$/.exec(filename);
+        let type = match ? `image/${match[1]}` : `image`;
+
+        let formData = new FormData();
+        formData.append('photo', { uri: photo, name: filename, type });
+        console.log(formData.get());
+       
         await apiDevs.post('requests', {
             merchant_id: merchant_id,
             title: title,
             description: description,
-            photo: photo,
+            photo: formData[0],
             localization: localization,
             status: status,
             state: state,
@@ -32,24 +73,30 @@ export async function postRequest(merchant_id, title, description, photo, locali
             residues: residues
         }).then((response) => {
             if (response.status === 200) {
+                console.log("passou");
                 props.navigation.navigate("MyTabsScreen")
             } else {
+                console.log("falhou");
                 alert('Erro ao salvar')
             }
         }).catch(erro => {
-            alert(erro)
-
+            console.log(erro.message);
+            alert(erro.message)
         })
 
     } catch (error) {
+        console.log(error.message);
         return 'erro'
+       
     }
 }
 
-export async function addRequestForScarvenger(requestId, scarvengerId) {
+export async function addRequestForScarvenger(requestId, scarvengerId, props) {
     try {
         await apiDevs.post(`scavengers/addRequest/${scarvengerId}/${requestId}`).then((res) => {
             if (res.status === 200) {
+
+                props.navigation.goBack()
                 return true
             } else {
                 return false
@@ -64,11 +111,13 @@ export async function addRequestForScarvenger(requestId, scarvengerId) {
     }
 }
 
-export async function removeRequestForScarvenger(requestId, scarvengerId) {
+export async function removeRequestForScarvenger(requestId, scarvengerId, props) {
     try {
         await apiDevs.post(`scavengers/removeRequest/${scarvengerId}/${requestId}`).then((res) => {
             if (res.status === 200) {
+                props.navigation.goBack()
                 return true
+
             } else {
                 return false
             }
@@ -98,6 +147,7 @@ export async function getRequestsByMerchantId(merchant_id) {
         const result = await (await apiDevs.get(`merchants/${merchant_id}`))
         var listRequest = result.data.requests
         var arrayWithRequestThatHaveOnTheWayEqualsTrue = []
+        
 
         for (let index = 0; index < listRequest.length; index++) {
             var isOnTheWay = listRequest[index].on_the_way
@@ -105,7 +155,8 @@ export async function getRequestsByMerchantId(merchant_id) {
                 arrayWithRequestThatHaveOnTheWayEqualsTrue.push(listRequest[index])
             }
         }
-
+       
+    
         return arrayWithRequestThatHaveOnTheWayEqualsTrue
     } catch (error) {
         console.log(error);
@@ -113,28 +164,13 @@ export async function getRequestsByMerchantId(merchant_id) {
     }
 }
 
-export async function checkIfCurrentRequestBelongsToCurrentScarvenger(scarvengerId, requestId) {
+export async function checkIfCurrentRequestBelongsToCurrentScarvenger(scarvengerId) {
     try {
         //recuperamos todas as requisicoes do catador
         const result = await (await apiDevs.get(`scavengers/${scarvengerId}`))
         var requests = result.data.requests
-        //criando lista para receber a requisicao atual e que combina o id com as requisicoes aceitas pelo catador
-        var listWithRequisitionsThatDontHaveTheSameIdAsOurScarvengerId = []
-
-        //percorremos as requisicoes do catador
-        for (let index = 0; index < requests.length; index++) {
-            //salvamos os id das requisicoes na variavel element
-            const element = requests[index].id;
-
-            //checamos se o id da lista de requisicao aceita pelo usuario é igual ao id atual da requisicao
-            if (element === requestId) {
-                //se for, a gente salva na lista
-                listWithRequisitionsThatDontHaveTheSameIdAsOurScarvengerId.push(element)
-            }
-        }
-
         //retornando a lista
-        return listWithRequisitionsThatDontHaveTheSameIdAsOurScarvengerId
+        return requests
 
 
 

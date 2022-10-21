@@ -18,41 +18,54 @@ export default function AuthProvider({ children }) {
      */
 
 
+    function passIfIsLogged() {
+        let current_token = AsyncStorage.getItem('@token')
+        if(current_token){
+            apiDevs.get("authenticated").then((user) => {
+                var merchant = user.data.is_merchant
+                setUserType({
+                    isCatador: !merchant,
+                    userId: user.data.id
+                })
+                navigation.navigate("FeedScreen")
+            })
+        }
+        
+    }
+
 
     function signIn(email, senha) {
-    
-            if (email !== '' && senha !== '') {
-                <ActivityIndicator />
-                apiDevs.post('login', {
-                    email: email,
-                    password: senha
-                }).then(response => {
-                    var token = response.data.token
-                    AsyncStorage.setItem('@token', token)
 
-                    apiDevs.get("authenticated").then((user) => {
-                        var merchant = user.data.is_merchant
-                        setUserType({
-                            isCatador: !merchant,
-                            userId: user.data.id
-                        })
-
-                        navigation.navigate("FeedScreen")
+        if (email !== '' && senha !== '') {
+            <ActivityIndicator />
+            apiDevs.post('login', {
+                email: email,
+                password: senha
+            }).then(response => {
+                var token = response.data.token
+                AsyncStorage.setItem('@token', token)
+                apiDevs.get("authenticated").then((user) => {
+                    var merchant = user.data.is_merchant
+                    setUserType({
+                        isCatador: !merchant,
+                        userId: user.data.id
                     })
-
-                }).catch(erro => {
-                    alert(erro)
+                    navigation.navigate("FeedScreen")
                 })
-            } else {
-                <Snackbar visible={visible} onDismiss={onDismissSnackBar}></Snackbar>
-            }
+
+            }).catch(erro => {
+                alert(erro)
+            })
+        } else {
+            <Snackbar visible={visible} onDismiss={onDismissSnackBar}></Snackbar>
+        }
 
     }
 
 
 
     return (
-        <AuthContext.Provider value={{ signIn, userType }} >
+        <AuthContext.Provider value={{ passIfIsLogged,signIn, userType }} >
             {children}
         </AuthContext.Provider>
     )
