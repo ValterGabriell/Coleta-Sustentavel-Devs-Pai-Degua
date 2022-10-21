@@ -48,47 +48,39 @@ export async function getPointsCollect() {
 
 export async function postRequest(merchant_id, title, description, photo, localization, status, state, on_the_way, ideal_time, amount, price, residues, props) {
 
-    try {
+        let newImageUri = "file:" + photo.split("file:/").join("");
+    
         let filename = photo.split('/').pop();
+     
 
         let match = /\.(\w+)$/.exec(filename);
         let type = match ? `image/${match[1]}` : `image`;
+       
 
         let formData = new FormData();
+       
+        formData.append('merchant_id', merchant_id);
+        formData.append('title', title);
+        formData.append('description',description);
         formData.append('photo', { uri: photo, name: filename, type });
-        console.log(formData.get());
-       
-        await apiDevs.post('requests', {
-            merchant_id: merchant_id,
-            title: title,
-            description: description,
-            photo: formData[0],
-            localization: localization,
-            status: status,
-            state: state,
-            on_the_way: on_the_way,
-            ideal_time: ideal_time,
-            amount: amount,
-            price: price,
-            residues: residues
-        }).then((response) => {
-            if (response.status === 200) {
-                console.log("passou");
-                props.navigation.navigate("MyTabsScreen")
-            } else {
-                console.log("falhou");
-                alert('Erro ao salvar')
-            }
-        }).catch(erro => {
-            console.log(erro.message);
-            alert(erro.message)
-        })
+        formData.append('localization', localization);
+        formData.append('status',status);
+        formData.append('state', state);
+        formData.append('on_the_way', on_the_way);
+        formData.append('ideal_time', ideal_time);
+        formData.append('amount', amount);
+        formData.append('price', price);
+        formData.append('residues', residues);
 
-    } catch (error) {
-        console.log(error.message);
-        return 'erro'
-       
-    }
+        await apiDevs.post('requests', formData,{
+            headers: { 'Content-Type': 'multipart/form-data' }
+          }).then(res => {
+            props.navigation.navigate("MyTabsScreen")
+           
+        }).catch(err => {
+          console.log();
+        });
+        
 }
 
 export async function addRequestForScarvenger(requestId, scarvengerId, props) {

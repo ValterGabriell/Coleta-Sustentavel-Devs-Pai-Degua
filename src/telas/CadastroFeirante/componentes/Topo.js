@@ -6,6 +6,7 @@ import imgPerson from '../../../assets/profilePhoto.png'
 import {postMerchant} from '../../../services/requisicoes/apiDevs/users'
 
 
+
 export default function Forms({props}) {
     const [name, setname] = useState("")
     const [email, setEmail] = useState("")
@@ -17,11 +18,11 @@ export default function Forms({props}) {
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
-            quality: 1,
+            quality: 0,
         });
 
-        console.log(result.uri)
-        setImage(result.uri)
+       
+        setPhoto(result.uri)
     }
 
     async function sendToDatabase() {
