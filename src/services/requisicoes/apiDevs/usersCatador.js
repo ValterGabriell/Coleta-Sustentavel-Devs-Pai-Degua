@@ -49,7 +49,7 @@ export async function getAllScavengers(){
 }
 
 /**
- * Atualizar residuos
+ * Atualizar residuos AJEITAR
  */
 
 export async function materialColeta(userId,name){

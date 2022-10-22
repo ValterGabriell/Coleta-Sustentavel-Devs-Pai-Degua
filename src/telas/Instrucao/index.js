@@ -17,27 +17,27 @@ export default function Instrucao(){
         {
             imagem: Metal,
             titulo: 'Metal',
-            descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor morbi non arcu risus quis varius quam quisque id. Ullamcorper eget nulla facilisi etiam dignissim. ',
+            descricao: 'Além de todos os tipos de latas de alumínio, é possível reciclar tampinhas, pregos e parafusos. Atenção: clipes, grampos, canos e esponjas de aço devem ficar de fora. ',
         },
         {
             imagem: Organico,
             titulo: 'Orgânico',
-            descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor morbi non arcu risus quis varius quam quisque id. Ullamcorper eget nulla facilisi etiam dignissim. ',
+            descricao: 'O lixo orgânico é aquele que provém de origem animal ou vegetal, como: restos de alimentos, madeira,cascas, sementes, etc, e deve ser descartado em um recipiente próprio',
         },
         {
             imagem: Papel,
             titulo: 'Papel',
-            descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor morbi non arcu risus quis varius quam quisque id. Ullamcorper eget nulla facilisi etiam dignissim. ',
+            descricao: 'Todos os tipos são recicláveis, inclusive caixas do tipo longa-vida e de papelão. Não recicle papel com material orgânico, como caixas de pizza cheias de gordura, pontas de cigarro, fitas adesivas, fotografias, papéis sanitários e papel-carbono.',
         },
         {
             imagem: Plastico,
             titulo: 'Plastico',
-            descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor morbi non arcu risus quis varius quam quisque id. Ullamcorper eget nulla facilisi etiam dignissim. ',
+            descricao: '90% do lixo produzido no mundo são à base de plástico. Por isso, esse material merece uma atenção especial. Recicle sacos de supermercados, garrafas de refrigerante (pet), tampinhas e até brinquedos quebrados.',
         },
         {
             imagem: Vidro,
             titulo: 'Vidro',
-            descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor morbi non arcu risus quis varius quam quisque id. Ullamcorper eget nulla facilisi etiam dignissim. ',
+            descricao: 'Quando limpos e secos, todos são recicláveis, exceto lâmpadas, cristais, espelhos, vidros de automóveis ou temperados, cerâmica e porcelana.',
         },
 
     ]

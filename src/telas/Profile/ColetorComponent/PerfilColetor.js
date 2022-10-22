@@ -7,6 +7,8 @@ import CampoDados from '../componente/CampoDados';
 import TopoPerfil from './TopoPerfil';
 import TopoPerfilEditavel from './TopoPerfilEditavel';
 
+import CheckBoxPage from "./residuos";
+
 //icones
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -14,56 +16,46 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
-
+import Plastico from '../../../assets/plasticoIcone.png';
+import Organico from '../../../assets/OrganicoIcone.png';
 //colocar scrollview
 
 export default function PerfilColetor({user}) {
 
     //Manipular a escolha dos residuos 
 
-    const [material, setMaterial] = useState({})
+    const [material, setMaterial] = useState()
 
-    /*
-    function Manipular(resp){
-        if(resp == 'novo'){
-            switch(tipo){
-                case 'Plastico':
-            }
-        }
-    }
-    */
+   
+
 
     return <SafeAreaView style={styles.container}>
+
 
         <TopoPerfilEditavel user={user} />
         <Ionicons name="ios-notifications-outline" size={24} color="#777778" style={styles.notificacao} onPress={() => { }} />
 
-        <Text style={{ textAlign: 'center', marginTop: 10, color: '#FF5353' }}>Material que coleta</Text>
-
-        <View style={styles.material}>
-            <View style={{ marginStart: 5, alignItems: 'center', marginEnd: 10 }}>
-                <MaterialCommunityIcons name="leaf-circle" size={38} color="#FF5353" />
-                <Text>{'Orgânico'}</Text>
-            </View>
-            <View style={{ marginStart: 10, alignItems: 'center' }}>
-                <FontAwesome5 name="plus-circle" size={34} color="#C9C9C9" onPress={() => { }} />
-                <Text>{"Novo"}</Text>
+        <Text style={styles.titulo}>Material que coleta</Text>
+        <View style={{flexDirection: 'row', padding:10, alignSelf: 'center'}}>
+            <Image source={Plastico} style={{marginStart: 16, width: 40, height: 40}}/>
+            <Image source={Organico} style={{marginStart: 10, width: 40, height: 40}}/>
+        
+            <View style={styles.material}>
+                <TouchableOpacity style={{alignItems: 'center' }} onPress={() => {}}>
+                    <AntDesign name="pluscircleo" size={40} color="#777778"/>
+                </TouchableOpacity>
             </View>
         </View>
 
-
-
-        <AntDesign name="edit" size={20} color="#777778" onPress={() => { }} style={styles.editar2} />
-
         <CampoDados />
-
-        <AntDesign name="edit" size={20} color="#777778" onPress={() => { }} style={styles.editar} />
         <Descricao />
+        <CampoSecurity/>
 
         <TouchableOpacity style={styles.botao}>
             <MaterialIcons name="email" size={30} color="#FF5353" />
             <Text style={styles.subtitulo}>Alterar email</Text>
         </TouchableOpacity>
+        
     </SafeAreaView>
 }
 
@@ -79,8 +71,8 @@ const styles = StyleSheet.create({
 
     material: {
         //width: 315,
-        marginHorizontal: 134,
-        marginTop: 8,
+        marginStart: 16,
+       
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -92,7 +84,7 @@ const styles = StyleSheet.create({
     editar: {
         position: 'absolute',
         marginStart: 370,
-        marginTop: 510,
+        marginTop: 485,
     },
     editar2: {
         position: 'absolute',
@@ -104,6 +96,15 @@ const styles = StyleSheet.create({
         marginLeft:16,
         marginEnd: 40,
         alignItems: 'center',
-    }
+    },
+    titulo: {
+        color: '#FF5353',
+        fontWeight: '600',
+        fontSize: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop:10,
+        alignSelf: 'center',
+    },
 
 })

@@ -1,10 +1,18 @@
 import React, {useState, useEffect}from "react";
-import { View, StyleSheet, SafeAreaView } from "react-native";
-import CheckBox  from "react-native-paper";
+import { View, StyleSheet, SafeAreaView, Modal, Linking, ScrollView, TouchableOpacity } from "react-native";
+import CheckBox from "@react-native-community/checkbox";
+
+import 'react-native-gesture-handler';
+
+//Icones
+import Plastico from '../../../assets/plasticoIcone.png';
+import Organico from '../../../assets/OrganicoIcone.png';
+import Papel from '../../../assets/PapelIcone.png';
+import Vidro from '../../../assets/VidroIcone.png';
+import Metal from '../../../assets/MetalIcone.png';
 
 
-
-const CheckBoxPage = () => {
+ const CheckBoxPage = () => {
 
     //residuos
     const optionMultiple = [
@@ -15,20 +23,54 @@ const CheckBoxPage = () => {
         {text: 'Vidro', id: 5},
     ];
 
+    const [toggleCheckBox, setToggleCheckBox] = useState(false)
+    const [complianceModal, setcomplianceModal] = useState(true)
+
 
     return(
-        <SafeAreaView>
-            <CheckBox options={optionMultiple} onChange={op => alert(op)}/>
-        </SafeAreaView>
-    )
+    
+            <View>
+                    <Modal
+                    animationType="slide"
+                    transparent= {true}
+                    visible={complianceModal}
+                    >
+                        <View style={styles.modalContanier}>
+                            <View style={styles.modalView}>
+                                <Plastico size={24}/>
+                                <Text>Plastico</Text>
+                            </View>
+                           
+                        </View>   
+                    </Modal>
+            </View>
+
+    );
 }
 
-const styles = StyleSheet.create({
-    contanier:{
-        flexDirection: 'row',
-        alignContent: 'center',
-    },
-    btn:{
-        marginHorizontal: 8,
-    }
-})
+    const styles = StyleSheet.create({
+        contanier:{
+            flexDirection: 'row',
+            alignContent: 'center',
+            alignItems: 'center',
+        },
+        btn:{
+            marginHorizontal: 8,
+        },
+        modalContanier:{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'rgba(0,0,0, .6)',
+        },
+        modalView:{
+            flex: 1,
+            backgroundColor: 'white',
+            borderRadius: 20,
+            margin: 20,
+            padding: 20,
+            alignItems: 'center',
+        },
+    });
+
+export default CheckBoxPage;

@@ -39,13 +39,10 @@ export default function ItemRenderCatador({ id, userId, titulo, ideal_time,merch
 
 const styles = StyleSheet.create({
     contanier: {
-<<<<<<< HEAD
-        marginVertical: 12,
-        //alignItems: 'center',
-=======
+
         marginBottom: 36,
         marginLeft:16,
->>>>>>> d98edd53078147f6af1ff27a75686add0ecc54c2
+
     },
     viewOne: {
         flexDirection: 'row',

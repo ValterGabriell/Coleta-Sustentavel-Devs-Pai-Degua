@@ -9,9 +9,7 @@ export default function Descricao({ }) {
         <View style={styles.contanier}>
             <View style={{ flexDirection: 'row' }}>
                 <Text style={styles.titulo}>Descrição</Text>
-                <TouchableOpacity onPress={() => { }} style={styles.editarTopo}>
-                    <AntDesign name="edit" size={18} color="#777778" />
-                </TouchableOpacity>
+                <AntDesign name="edit" size={18} color="#777778" onPress={() => { }} style={styles.editar}/>
             </View>
 
             <Text style={{ marginHorizontal: 16, marginTop: 10 }}>
@@ -32,6 +30,12 @@ const styles = StyleSheet.create({
         color: '#FF5353',
         fontWeight: '600',
         fontSize: 16,
-        marginStart: 16
-    }
+        marginStart: 16,
+    },
+    editar: {
+        position: 'absolute',
+        marginStart: 370,
+        marginTop:5,
+        
+    },
 })
