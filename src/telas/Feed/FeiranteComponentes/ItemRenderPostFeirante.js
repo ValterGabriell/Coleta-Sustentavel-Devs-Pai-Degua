@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
 //pegar o id da request e recuperar os residuos
 
-const Item = ({ id,title,description, photo, props,localization,status,state,on_the_way,ideal_time,amount, price}) => (
+const Item = ({ id,title,photo,description, props,localization,status,state,on_the_way,ideal_time,amount, price}) => (
 
     <View>
         <View >
@@ -13,7 +13,7 @@ const Item = ({ id,title,description, photo, props,localization,status,state,on_
                    props.navigation.navigate("PostItem",{
                     id:id,
                     titulo: title,
-                    imagem:photo,
+                    photo:photo,
                     data:ideal_time,
                     descricao:description,
                     localizacao:localization,
@@ -27,10 +27,11 @@ const Item = ({ id,title,description, photo, props,localization,status,state,on_
                 }
                 }>
                 <View style={styles.viewOne}>
-                    <Image source={photo} style={styles.imgLixo}></Image>
+                    <Image source={{uri:`http://68.183.143.117:3333/uploads/${photo}`}} style={styles.imgLixo}></Image>
                     <View>
                         <Text style={styles.txtName}>{title}</Text>
                         <Text style={styles.txtData}>{ideal_time}</Text>
+                        
                     </View>
                 </View>
             </TouchableOpacity>
@@ -38,8 +39,8 @@ const Item = ({ id,title,description, photo, props,localization,status,state,on_
     </View>
 );
 
-export default function ItemRender({ id, title,description, photo, props,localization,status,state,on_the_way,ideal_time,amount,price}) {
-    return Item({ id,title,description, photo, props,localization,status,state,on_the_way,ideal_time,amount, price})
+export default function ItemRender({ id, title,photo,description, props,localization,status,state,on_the_way,ideal_time,amount,price}) {
+    return Item({ id,title,photo,description, props,localization,status,state,on_the_way,ideal_time,amount, price})
 }
 
 const styles = StyleSheet.create({

@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function MiddleOfScreen({ imagem, descricao }) {
     return <>
-        <Image source={imagem} style={styles.img} />
+        <Image source={{uri:`http://68.183.143.117:3333/uploads/${imagem}`}} style={styles.img} />
         <Text style={styles.txtDescricao}>{descricao}</Text>
     </>
 }
@@ -13,15 +13,15 @@ const styles = StyleSheet.create({
     txtDescricao: {
         marginLeft: 16,
         marginTop: 16,
-        fontSize:16,
-        marginBottom:4
+        fontSize: 16,
+        marginBottom: 4
     },
-    img:{
-        marginTop:8,
-        width:"90%",
-        height:"35%",
-        alignSelf:"center",
-        borderRadius:16
-        
+    img: {
+        marginTop: 8,
+        width: "90%",
+        height: "35%",
+        alignSelf: "center",
+        borderRadius: 16
+
     }
 })

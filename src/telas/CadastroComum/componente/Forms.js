@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, View, TextInput, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { SafeAreaView, View, TextInput, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import { Button } from "react-native-paper";
 import imgPerson from '../../../assets/profilePhoto.png'
@@ -12,7 +12,7 @@ export default function Forms(props) {
     const [password, setpassword] = useState("")
     const [phone, setPhone] = useState("")
     const [cpf, setCpf] = useState("")
-    const [photo, setPhoto] = useState(imgPerson)
+    const [photo, setPhoto] = useState()
 
 
 
@@ -27,14 +27,14 @@ export default function Forms(props) {
         });
 
 
-        setImage(result.uri)
-        console.log(image)
+        setPhoto(result.uri)
     }
 
     return <>
         <SafeAreaView>
+            <ScrollView>
             <View>
-                <Image style={styles.img} source={photo} />
+                <Image style={styles.img} source={{uri:photo}} />
                 <Button onPress={pickImage}>Selecionar foto</Button>
                 <TextInput
                     placeholder="Nome"
@@ -56,6 +56,7 @@ export default function Forms(props) {
                     onChangeText={setpassword}
                     value={password}
                     secureTextEntry={true}
+                    keyboardType={"numeric"}
                 />
 
                 <TextInput
@@ -64,6 +65,7 @@ export default function Forms(props) {
                     onChangeText={setPhone}
                     value={phone}
                     secureTextEntry={true}
+                    keyboardType={"numeric"}
                 />
 
                 <TextInput
@@ -72,6 +74,7 @@ export default function Forms(props) {
                     onChangeText={setCpf}
                     value={cpf}
                     secureTextEntry={true}
+                    keyboardType={"numeric"}
                 />
 
                 <Button onPress={() => {
@@ -79,6 +82,7 @@ export default function Forms(props) {
                 }}>Cadastrar</Button>
 
             </View>
+            </ScrollView>
         </SafeAreaView>
     </>
 }

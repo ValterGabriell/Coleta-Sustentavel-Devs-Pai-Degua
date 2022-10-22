@@ -23,7 +23,7 @@ const Item = ({ id, name, email, photo, phone, observation, props }) => (
 
 
         <View style={styles.viewOne}>
-          <Image source={photo} style={styles.imgLixo}></Image>
+          <Image source={{uri:`http://68.183.143.117:3333/uploads/${photo}`}} style={styles.imgLixo}></Image>
           <View>
             <Text style={styles.txtName}>{name}</Text>
             <Text style={styles.txtComent}>{email}</Text>

@@ -10,7 +10,9 @@ import PerfilColetor from "./ColetorComponent/PerfilColetor";
 import ViewFotoPerfilFeirante from "./FeiranteComponent/ViewFotoPerfilFeirante";
 import DadosPessoais from './FeiranteComponent/DadosPessoais'
 import Seguranca from "./FeiranteComponent/Seguranca";
-import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
+import { verificarUsuarioAtual, getCurrentScarvenger } from '../../services/requisicoes/apiDevs/users'
+import { pegarFotoUsuario } from '../../services/requisicoes/apiDevs/users'
+
 
 /**
  * FIM DOS IMPORTS PARA FEIRANTE
@@ -31,19 +33,31 @@ export default function Profile(props) {
    const isCatador = userType.isCatador
    const userId = userType.userId
    const [currentUser, setCurrentUser] = useState({})
+   const [catadorAtual, setCatadorAtual] = useState({})
+   const [photoUser, setPhotoUser] = useState()
 
 
 
    async function requestCall() {
       const user = await verificarUsuarioAtual(userId)
       setCurrentUser(user)
+
+      const catador = await getCurrentScarvenger(userId)
+      setCatadorAtual(catador)
+
+   
+      if (user.photo != null) {
+         const photo = await pegarFotoUsuario(user.photo.replace("/uploads/", ""))
+         setPhotoUser(photo)
+      }
+
    }
 
    useEffect(function () {
       (async () => {
          requestCall()
          props.navigation.addListener("focus", () => {
-               requestCall()
+            requestCall()
          })
       })()
    }, [])
@@ -53,16 +67,17 @@ export default function Profile(props) {
    return <>
       {isCatador ?
          <ScrollView>
-         <SafeAreaView>
-            <PerfilColetor user={currentUser}/>
-         </SafeAreaView>
+            <SafeAreaView>
+               <PerfilColetor user={catadorAtual} />
+            </SafeAreaView>
          </ScrollView>
          : //SE FOR FEIRANTE
          <ScrollView>
             <SafeAreaView>
+
                <ViewFotoPerfilFeirante
                   userId={currentUser.id}
-                  fotoUser={ProfilePic}
+                  fotoUser={currentUser.photo}
                   nomeUser={currentUser.name}
                   emailUser={currentUser.email}
                />

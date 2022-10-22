@@ -3,8 +3,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 
 import { FontAwesome } from '@expo/vector-icons';
 import CustomButton from "../../../componentes/CustomButton/CustomButton";
-import imagem from "../../../assets/lixoVeropa.jpg";
-import { addRequestForScarvenger, removeRequestForScarvenger, checkIfCurrentRequestBelongsToCurrentScarvenger } from '../../../services/requisicoes/apiDevs/requisicoes'
+import { addRequestForScarvenger, removeRequestForScarvenger, finishRequisition } from '../../../services/requisicoes/apiDevs/requisicoes'
 
 /*
 <HeaderOfScreen />
@@ -20,6 +19,7 @@ export default function AnaliseColeta(props) {
     const requestId = props.route.params.requestId
     const titulo = props.route.params.titulo
     const aceita = props.route.params.aceita
+    const photo = props.route.params.photo
  
     return <>
         <Text style={styles.txtTitle}>{titulo}</Text>
@@ -28,7 +28,7 @@ export default function AnaliseColeta(props) {
             <Text style={styles.txtLocalizacao}>{'Prox ao bar da Lurdes'}</Text>
         </View>
 
-        <Image source={imagem} style={styles.img} />
+        <Image source={{uri:`http://68.183.143.117:3333/uploads/${photo}`}} style={styles.img} />
         <Text style={styles.txtDescricao}>{'descricao'}</Text>
         <View style={{ height: 1, backgroundColor: "#cc0000", width: "85%", alignSelf: "center" }}></View>
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
@@ -54,7 +54,7 @@ export default function AnaliseColeta(props) {
                     }} text={'Remover'} />
 
                     <CustomButton onPress={() => {
-                        removeRequestForScarvenger(requestId, scarvengerId)
+                        finishRequisition(requestId, props)
                     }} text={'Finalizar'} />
                 </View>
                 :

@@ -1,4 +1,5 @@
 import apiDevs from '../../api/apiDevs'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
  * REQUISICOES PARA OS FEIRANTES
@@ -20,6 +21,16 @@ export async function getScavengers() {
     }
 }
 
+export async function getCurrentScarvenger(id) {
+    try {
+        const result = await apiDevs.get(`scavengers/${id}`)
+        return result.data
+    } catch (error) {
+        console.log(error)
+        return {}
+    }
+}
+
 
 
 /**
@@ -33,16 +44,20 @@ export async function verificarUsuarioAtual(idUser) {
     } else {
         try {
             const result = await apiDevs.get(`merchants/${idUser}`)
-        
             return result.data
-
         } catch (error) {
-            console.log(error)
+
             return {}
         }
     }
-
 }
+
+
+export async function pegarFotoUsuario(uri) {
+    const result = await apiDevs.get(`uploads/${uri}`)
+    return result.data
+}
+
 
 /**
  * atualizar email do usuario
@@ -96,8 +111,24 @@ export async function trocarNomeUser(userId, name) {
  */
 export async function postMerchant({ name, email, password, photo, phone, cpf, props }) {
     try {
-        await apiDevs.post('merchants', {
-            name: name, email: email, password: password, photo: photo, phone: phone, cpf: cpf
+
+        let filename = photo.split('/').pop();
+
+        let match = /\.(\w+)$/.exec(filename);
+        let type = match ? `image/${match[1]}` : `image`;
+        let formData = new FormData();
+
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('photo', { uri: photo, name: filename, type });
+        formData.append('phone', phone);
+        formData.append('cpf', cpf);
+
+
+
+        await apiDevs.post('merchants', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
         }).then((response) => {
             props.navigation.navigate("Login")
         }).catch((erro) => {
@@ -116,8 +147,24 @@ export async function postMerchant({ name, email, password, photo, phone, cpf, p
  */
 export async function postScarvenger({ name, email, password, photo, phone, cpf, props }) {
     try {
-        await apiDevs.post('scavengers', {
-            name: name, email: email, password: password, photo: photo, phone: phone, cpf: cpf
+        let filename = photo.split('/').pop();
+
+        let match = /\.(\w+)$/.exec(filename);
+        let type = match ? `image/${match[1]}` : `image`;
+        let formData = new FormData();
+
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('photo', { uri: photo, name: filename, type });
+        formData.append('phone', phone);
+        formData.append('cpf', cpf);
+
+
+
+
+        await apiDevs.post('scavengers', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
         }).then((response) => {
             props.navigation.navigate("Login")
         }).catch((erro) => {
@@ -132,10 +179,10 @@ export async function postScarvenger({ name, email, password, photo, phone, cpf,
 
 export async function logout({ props }) {
     apiDevs.post('logout').then((res) => {
-        if(res.data.loggedOut){
+        if (res.data.loggedOut) {
             console.log(res.data.loggedOut);
         }
-    }).catch((err)=>{
+    }).catch((err) => {
         console.log(err);
     })
 }

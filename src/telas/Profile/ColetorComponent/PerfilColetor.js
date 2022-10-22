@@ -24,10 +24,6 @@ export default function PerfilColetor({user}) {
 
     //Manipular a escolha dos residuos 
 
-    const [material, setMaterial] = useState()
-
-   
-
 
     return <SafeAreaView style={styles.container}>
 
@@ -47,9 +43,7 @@ export default function PerfilColetor({user}) {
             </View>
         </View>
 
-        <CampoDados />
-        <Descricao />
-        <CampoSecurity/>
+        <Descricao user={user} />
 
         <TouchableOpacity style={styles.botao}>
             <MaterialIcons name="email" size={30} color="#FF5353" />

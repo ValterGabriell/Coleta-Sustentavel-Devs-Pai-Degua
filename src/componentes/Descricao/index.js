@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 
 
-export default function Descricao({ }) {
+export default function Descricao({ user}) {
     return (
         <View style={styles.contanier}>
             <View style={{ flexDirection: 'row' }}>
@@ -14,7 +14,7 @@ export default function Descricao({ }) {
 
             <Text style={{ marginHorizontal: 16, marginTop: 10 }}>
                 {
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                    user.description
                 }
             </Text>
         </View>

@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 
 import lixoVeropa from '../../../assets/lixoVeropa.jpg'
 
-const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita }) => (
+const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita,photo }) => (
 
 
     <View style={styles.contanier}>
@@ -15,16 +15,17 @@ const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, descript
                     titulo: titulo,
                     on_the_way:on_the_way,
                     requestByScarvengerId:requestByScarvengerId,
-                    aceita:aceita
+                    aceita:aceita,
+                    photo:photo
                 })
 
             }
             }>
             <View style={styles.viewOne}>
-                <Image source={lixoVeropa} style={styles.imgLixo}></Image>
+                <Image source={{uri:`http://68.183.143.117:3333/uploads/${photo}`}} style={styles.imgLixo}></Image>
                 <View style={{ marginStart: 16 }}>
                     <Text style={styles.txtName}>{titulo}</Text>
-                    <Text style={styles.distancia}>Preço: {price}</Text>
+                    <Text style={styles.distancia}>Preço: {price},00 R$</Text>
                     <Text style={styles.txtData}>{"Horário: " + ideal_time}</Text>
                 </View>
             </View>
@@ -34,8 +35,8 @@ const Item = ({ id, userId, titulo, ideal_time,merchant_id, on_the_way, descript
 );
 
 
-export default function ItemRenderCatadorAceita({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita }) {
-    return Item({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita })
+export default function ItemRenderCatadorAceita({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita,photo }) {
+    return Item({ id, userId, titulo, ideal_time,merchant_id, on_the_way, description, localization, props,price,requestByScarvengerId, aceita,photo })
 }
 
 const styles = StyleSheet.create({
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: 16,
         color: '#454545',
+        width:"65%"
     },
     txtComent: {
         marginLeft: 8,
@@ -73,7 +75,6 @@ const styles = StyleSheet.create({
     txtData: {
         marginRight: 8,
         fontSize: 12,
-        alignSelf: 'flex-end',
         marginLeft: 8,
         color: '#454545'
     },

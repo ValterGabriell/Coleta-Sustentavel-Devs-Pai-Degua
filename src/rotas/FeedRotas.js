@@ -23,6 +23,7 @@ export default function ProfileTabStack() {
       <Stack.Screen name='PerfilUser'  options={{headerShown:false}} component={PerfilUser}/>  
       <Stack.Screen name="PostItem" options={{ headerShown: true, headerTitle:"Sua postagem" }} component={PostItem} />
       <Stack.Screen name="AnaliseColeta" options={{ headerShown: false }} component={AnaliseColeta} />
+      
     
     </Stack.Navigator>
   );

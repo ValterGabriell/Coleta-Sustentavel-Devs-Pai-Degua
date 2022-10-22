@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Image, StyleSheet, Text, Modal, TextInput } from "react-native";
 import { FontAwesome } from '@expo/vector-icons'
 import CustomButton from "../../../componentes/CustomButton/CustomButton";
@@ -9,11 +9,17 @@ export default function ViewFotoPerfilFeirante({ userId, fotoUser, nomeUser, ema
 
     const [nameVisible, setnameVisible] = useState(false)
     const [newNAME, setnewNAME] = useState(nomeUser)
+    const [photoUser, setPhotoUser] = useState(`http://68.183.143.117:3333${fotoUser}`)
+
+
+    useEffect(() => {
+        setPhotoUser(`http://68.183.143.117:3333${fotoUser}`)
+        console.log(`http://68.183.143.117:3333${fotoUser}`);
+    }, [])
 
     return <>
         <View style={styles.container}>
-            <Image source={fotoUser} style={styles.imagem} />
-            <FontAwesome name="camera" size={18} style={styles.iconBellowThePhoto} ></FontAwesome>
+            <Image source={{ uri: photoUser }} style={styles.imagem} />
 
             <View style={styles.viewNameBarraca}>
                 <Text style={styles.nameBarraca}>{nomeUser}</Text>
@@ -28,7 +34,7 @@ export default function ViewFotoPerfilFeirante({ userId, fotoUser, nomeUser, ema
 
             {nameVisible &&
                 <Modal animationType="slide" visible={nameVisible}>
-                    <View style={{marginTop:32}}>
+                    <View style={{ marginTop: 32 }}>
                         <TextInput style={styles.textInput} placeholder={nomeUser} onChangeText={setnewNAME} clearButtonMode={"while-editing"}></TextInput>
                         <CustomButton onPress={() => {
                             setnameVisible(false)

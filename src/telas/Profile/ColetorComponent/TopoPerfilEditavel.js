@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { View, StyleSheet, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import ColetorFoto from '../../../assets/ColetorFoto.jpg';
 
@@ -15,17 +15,18 @@ export default function TopoPerfil({ user }) {
         console.log(data);
     }
 
+    const [photoUser, setPhotoUser] = useState(`http://68.183.143.117:3333${user.photo}`)
+
+    useEffect(()=>{
+        setPhotoUser(`http://68.183.143.117:3333${user.photo}`)
+        console.log(`http://68.183.143.117:3333${user.photo}`);
+    },[])
+
+
     return <>
         <View style={styles.topo}>
             <View style={styles.editeFoto}>
-                <Image source={ColetorFoto} style={styles.picture} />
-                <TouchableOpacity style={styles.editeCamera} onPress={() => ImagePicker.launchImageLibrary({
-
-
-                }, ImagePickerCallback)}>
-                    <Image source={cameraEdite} />
-                </TouchableOpacity>
-
+                <Image source={{uri:photoUser}} style={styles.picture} />
                 <Text style={styles.username}>{user.name}</Text>
                 <Text style={styles.email} >{user.email}</Text>
                 <View style={{ flexDirection: 'row', marginTop: 0 }}>
