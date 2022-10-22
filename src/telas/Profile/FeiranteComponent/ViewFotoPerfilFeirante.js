@@ -9,18 +9,18 @@ export default function ViewFotoPerfilFeirante({ userId, fotoUser, nomeUser, ema
 
     const [nameVisible, setnameVisible] = useState(false)
     const [newNAME, setnewNAME] = useState(nomeUser)
-    const [photoUser, setPhotoUser] = useState()
+    const [photoUser, setPhotoUser] = useState(`http://68.183.143.117:3333${fotoUser}`)
 
 
-    useEffect(()=>{
+    useEffect(() => {
         setPhotoUser(`http://68.183.143.117:3333${fotoUser}`)
-    
-    },[])
+        console.log(`http://68.183.143.117:3333${fotoUser}`);
+    }, [])
 
     return <>
         <View style={styles.container}>
-            <Image source={{uri:photoUser}} style={styles.imagem} />
-           
+            <Image source={{ uri: photoUser }} style={styles.imagem} />
+
             <View style={styles.viewNameBarraca}>
                 <Text style={styles.nameBarraca}>{nomeUser}</Text>
                 <FontAwesome name="edit" size={16} style={{ alignSelf: 'center', marginLeft: 8, marginTop: 8 }} onPress={() => {
@@ -34,7 +34,7 @@ export default function ViewFotoPerfilFeirante({ userId, fotoUser, nomeUser, ema
 
             {nameVisible &&
                 <Modal animationType="slide" visible={nameVisible}>
-                    <View style={{marginTop:32}}>
+                    <View style={{ marginTop: 32 }}>
                         <TextInput style={styles.textInput} placeholder={nomeUser} onChangeText={setnewNAME} clearButtonMode={"while-editing"}></TextInput>
                         <CustomButton onPress={() => {
                             setnameVisible(false)

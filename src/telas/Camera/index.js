@@ -80,6 +80,7 @@ export default function CameraScreen(props) {
                 style={{ borderRadius:32, flex:0 }}
                 type={type}
                 ref={camRef}
+                quality={0.3}
 
             >
 

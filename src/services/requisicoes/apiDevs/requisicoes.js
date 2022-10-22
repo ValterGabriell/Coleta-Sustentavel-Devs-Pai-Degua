@@ -131,7 +131,7 @@ export async function removeRequestForScarvenger(requestId, scarvengerId, props)
 
 export async function finishRequisition(requestId, props) {
     try {
-        await apiDevs.patch(`requests/${requestId}`, {
+        await apiDevs.delete(`requests/${requestId}`, {
             status: true
         }).then((res) => {
             props.navigation.goBack()
@@ -150,7 +150,10 @@ export async function finishRequisition(requestId, props) {
 export async function getRequestsByScarvengerId(scarvengerId) {
     try {
         const result = await apiDevs.get(`scavengers/${scarvengerId}`)
+    
         return result.data.requests
+        
+
     } catch (error) {
 
         return {}
@@ -167,7 +170,8 @@ export async function getRequestsByMerchantId(merchant_id) {
 
         for (let index = 0; index < listRequest.length; index++) {
             var isOnTheWay = listRequest[index].on_the_way
-            if (isOnTheWay) {
+            var isStatusOk = listRequest[index].status
+            if (isOnTheWay && !isStatusOk) {
                 arrayWithRequestThatHaveOnTheWayEqualsTrue.push(listRequest[index])
             }
         }

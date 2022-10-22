@@ -21,6 +21,16 @@ export async function getScavengers() {
     }
 }
 
+export async function getCurrentScarvenger(id) {
+    try {
+        const result = await apiDevs.get(`scavengers/${id}`)
+        return result.data
+    } catch (error) {
+        console.log(error)
+        return {}
+    }
+}
+
 
 
 /**
@@ -35,7 +45,6 @@ export async function verificarUsuarioAtual(idUser) {
         try {
             const result = await apiDevs.get(`merchants/${idUser}`)
             return result.data
-
         } catch (error) {
 
             return {}

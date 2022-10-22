@@ -34,7 +34,7 @@ import ItemRender from "./Catador/ItemRenderPostCatador";
 import ItemRenderCatador from "./Catador/ItemRenderPostCatadorAceita";
 
 import { getRequest, getRequestsByScarvengerId, getRequestsByMerchantId } from '../../services/requisicoes/apiDevs/requisicoes'
-import { getScavengers } from "../../services/requisicoes/apiDevs/users";
+import { getScavengers ,getCurrentScarvenger,verificarUsuarioAtual} from "../../services/requisicoes/apiDevs/users";
 
 import { AuthContext } from "../../contexts/auth";
 
@@ -76,6 +76,8 @@ const App = (props) => {
 
   const [request, setRequest] = useState([])
   const [catadores, setCatadores] = useState([])
+  const [catadorAtual, setCatadorAtual] = useState({})
+  const [feiranteAtual, setfEIRANTE] = useState({})
   const [requests, setrequest] = useState([])
   const [requestByScarvengerId, setRequestByScarvengerId] = useState([])
   const [requestByMerchantId, setRequestByMerchantId] = useState([])
@@ -114,6 +116,15 @@ const App = (props) => {
      */
     const scavengers = await getScavengers()
     setCatadores(scavengers)
+
+    const currentScavengers = await getCurrentScarvenger(userId)
+    setCatadorAtual(currentScavengers)
+
+    const feiranteAtual = await verificarUsuarioAtual(userId)
+    setfEIRANTE(feiranteAtual)
+
+
+
 
   }
 
@@ -238,7 +249,7 @@ const App = (props) => {
 
       <SafeAreaView style={styles.container_1}>
 
-        <HeaderComponentCatador nomeUser={"Coletor"} props={props} />
+        <HeaderComponentCatador nomeUser={catadorAtual.name} props={props} />
 
         <FlatList
           data={anuncios}
@@ -286,7 +297,7 @@ const App = (props) => {
       */
 
       <SafeAreaView style={styles.container}>
-        <HeaderComponentFeirante nomeUser={"Feirante"} props={props} />
+        <HeaderComponentFeirante nomeUser={feiranteAtual.name} props={props} />
 
         <Text style={styles.secondContainerName}>Suas postagens</Text>
 

@@ -10,7 +10,7 @@ import PerfilColetor from "./ColetorComponent/PerfilColetor";
 import ViewFotoPerfilFeirante from "./FeiranteComponent/ViewFotoPerfilFeirante";
 import DadosPessoais from './FeiranteComponent/DadosPessoais'
 import Seguranca from "./FeiranteComponent/Seguranca";
-import { verificarUsuarioAtual } from '../../services/requisicoes/apiDevs/users'
+import { verificarUsuarioAtual, getCurrentScarvenger } from '../../services/requisicoes/apiDevs/users'
 import { pegarFotoUsuario } from '../../services/requisicoes/apiDevs/users'
 
 
@@ -33,6 +33,7 @@ export default function Profile(props) {
    const isCatador = userType.isCatador
    const userId = userType.userId
    const [currentUser, setCurrentUser] = useState({})
+   const [catadorAtual, setCatadorAtual] = useState({})
    const [photoUser, setPhotoUser] = useState()
 
 
@@ -41,8 +42,10 @@ export default function Profile(props) {
       const user = await verificarUsuarioAtual(userId)
       setCurrentUser(user)
 
-      console.log(user.photo);
+      const catador = await getCurrentScarvenger(userId)
+      setCatadorAtual(catador)
 
+   
       if (user.photo != null) {
          const photo = await pegarFotoUsuario(user.photo.replace("/uploads/", ""))
          setPhotoUser(photo)
@@ -65,7 +68,7 @@ export default function Profile(props) {
       {isCatador ?
          <ScrollView>
             <SafeAreaView>
-               <PerfilColetor user={currentUser} />
+               <PerfilColetor user={catadorAtual} />
             </SafeAreaView>
          </ScrollView>
          : //SE FOR FEIRANTE

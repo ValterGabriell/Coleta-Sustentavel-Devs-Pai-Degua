@@ -21,7 +21,7 @@ export default function PerfilColetor({user}) {
 
     //Manipular a escolha dos residuos 
 
-    const [material, setMaterial] = useState({})
+   
 
     /*
     function Manipular(resp){
@@ -58,7 +58,7 @@ export default function PerfilColetor({user}) {
         <CampoDados />
 
         <AntDesign name="edit" size={20} color="#777778" onPress={() => { }} style={styles.editar} />
-        <Descricao />
+        <Descricao user={user} />
 
         <TouchableOpacity style={styles.botao}>
             <MaterialIcons name="email" size={30} color="#FF5353" />
