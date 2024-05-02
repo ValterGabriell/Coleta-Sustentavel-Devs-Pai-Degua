@@ -34,7 +34,7 @@ export default function Componente({ props }) {
                 />
                 
                 <CustomButton text='Login' onPress={() => {
-
+                
                    signIn(email, senha)
 
                 }} />
@@ -42,7 +42,7 @@ export default function Componente({ props }) {
 
                 <CustonLink text='Esqueci senha'
                     onPress={() => {
-                        props.navigation.navigate('CadastroScreen')
+                        props.navigation.navigate('FeedScreen')
                     }} />
 
                 <CustonLink text='Não possui uma conta? Cadastra-se' onPress={() => {
