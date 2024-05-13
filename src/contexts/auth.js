@@ -49,7 +49,7 @@ export default function AuthProvider({ children }) {
 
 
     return (
-        <AuthContext.Provider value={{ nome: "PUTA", signIn, userType, userId }} >
+        <AuthContext.Provider value={{ nome: "put", signIn, userType, userId }} >
             {children}
         </AuthContext.Provider>
     )
